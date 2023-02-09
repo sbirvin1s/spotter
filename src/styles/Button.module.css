@@ -1,0 +1,47 @@
+.Button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin: 4px;
+  padding: 10px;
+  background-color: #7de3c5;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+.Button_link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin: 4px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  text-decoration: underline;
+  cursor: pointer;
+  background-color: transparent;
+  color: #7de3c5;
+}
+
+.Button_card {
+  margin: 0.5rem;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(90deg, rgba(197, 196, 196, 0.47) 0%, rgba(166, 165, 165, 0.47) 100.96%);
+  box-shadow: 6px 6px 12px rgba(156, 156, 156, 0.6);
+  border-radius: 15px;
+  border: none;
+  outline: none;
+  transition: all .2s ease-in-out;
+}
+
+.Button_card:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}

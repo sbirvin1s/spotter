@@ -1,0 +1,31 @@
+.Input_label {
+  position: relative;
+  border: solid;
+  border-width: thin;
+  outline: none;
+  background-color: transparent;
+  border-radius: 5px;
+  margin: 12px;
+}
+
+.Input_title {
+  position: absolute;
+  top: -0.5rem;
+  left: 0.5rem;
+  font-weight: light;
+  padding-left: 4px;
+  padding-right: 4px;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.Input_style {
+  border: none;
+  outline: none;
+  font-weight: light;
+  background-color: transparent;
+  padding: 5px;
+  text-align: center;
+}
