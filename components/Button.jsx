@@ -38,7 +38,7 @@ export default function Button({
     case 'link':
       return (
         <button
-          className={styles.Button_link}
+          className={`${styles.Button} ${styles.Button_link}`}
           {...props}
         >
           {children}
@@ -47,7 +47,7 @@ export default function Button({
     case 'card':
       return (
         <button
-          className={styles.Button_card}
+          className={`${styles.Button} ${styles.Button_card}`}
           selected={selected}
           onClick={handleSelected}
           {...props}

@@ -24,7 +24,7 @@ export default function Alert({ variant = '', children, ...props}) {
     case 'success':
       return (
         <div
-          className={styles.Alert___success}
+          className={`${styles.Alert} ${styles.Alert___success}`}
           {...props}
         >
           {children}
@@ -33,7 +33,7 @@ export default function Alert({ variant = '', children, ...props}) {
     case 'warn':
         return (
           <div
-            className={styles.Alert___warn}
+            className={`${styles.Alert} ${styles.Alert___warn}`}
             {...props}
           >
             {children}
@@ -42,7 +42,7 @@ export default function Alert({ variant = '', children, ...props}) {
     case 'fail':
       return (
         <div
-          className={styles.Alert___fail}
+          className={`${styles.Alert} ${styles.Alert___fail}`}
           {...props}
         >
           {children}

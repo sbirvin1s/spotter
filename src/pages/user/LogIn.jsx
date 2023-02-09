@@ -17,24 +17,32 @@ export default function Login() {
 
   /* --- RENDERER --- */
   return (
-    <div className={styles.Div_100}>
-      <div className={styles.Div_33}>
+    <div className={styles.Div_100___column}>
+      <div className={styles.Div_33___row}>
         <h1>Welcome to <strong>SPOTTER</strong></h1>
       </div>
-      <div className={styles.Div_33}>
+      <form className={styles.Form}>
+        <div className={styles.Div_33___column}>
         <Input
+          name={'email'}
+          labelName={'Email'}
+          // onChange={handleEmailEntry}
           type='email'
           placeholder='iman@example.com'
         />
         <Input
+          name={'password'}
+          labelName={'Password'}
+          // onChange={handlePasswordEntry}
           type='password'
           placeholder='************'
         />
-      </div>
-      <div className={styles.Div_33}>
-        <Button>Log In</Button>
-        <h5>Don&apos;t have and account? <Link href='/user/SignUp'>Sign Up</Link></h5>
-      </div>
+        </div>
+        <div className={styles.Div_33___column}>
+          <Button>Log In</Button>
+          <h5>Don&apos;t have and account? <Link href='/user/SignUp'>Sign Up</Link></h5>
+        </div>
+      </form>
     </div>
   )
 }

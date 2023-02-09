@@ -52,26 +52,12 @@ export default function SignUp() {
 
   /* --- RENDERER --- */
   return (
-    <div className={styles.Div_100}>
-      <div className={styles.Div_33}>
+    <div className={styles.Div_100___column}>
+      <div className={styles.Header___row}>
         <h1>Create your <strong>ACCOUNT</strong></h1>
         {error && <Alert variant='fail'>{error}</Alert>}
       </div>
       <form className={styles.Form}>
-        <Input
-          name={'firstName'}
-          labelName={'First Name'}
-          onChange={handleEmailEntry}
-          type='text'
-          placeholder='Iman'
-        />
-        <Input
-          name={'lastName'}
-          labelName={'Last Name'}
-          onChange={handleEmailEntry}
-          type='text'
-          placeholder='Example'
-        />
         <Input
           name={'email'}
           labelName={'Email'}
@@ -93,7 +79,7 @@ export default function SignUp() {
           type='password'
           placeholder='************'
         />
-        <div className={styles.Div_33}>
+        <div className={styles.Footer___column}>
           <Button onClick={handleSignUp} disabled={loading}>Sign Up</Button>
           <h5>Already have an account? <Link href='/user/LogIn'>Log In</Link></h5>
         </div>
