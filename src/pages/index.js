@@ -1,20 +1,27 @@
 /* ========== EXTERNAL MODULES ========== */
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
+import { useEffect } from 'react';
+import Head from 'next/head';
+import Image from 'next/image';
+import { Router, useRouter } from 'next/router';
 
 
 /* ========== INTERNAL MODULES ========== */
-import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import styles from '@/styles/Home.module.css';
+import { useAuth } from 'contexts/AuthContext';
 
 
 /* ========== EXPORTS ========== */
 export default function Home() {
 
   /* --- STATE HOOKS --- */
+  const router = useRouter();
+  const { currentUser } = useAuth();
+
   /* --- LIFECYCLE METHODS --- */
+  useEffect(() => {
+    if (!currentUser) router.push('/user/Login')
+  }, [currentUser, router])
+
   /* --- EVENT HANDLERS --- */
   /* --- RENDER METHODS --- */
 
