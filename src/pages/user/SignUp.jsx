@@ -1,6 +1,7 @@
 /* ========== EXTERNAL MODULES ========== */
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { Router, useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
 import { useAuth } from 'contexts/AuthContext';
@@ -8,11 +9,15 @@ import styles from '@/styles/SignUp.module.css';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import Alert from 'components/Alert';
+import Page from 'components/Page';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
 
 /* ========== EXPORTS ========== */
 export default function SignUp() {
 
   /* --- STATE HOOKS --- */
+  const router = useRouter();
   const [email, setEmail]  = useState();
   const [password, setPassword] = useState();
   const [passwordConfirmation, setPasswordConfirmation] = useState();
@@ -45,18 +50,18 @@ export default function SignUp() {
     }
 
     setLoading(false);
-    navigate('/BasicInfo');
+    router.push('/user/BasicInfo');
   }
 
   /* --- RENDER METHODS --- */
 
   /* --- RENDERER --- */
   return (
-    <div className={styles.Div_100___column}>
-      <div className={styles.Header___row}>
+    <Page>
+      <Header>
         <h1>Create your <strong>ACCOUNT</strong></h1>
         {error && <Alert variant='fail'>{error}</Alert>}
-      </div>
+      </Header>
       <form className={styles.Form}>
         <Input
           name={'email'}
@@ -75,15 +80,15 @@ export default function SignUp() {
         <Input
           name={'confirmPassword'}
           labelName={'Confirm Password'}
-          onChange={handlePasswordEntry}
+          onChange={handlePasswordConfirmationEntry}
           type='password'
           placeholder='************'
         />
-        <div className={styles.Footer___column}>
+        <Footer>
           <Button onClick={handleSignUp} disabled={loading}>Sign Up</Button>
-          <h5>Already have an account? <Link href='/user/LogIn'>Log In</Link></h5>
-        </div>
+          <h5>Already have an account? <Link href='/user/LogIn'>Log In</Link></h5>ddd
+        </Footer>
       </form>
-    </div>
+    </Page>
   )
 }

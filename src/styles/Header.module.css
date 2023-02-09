@@ -1,0 +1,10 @@
+.Header___row {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 33vh;
+  max-height: 33vh;
+  min-height: 33vh;
+}

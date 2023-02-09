@@ -1,25 +1,22 @@
 /* ========== EXTERNAL MODULES ========== */
-
+import React from "react";
 
 /* ========== INTERNAL MODULES ========== */
-
+import styles from '@/styles/Header.module.css';
 
 /* ========== EXPORTS ========== */
-export default function Profile() {
+export default function Header({ children }) {
 
   /* --- STATE HOOKS --- */
   /* --- LIFECYCLE METHODS --- */
   /* --- EVENT HANDLERS --- */
   /* --- RENDER METHODS --- */
 
-  /* NOTE: should have a 1RM amount from users entered 1RM and a "current 1RM" for the users working 1RM that is calculated for each week
-   */
-
-
   /* --- RENDERER --- */
   return (
-    <>
-    </>
+    <div className={styles.Header___row}>
+      {children}
+    </div>
   )
 }
 

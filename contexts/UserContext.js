@@ -18,7 +18,8 @@ export function UserProvider({ children }) {
   const [userInfo, setUserInfo] = useState();
 
   /* --- EVENT HANDLERS --- */
-  const updateUserInfo = ({ target:{ name, value } }) => {
+  const updateUserInfo = event => {
+    const { target:{ name, value } } = event;
     event.preventDefault();
     setUserInfo(prev => ({
       ...prev,
