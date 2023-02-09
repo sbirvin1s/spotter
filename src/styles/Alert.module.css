@@ -1,0 +1,67 @@
+.Alert___default {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 4px;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  font-weight: bold;
+  color: #171816;
+  background-color: #ffffcc;
+  border: none;
+  outline: none;
+  z-index: 2;
+}
+
+.Alert___success {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 4px;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  font-weight: bold;
+  color: #53ff1a;
+  background-color: #c6ffb3;
+  border: none;
+  outline: none;
+  z-index: 2;
+}
+
+.Alert___warn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 4px;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  font-weight: bold;
+  color: #b38600;
+  background-color: #ffecb3;
+  border: none;
+  outline: none;
+  z-index: 2;
+}
+
+.Alert___fail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 4px;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  font-weight: bold;
+  color: #ff4d4d;
+  background-color: #ffb3b3;
+  border: none;
+  outline: none;
+  z-index: 2;
+}
