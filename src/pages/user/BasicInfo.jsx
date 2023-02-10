@@ -1,5 +1,6 @@
 /* ========== EXTERNAL MODULES ========== */
 import React from 'react';
+import { Router, useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/BasicInfo.module.css';
@@ -9,24 +10,26 @@ import Button from 'components/Button';
 import Page from 'components/Page';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import CardButton from 'components/CardButton';
 
 
 /* ========== EXPORTS ========== */
 export default function BasicInfo() {
 
   /* --- STATE HOOKS --- */
-  const { userInfo, updateUserInfo } = useUserInfo();
+  const router = useRouter();
+  const { userInfo, updateUserInfo, updateSpecificInfo } = useUserInfo();
 
   /* --- LIFECYCLE METHODS --- */
   /* --- EVENT HANDLERS --- */
   const handleNext = event => {
     event.preventDefault();
-    navigate('/WeightSelector');
+    router.push('/user/Profile');
   }
 
   const handleBack = event => {
     event.preventDefault();
-    navigate('/BasicInfo');
+    router.push('/user/SignUp');
   }
   /* --- RENDER METHODS --- */
 
@@ -53,22 +56,28 @@ export default function BasicInfo() {
             value={(userInfo && userInfo.lastName) || ''}
             required
           />
-          <label className={styles.Label} htmlFor='poundsOrKilograms'>
-            Do you want your weights in Pounds or Kilograms
-              <select
-                id='poundsOrKilograms'
+          <div className={styles.Div___column}>
+            <p> Do you use pounds or kilograms?</p>
+            <div className={styles.Div___row}>
+              <CardButton
                 name='poundsOrKilograms'
-                onChange={updateUserInfo}
-                value={(userInfo && userInfo.poundsOrKilograms) || ''}
+                value={'pounds'}
+                whenClicked={() => updateSpecificInfo('poundsOrKilograms', 'pounds')}
               >
-                <option value={null}>--</option>
-                <option value={'pounds'}>Pounds</option>
-                <option value={'kilograms'}>Kilograms</option>
-              </select>
-          </label>
+                LBS
+              </CardButton>
+              <CardButton
+                name='poundsOrKilograms'
+                value={'kilograms'}
+                whenClicked={() => updateSpecificInfo('poundsOrKilograms', 'kilograms')}
+              >
+                KG
+              </CardButton>
+            </div>
+          </div>
         <Footer>
-          <Button variant='link' onClick={handleBack} >Back</Button>
           <Button onClick={handleNext} >Next</Button>
+          <Button variant='link' onClick={handleBack} >Back</Button>
         </Footer>
       </form>
     </Page>

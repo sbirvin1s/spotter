@@ -19,7 +19,7 @@ export default function Home() {
 
   /* --- LIFECYCLE METHODS --- */
   useEffect(() => {
-    if (!currentUser) router.push('/user/Login')
+    if (!currentUser) router.push('/user/LogIn')
   }, [currentUser, router])
 
   /* --- EVENT HANDLERS --- */

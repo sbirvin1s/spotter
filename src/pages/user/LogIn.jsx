@@ -1,9 +1,10 @@
 /* ========== EXTERNAL MODULES ========== */
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Router, useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
+import { useAuth } from 'contexts/AuthContext';
 import styles from '@/styles/Login.module.css';
 import Alert from 'components/Alert';
 import Input from 'components/Input';
@@ -27,6 +28,27 @@ export default function Login() {
   /* --- EVENT HANDLERS --- */
   const handleEmailEntry = ({ target: { value } }) => setEmail(value);
   const handlePasswordEntry = ({ target: { value } }) => setPassword(value);
+
+  const handleLogIn = async () => {
+    event.preventDefault();
+
+    try {
+      setError('');
+      setLoading(true);
+      const user = await logIn(email, password);
+
+      axios.get(`/user/${user.user.uid}`)
+      .then(userData => updateInfo(userData.data.rows[0]))
+      .catch(err => console.error(`Unable to retrieve user data due to error: ${err}`))
+
+    } catch (err) {
+      console.error('Log In Error: ', err);
+      setError('Failed to Log In');
+    }
+
+    setLoading(false);
+    router.push('/');
+  }
 
   /* --- RENDER METHODS --- */
 
@@ -55,7 +77,7 @@ export default function Login() {
         />
         </div>
         <Footer>
-          <Button>Log In</Button>
+          <Button onClick={handleLogIn}>Log In</Button>
           <h5>Don&apos;t have and account? <Link href='/user/SignUp'>Sign Up</Link></h5>
         </Footer>
       </form>

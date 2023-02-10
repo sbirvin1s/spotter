@@ -1,0 +1,23 @@
+.Button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  height: 100px;
+  width: 100px;
+  border-radius: 7px;
+  padding: 40px;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.Button___selected {
+  background: #7de3c5;
+}
+
+.Button___default {
+  background: rgba(255, 255, 255, 0.5);
+}
