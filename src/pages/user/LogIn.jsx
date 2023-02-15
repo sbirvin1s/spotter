@@ -36,18 +36,13 @@ export default function Login() {
       setError('');
       setLoading(true);
       const user = await logIn(email, password);
-
-      axios.get(`/user/${user.user.uid}`)
-      .then(userData => updateInfo(userData.data.rows[0]))
-      .catch(err => console.error(`Unable to retrieve user data due to error: ${err}`))
-
+      router.push('/');
     } catch (err) {
       console.error('Log In Error: ', err);
       setError('Failed to Log In');
     }
 
     setLoading(false);
-    router.push('/');
   }
 
   /* --- RENDER METHODS --- */
@@ -56,7 +51,8 @@ export default function Login() {
   return (
     <Page>
       <Header>
-        <h1>Welcome to <strong>SPOTTER</strong></h1>
+        <p>Welcome to</p>
+        <h1>SPOTTER</h1>
         {error && <Alert variant='fail'>{error}</Alert>}
       </Header>
       <form className={styles.Form}>
