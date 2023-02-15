@@ -14,7 +14,7 @@ export default function Header({ children }) {
 
   /* --- RENDERER --- */
   return (
-    <div className={styles.Header___row}>
+    <div className={styles.Header_column}>
       {children}
     </div>
   )

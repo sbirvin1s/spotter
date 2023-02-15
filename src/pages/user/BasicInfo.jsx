@@ -37,7 +37,8 @@ export default function BasicInfo() {
   return (
     <Page>
       <Header>
-        <h1>Lets get some Baseline Information</h1>
+        <p>Lets get some</p>
+        <h1>Baseline Information</h1>
       </Header>
       <form className={styles.Form} >
           <Input

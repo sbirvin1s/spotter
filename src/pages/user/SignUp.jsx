@@ -43,14 +43,13 @@ export default function SignUp() {
       setError('');
       setLoading(true);
       await signUp(email, password);
-
+      router.push('/user/BasicInfo');
     } catch (err){
       console.error('Sign Up Error: ', err);
       setError('Failed to Sign Up');
     }
 
     setLoading(false);
-    router.push('/user/BasicInfo');
   }
 
   /* --- RENDER METHODS --- */
@@ -59,7 +58,8 @@ export default function SignUp() {
   return (
     <Page>
       <Header>
-        <h1>Create your <strong>ACCOUNT</strong></h1>
+        <p>Create your</p>
+        <h1>ACCOUNT</h1>
         {error && <Alert variant='fail'>{error}</Alert>}
       </Header>
       <form className={styles.Form}>
@@ -86,7 +86,7 @@ export default function SignUp() {
         />
         <Footer>
           <Button onClick={handleSignUp} disabled={loading}>Sign Up</Button>
-          <h5>Already have an account? <Link href='/user/LogIn'>Log In</Link></h5>ddd
+          <h5>Already have an account? <Link href='/user/LogIn'>Log In</Link></h5>
         </Footer>
       </form>
     </Page>
