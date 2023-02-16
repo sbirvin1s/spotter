@@ -19,8 +19,7 @@ export default function Profile() {
   /* --- RENDERER --- */
   return (
     <>
+    <h1>This is the Profile view</h1>
     </>
   )
 }
-
-/* ========== STYLES ========== */

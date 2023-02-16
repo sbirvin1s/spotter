@@ -1,5 +1,6 @@
 /* ========== EXTERNAL MODULES ========== */
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 /* ========== INTERNAL MODULES ========== */
@@ -17,5 +18,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 /* ========== EXPORTS ========== */
-export const auth = getAuth(app);
 export default app;

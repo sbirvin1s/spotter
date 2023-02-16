@@ -5,6 +5,7 @@ import { Router, useRouter } from 'next/router';
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/BasicInfo.module.css';
 import { useUserInfo } from 'contexts/UserContext';
+import { createUser } from 'controllers';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import Page from 'components/Page';
@@ -24,6 +25,7 @@ export default function BasicInfo() {
   /* --- EVENT HANDLERS --- */
   const handleNext = event => {
     event.preventDefault();
+    createUser(userInfo);
     router.push('/user/Profile');
   }
 
