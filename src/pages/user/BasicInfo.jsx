@@ -4,6 +4,7 @@ import { Router, useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/BasicInfo.module.css';
+import { useAuth } from 'contexts/AuthContext';
 import { useUserInfo } from 'contexts/UserContext';
 import { createUser } from 'controllers';
 import Input from 'components/Input';
@@ -19,13 +20,14 @@ export default function BasicInfo() {
 
   /* --- STATE HOOKS --- */
   const router = useRouter();
+  const { currentUser } = useAuth();
   const { userInfo, updateUserInfo, updateSpecificInfo } = useUserInfo();
 
   /* --- LIFECYCLE METHODS --- */
   /* --- EVENT HANDLERS --- */
   const handleNext = event => {
     event.preventDefault();
-    createUser(userInfo);
+    createUser(currentUser.uid, userInfo);
     router.push('/user/Profile');
   }
 

@@ -8,6 +8,8 @@ import { Router, useRouter } from 'next/router';
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/Home.module.css';
 import { useAuth } from 'contexts/AuthContext';
+import { useUserInfo } from 'contexts/UserContext';
+import { getUser } from 'controllers';
 
 
 /* ========== EXPORTS ========== */
@@ -16,11 +18,21 @@ export default function Home() {
   /* --- STATE HOOKS --- */
   const router = useRouter();
   const { currentUser } = useAuth();
+  const { userInfo, updateInfo } = useUserInfo();
 
   /* --- LIFECYCLE METHODS --- */
   useEffect(() => {
-    if (!currentUser) router.push('/user/LogIn')
-  }, [currentUser, router])
+    if (!currentUser) {
+      router.push('/user/LogIn')
+    } else {
+      const updateUser = async () => {
+        const loggedInUser = await getUser(currentUser.uid);
+        updateInfo(loggedInUser);
+      };
+
+      updateUser();
+    }
+  }, [])
 
   /* --- EVENT HANDLERS --- */
   /* --- RENDER METHODS --- */

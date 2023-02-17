@@ -2,11 +2,13 @@
 import {
   getFirestore,
   collection,
+  doc,
+  setDoc,
   addDoc,
   getDoc,
   updateDoc,
-  doc,
-  DocumentSnapshot,
+  query,
+  where,
  } from 'firebase/firestore';
 
 
@@ -19,7 +21,7 @@ const db = getFirestore(app);
 
 
 /* --- USER DB FUNCTIONS --- */
-export async function createUser({ firstName, lastName, poundsOrKilograms }) {
+export async function createUser(uid, { firstName, lastName, poundsOrKilograms }) {
   const data = {
     first: firstName,
     last: lastName,
@@ -27,7 +29,8 @@ export async function createUser({ firstName, lastName, poundsOrKilograms }) {
   };
 
   try {
-    await addDoc(collection( db, 'users'), data);
+    // await addDoc(collection( db, 'users'), data);
+    await setDoc(doc( db, 'users', uid), data);
   } catch (error) {
     console.error(`Unable to create user due to error: ${error}`)
   }
@@ -37,15 +40,45 @@ export async function getUser(uid) {
   const userRef = doc(db, 'users', uid);
   const userSnap = await getDoc(userRef);
 
-  if (userSnapshot.exists()) {
+  if (userSnap.exists()) {
     console.log('User data: ', userSnap.data());
+    return userSnap.data();
   } else {
     console.error('User not found');
   }
 }
 
 export async function updateUser(uid) {
+  const userRef = doc(db, 'users', uid);
+  const userSnap = await getDoc(userRef);
 
+  if (userSnap.exists()) {
+    console.log('User data: ', userSnap.data());
+  } else {
+    console.error('User not found');
+  }
+}
+
+export async function update1RM(uid, exercise, weight) {
+  const userRef = doc(db, 'users', uid);
+  const userSnap = await getDoc(userRef);
+
+  if (userSnap.exists()) {
+    await updateDoc(userRef, {[`1RM.${exercise}`]: weight }, {merge: true})
+  } else {
+    console.error('Unable to update your 1RM');
+  }
+}
+
+export async function updateCurrentMax(uid) {
+  const userRef = doc(db, 'users', uid);
+  const userSnap = await getDoc(userRef);
+
+  if (userSnap.exists()) {
+    console.log('User data: ', userSnap.data());
+  } else {
+    console.error('User not found');
+  }
 }
 
 /* --- WORKOUT DB FUNCTIONS --- */
