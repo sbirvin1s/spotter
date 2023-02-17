@@ -20,7 +20,7 @@ export default function Login() {
   const router = useRouter();
   const [email, setEmail]  = useState();
   const [password, setPassword] = useState();
-  const { signUp, currentUser, logIn } = useAuth();
+  const { logIn } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 

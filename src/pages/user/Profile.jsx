@@ -53,14 +53,6 @@ export default function Profile() {
         <h1>{userInfo && userInfo.first}</h1>
         {error && <Alert variant='fail'>{error}</Alert>}
       </Header>
-      {/* <Input
-        name='1RM'
-        labelName='One Rep Max'
-        // onChange={}
-        placeholder='200'
-      >
-      </Input> */}
-
       <div>
         <h5>Name</h5>
         <p>{userInfo && userInfo.first + ' ' + userInfo.last}</p>
