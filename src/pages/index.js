@@ -10,7 +10,9 @@ import styles from '@/styles/Home.module.css';
 import { useAuth } from 'contexts/AuthContext';
 import { useUserInfo } from 'contexts/UserContext';
 import { getUser } from 'controllers';
+import CurrentDate from 'components/CurrentDate';
 import Button from 'components/Button';
+import Header from 'components/Header';
 
 
 /* ========== EXPORTS ========== */
@@ -19,7 +21,7 @@ export default function Home() {
   /* --- STATE HOOKS --- */
   const router = useRouter();
   const { currentUser } = useAuth();
-  const { userInfo, updateInfo } = useUserInfo();
+  const { userInfo, updateInfo } = useUserInfo();;
 
   /* --- LIFECYCLE METHODS --- */
   useEffect(() => {
@@ -47,8 +49,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header variant='compressed'>
+        <CurrentDate/>
+        <Button variant='link' onClick={() => router.push('/user/Profile')} >Profile</Button>
+      </Header>
       <main className={styles.main}>
-          <Button variant='link' onClick={() => router.push('/user/Profile')} >Profile</Button>
         <div className={styles.center}>
           <Image
             className={styles.logo}

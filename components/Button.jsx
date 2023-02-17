@@ -34,7 +34,7 @@ export default function Button({
   /* --- RENDER METHODS --- */
 
   /* --- RENDERER --- */
-    switch(variant) {
+  switch(variant) {
     case 'link':
       return (
         <button
