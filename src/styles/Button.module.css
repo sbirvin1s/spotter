@@ -20,6 +20,8 @@
   text-decoration: underline;
   cursor: pointer;
   background-color: transparent;
+  height: auto;
+  width: auto;
   color: #7de3c5;
 }
 

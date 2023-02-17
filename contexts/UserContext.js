@@ -28,7 +28,7 @@ export function UserProvider({ children }) {
   }
 
   const updateInfo = info => {
-    event.preventDefault();
+    // event.preventDefault();
     setUserInfo(info);
   }
 

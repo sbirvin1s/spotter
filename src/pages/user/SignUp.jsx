@@ -18,12 +18,12 @@ export default function SignUp() {
 
   /* --- STATE HOOKS --- */
   const router = useRouter();
-  const [email, setEmail]  = useState();
-  const [password, setPassword] = useState();
-  const [passwordConfirmation, setPasswordConfirmation] = useState();
+  const [ email, setEmail ]  = useState();
+  const [ password, setPassword ] = useState();
+  const [ passwordConfirmation, setPasswordConfirmation ] = useState();
   const { signUp, currentUser, logIn } = useAuth();
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [ error, setError ] = useState('');
+  const [ loading, setLoading ] = useState(false);
 
   /* --- LIFECYCLE METHODS --- */
   /* --- EVENT HANDLERS --- */
@@ -43,6 +43,7 @@ export default function SignUp() {
       setError('');
       setLoading(true);
       await signUp(email, password);
+      // createUser(email);
       router.push('/user/BasicInfo');
     } catch (err){
       console.error('Sign Up Error: ', err);
