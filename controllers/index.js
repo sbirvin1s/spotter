@@ -29,7 +29,6 @@ export async function createUser(uid, { firstName, lastName, poundsOrKilograms }
   };
 
   try {
-    // await addDoc(collection( db, 'users'), data);
     await setDoc(doc( db, 'users', uid), data);
   } catch (error) {
     console.error(`Unable to create user due to error: ${error}`)
@@ -41,7 +40,6 @@ export async function getUser(uid) {
   const userSnap = await getDoc(userRef);
 
   if (userSnap.exists()) {
-    console.log('User data: ', userSnap.data());
     return userSnap.data();
   } else {
     console.error('User not found');

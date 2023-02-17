@@ -10,6 +10,7 @@ import styles from '@/styles/Home.module.css';
 import { useAuth } from 'contexts/AuthContext';
 import { useUserInfo } from 'contexts/UserContext';
 import { getUser } from 'controllers';
+import Button from 'components/Button';
 
 
 /* ========== EXPORTS ========== */
@@ -47,6 +48,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+          <Button variant='link' onClick={() => router.push('/user/Profile')} >Profile</Button>
         <div className={styles.center}>
           <Image
             className={styles.logo}
@@ -70,5 +72,3 @@ export default function Home() {
     </>
   )
 }
-
-/* ========== STYLES ========== */
