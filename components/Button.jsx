@@ -8,7 +8,7 @@ import styles from '@/styles/Button.module.css';
 
 /** Button constructor that takes:
  *
- * @param {string} variant - ['', ...] if none given, will return default
+ * @param {string} variant - ['link', 'card'] if none given, will return default
  * @param {*} children - anything that should be placed inside the component
  * @prop {*} props - any property or tag that needs to be passed to the component
  * @returns {Component}

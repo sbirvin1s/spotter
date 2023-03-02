@@ -68,7 +68,7 @@ export default function Home() {
   /* --- STATE HOOKS --- */
   const router = useRouter();
   const { currentUser } = useAuth();
-  const { userInfo, updateInfo } = useUserInfo();;
+  const { userInfo, updateInfo } = useUserInfo();
 
   /* --- LIFECYCLE METHODS --- */
   useEffect(() => {
