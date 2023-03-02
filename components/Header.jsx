@@ -5,7 +5,7 @@ import React from "react";
 import styles from '@/styles/Header.module.css';
 
 /* ========== EXPORTS ========== */
-export default function Header({ children }) {
+export default function Header({ variant, children }) {
 
   /* --- STATE HOOKS --- */
   /* --- LIFECYCLE METHODS --- */
@@ -13,11 +13,18 @@ export default function Header({ children }) {
   /* --- RENDER METHODS --- */
 
   /* --- RENDERER --- */
-  return (
-    <div className={styles.Header_column}>
-      {children}
-    </div>
-  )
+  switch (variant) {
+    case 'compressed':
+      return (
+        <div className={styles.Header_10___row}>
+          {children}
+        </div>
+        )
+    default:
+      return (
+        <div className={styles.Header_column}>
+          {children}
+        </div>
+        )
+  }
 }
-
-/* ========== STYLES ========== */

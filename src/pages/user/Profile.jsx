@@ -42,6 +42,21 @@ export default function Profile() {
   /* --- RENDER METHODS --- */
 
   /* NOTE: should have a 1RM amount from users entered 1RM and a "current 1RM" for the users working 1RM that is calculated for each week
+
+  - [ ] Add option for users to choose days of the week to workout
+  - [ ] Add option for users to choose their core lifts
+  - [ ] Add users age for lift muscle strength categories
+  - [ ] Add add indicator for users training levels: [untrained, novice, intermediate, advanced, elite]
+        Untrained
+          An individual who has not trained on the exercises before, but can perform them correctly.
+        Novice
+          An individual who has trained regularly for up to several months.
+        Intermediate
+          An individual who has trained regularly for up to a couple years.
+        Advanced
+          An individual who has trained multiple years.
+        Elite
+          An athlete competing in strength sports. Keep in mind, the standards shown in the tables do not represent the highest level of strength performance possible.
    */
 
 
@@ -53,14 +68,6 @@ export default function Profile() {
         <h1>{userInfo && userInfo.first}</h1>
         {error && <Alert variant='fail'>{error}</Alert>}
       </Header>
-      {/* <Input
-        name='1RM'
-        labelName='One Rep Max'
-        // onChange={}
-        placeholder='200'
-      >
-      </Input> */}
-
       <div>
         <h5>Name</h5>
         <p>{userInfo && userInfo.first + ' ' + userInfo.last}</p>
