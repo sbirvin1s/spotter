@@ -12,6 +12,8 @@ export default function CurrentDate() {
 
   /* --- LIFECYCLE METHODS --- */
   useEffect(() => {
+    // const msPerDay = 864000000;
+    // dateOffset = dateOffset * msPerDay;
     const newDate = new Date(Date.now());
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const stringDate = newDate.toLocaleDateString(undefined, options);
@@ -23,5 +25,14 @@ export default function CurrentDate() {
   /* --- RENDER METHODS --- */
 
   /* --- RENDERER --- */
-  return <p>{currentDate && currentDate}</p>
+  return (
+    <p
+      style={{
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+      }}
+    >
+      {currentDate && currentDate}
+    </p>
+  )
 }
