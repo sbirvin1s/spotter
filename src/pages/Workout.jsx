@@ -26,7 +26,10 @@ export default function Workout() {
   return (
     <Page>
       <h1>This is the workout page</h1>
-      <Button variant='link' onClick={() => router.push('/')}>Home</Button>
+
+      <Footer>
+        <Button variant='link' onClick={() => router.push('/')}>Home</Button>
+      </Footer>
     </Page>
   )
 }
