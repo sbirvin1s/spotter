@@ -19,7 +19,7 @@ import { useButtonContext } from 'contexts/CardButtonContext';
 export default function CardButton({
   name,
   value,
-  whenClicked = null,
+  whenClicked = () => null,
   children,
    ...props
 }) {
