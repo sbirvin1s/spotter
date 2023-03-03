@@ -66,7 +66,7 @@
     margin: 10px;
     padding: 10px;
     background: #14B8A6;
-    border-radius: 15px;
+    border-radius: 1.5rem;
     height: 20vh;
     width: 90vw;
   }
@@ -77,10 +77,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    outline: transparent;
     margin: 10px;
     padding: 10px;
     background: #14B8A6;
-    border-radius: 15px;
+    border: none;
+    border-radius: 1.5rem;
     height: 20vh;
     width: 90vw;
     font-size: 3rem;
@@ -123,7 +125,7 @@
     margin: 10px;
     padding: 10px;
     background: #14B8A6;
-    border-radius: 15px;
+    border-radius: 1.5rem;
     height: 18vh;
     width: 40vw;
   }

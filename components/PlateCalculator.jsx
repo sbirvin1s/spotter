@@ -1,9 +1,10 @@
 /* ========== EXTERNAL MODULES ========== */
+import { connectFirestoreEmulator } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 
 /* ========== INTERNAL MODULES ========== */
-
+import styles from '../src/styles/PlateCalculator.module.css';
 
 /* ========== EXPORTS ========== */
 /** Plate Calculator component that takes:
@@ -17,6 +18,7 @@ export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
 
   /* --- STATE HOOKS --- */
   const [plates, setPlates] = useState({});
+  // const [plateOrder, setPlateOrder] = useState([]);
 
   /* --- LIFECYCLE METHODS --- */
   useEffect(() => {
@@ -97,32 +99,93 @@ export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
     }
 
     setPlates(updatedPlates)
-  }, [])
+  }, [weight, units])
 
   /* --- EVENT HANDLERS --- */
   /* --- RENDER METHODS --- */
-  const render45 = () => {
+  const renderPlates = () => {
+    let currentPlates = Object.assign({}, plates);
+    let plateOrder = [];
 
+    for (let plate in currentPlates) {
+      while (currentPlates[plate] > 0) {
+        plateOrder.push(plate);
+        currentPlates[plate] = currentPlates[plate] - 1;
+      }
+    }
+
+    plateOrder.sort((a, b) => b - a);
+
+    return plateOrder.map((plate, index) => {
+      switch (plate + '|' + units) {
+        case '2.5|pounds':
+          return <div key={index + plate} className={styles.Plate_half} />;
+        case '5|pounds':
+          return <div key={index + plate} className={styles.Plate_5} />;
+        case '10|pounds':
+          return <div key={index + plate} className={styles.Plate_10} />;
+        case '25|pounds':
+          return <div key={index + plate} className={styles.Plate_25} />;
+        case '35|pounds':
+          return <div key={index + plate} className={styles.Plate_35} />;
+        case '45|pounds':
+          return <div key={index + plate} className={styles.Plate_45} />;
+
+        case '1.25|kilograms':
+          return <div key={index + plate} className={styles.Plate_half} />;
+        case '2.5|kilograms':
+          return <div key={index + plate} className={styles.Plate_5} />;
+        case '5|kilograms':
+          return <div key={index + plate} className={styles.Plate_10} />;
+        case '10|kilograms':
+          return <div key={index + plate} className={styles.Plate_25} />;
+        case '15|kilograms':
+          return <div key={index + plate} className={styles.Plate_35} />;
+        case '20|kilograms':
+          return <div key={index + plate} className={styles.Plate_45} />;
+      }
+    })
   }
 
-  const renderPlates = () => {
-
+  const renderBar = () => {
+    return (
+      <div className={styles.Bar_container}>
+        <div className={styles.Bar_body} />
+        <div className={styles.Bar_divider} />
+        <div className={styles.Bar_plateContainer}>
+          {renderPlates()}
+        </div>
+        <p className={styles.Bar_caption}>Total Weight: {weight}</p>
+      </div>
+    )
   }
 
   /* --- RENDERER --- */
   switch (units) {
     case 'pounds':
       return (
-        <div>
+        <div className={styles.PlateCalculator_body}>
+          {renderBar()}
           <h5>Weight Plates</h5>
-          <p>2.5: {plates['2.5'] + ' ' + units}</p>
-          <p>5: {plates['5'] + ' ' + units}</p>
-          <p>10: {plates['10'] + ' ' + units}</p>
-          <p>25: {plates['25'] + ' ' + units}</p>
-          <p>35: {plates['35'] + ' ' + units}</p>
-          <p>45: {plates['45'] + ' ' + units}</p>
+          <p>2.5 x {plates['2.5'] + ' plates'}</p>
+          <p>5 x {plates['5'] + ' plates'}</p>
+          <p>10 x {plates['10'] + ' plates'}</p>
+          <p>25 x {plates['25'] + ' plates'}</p>
+          <p>35 x {plates['35'] + ' plates'}</p>
+          <p>45 x {plates['45'] + ' plates'}</p>
         </div>
       )
     case 'kilograms':
+      return (
+        <div className={styles.PlateCalculator_body}>
+          <h5>Weight Plates</h5>
+          <p>1.25 x {plates['1.25'] + ' plates'}</p>
+          <p>2.5 x {plates['2.5'] + ' plates'}</p>
+          <p>5 x {plates['5'] + ' plates'}</p>
+          <p>10 x {plates['10'] + ' plates'}</p>
+          <p>15 x {plates['15'] + ' plates'}</p>
+          <p>20 x {plates['20'] + ' plates'}</p>
+      </div>
+      )
   }
 }

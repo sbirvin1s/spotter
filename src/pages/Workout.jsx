@@ -29,7 +29,7 @@ export default function Workout() {
   return (
     <Page>
       <h1>This is the workout page</h1>
-      <PlateCalculator weight={225} units={useUserInfo.poundsOrKilograms} />
+      <PlateCalculator weight={255} units={userInfo.poundsOrKilograms} />
       <Footer>
         <Button variant='link' onClick={() => router.push('/')}>Home</Button>
       </Footer>
