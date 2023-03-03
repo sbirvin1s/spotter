@@ -1,5 +1,4 @@
 /* ========== EXTERNAL MODULES ========== */
-import { connectFirestoreEmulator } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 
@@ -13,12 +12,10 @@ import styles from '../src/styles/PlateCalculator.module.css';
  * @param {string} units - 'pounds' or 'kilograms', default 'pounds'
  * @returns {Component}
  */
-
 export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
 
   /* --- STATE HOOKS --- */
   const [plates, setPlates] = useState({});
-  // const [plateOrder, setPlateOrder] = useState([]);
 
   /* --- LIFECYCLE METHODS --- */
   useEffect(() => {
@@ -101,7 +98,6 @@ export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
     setPlates(updatedPlates)
   }, [weight, units])
 
-  /* --- EVENT HANDLERS --- */
   /* --- RENDER METHODS --- */
   const renderPlates = () => {
     let currentPlates = Object.assign({}, plates);
@@ -155,9 +151,144 @@ export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
         <div className={styles.Bar_plateContainer}>
           {renderPlates()}
         </div>
-        <p className={styles.Bar_caption}>Total Weight: {weight}</p>
       </div>
     )
+  }
+
+  const renderPlateLegend = () => {
+    let plateList = [];
+    let filteredList = [];
+    let weightUnit = units === 'pounds' ? 'lbs' : 'kgs';
+
+    for (let weights in plates) {
+      if (plates[weights] > 0) {
+        const newPlate = {
+          weight: weights,
+          count: plates[weights]
+        };
+        plateList.push(newPlate) ;
+      }
+    }
+
+    for (let i = plateList.length - 1; i >= 0 ; i--) {
+      filteredList.push(plateList[i]);
+    }
+
+    return filteredList.map((plate, index) => {
+      let plateUnit = plate.count > 1 ? 'plates' : 'plate';
+
+      switch (plate.weight + '|' + units) {
+        case '2.5|pounds':
+          return (
+            <p
+              key={index + plate}
+              className={styles.PlateCalculator_legend___half}
+            >
+              {plate.weight} {weightUnit} x {plate.count} {plateUnit}
+            </p>
+          )
+        case '5|pounds':
+          return (
+            <p
+              key={index + plate}
+              className={styles.PlateCalculator_legend___5}
+            >
+              {plate.weight} {weightUnit} x {plate.count} {plateUnit}
+            </p>
+          )
+        case '10|pounds':
+          return (
+            <p
+              key={index + plate}
+              className={styles.PlateCalculator_legend___10}
+            >
+              {plate.weight} {weightUnit} x {plate.count} {plateUnit}
+            </p>
+          )
+        case '25|pounds':
+          return (
+            <p
+              key={index + plate}
+              className={styles.PlateCalculator_legend___25}
+            >
+              {plate.weight} {weightUnit} x {plate.count} {plateUnit}
+            </p>
+          )
+        case '35|pounds':
+          return (
+            <p
+              key={index + plate}
+              className={styles.PlateCalculator_legend___35}
+            >
+              {plate.weight} {weightUnit} x {plate.count} {plateUnit}
+            </p>
+          )
+        case '45|pounds':
+          return (
+            <p
+              key={index + plate}
+              className={styles.PlateCalculator_legend___45}
+            >
+              {plate.weight} {weightUnit} x {plate.count} {plateUnit}
+            </p>
+          )
+
+        case '1.25|kilograms':
+          return (
+            <p
+              key={index + plate}
+              className={styles.PlateCalculator_legend___half}
+            >
+              {plate.weight} {weightUnit} x {plate.count} {plateUnit}
+            </p>
+          )
+        case '2.5|kilograms':
+          return (
+            <p
+              key={index + plate}
+              className={styles.PlateCalculator_legend___5}
+            >
+              {plate.weight} {weightUnit} x {plate.count} {plateUnit}
+            </p>
+          )
+        case '5|kilograms':
+          return (
+            <p
+              key={index + plate}
+              className={styles.PlateCalculator_legend___10}
+            >
+              {plate.weight} {weightUnit} x {plate.count} {plateUnit}
+            </p>
+          )
+        case '10|kilograms':
+          return (
+            <p
+              key={index + plate}
+              className={styles.PlateCalculator_legend___25}
+            >
+              {plate.weight} {weightUnit} x {plate.count} {plateUnit}
+            </p>
+          )
+        case '15|kilograms':
+          return (
+            <p
+              key={index + plate}
+              className={styles.PlateCalculator_legend___35}
+            >
+              {plate.weight} {weightUnit} x {plate.count} {plateUnit}
+            </p>
+          )
+        case '20|kilograms':
+          return (
+            <p
+              key={index + plate}
+              className={styles.PlateCalculator_legend___45}
+            >
+              {plate.weight} {weightUnit} x {plate.count} {plateUnit}
+            </p>
+          )
+      }
+    })
   }
 
   /* --- RENDERER --- */
@@ -166,26 +297,19 @@ export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
       return (
         <div className={styles.PlateCalculator_body}>
           {renderBar()}
-          <h5>Weight Plates</h5>
-          <p>2.5 x {plates['2.5'] + ' plates'}</p>
-          <p>5 x {plates['5'] + ' plates'}</p>
-          <p>10 x {plates['10'] + ' plates'}</p>
-          <p>25 x {plates['25'] + ' plates'}</p>
-          <p>35 x {plates['35'] + ' plates'}</p>
-          <p>45 x {plates['45'] + ' plates'}</p>
+          <div className={styles.PlateCalculator_legend}>
+            {renderPlateLegend()}
+          </div>
         </div>
       )
     case 'kilograms':
       return (
         <div className={styles.PlateCalculator_body}>
-          <h5>Weight Plates</h5>
-          <p>1.25 x {plates['1.25'] + ' plates'}</p>
-          <p>2.5 x {plates['2.5'] + ' plates'}</p>
-          <p>5 x {plates['5'] + ' plates'}</p>
-          <p>10 x {plates['10'] + ' plates'}</p>
-          <p>15 x {plates['15'] + ' plates'}</p>
-          <p>20 x {plates['20'] + ' plates'}</p>
-      </div>
+          {renderBar()}
+          <div className={styles.PlateCalculator_legend}>
+            {renderPlateLegend()}
+          </div>
+        </div>
       )
   }
 }

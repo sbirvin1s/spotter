@@ -1,33 +1,76 @@
-
+/* ========================================
+            Container
+======================================== */
 .PlateCalculator_body {
   position: relative;
   width: 80vw;
   height: 20vh;
-  padding: 10px;
-  background: grey;
+  padding: 2.5px;
+  background: white;
   border-radius: 1.5rem;
 }
 
+.PlateCalculator_caption {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  font-weight: bold;
+}
+
+.PlateCalculator_legend {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
+.PlateCalculator_legend___half {
+  color: #008097;
+  font-weight: bold;
+  font-size: 1em;
+}
+.PlateCalculator_legend___5 {
+  color: #a1003c;
+  font-weight: bold;
+  font-size: 1em;
+}
+.PlateCalculator_legend___10 {
+  color: #863fc2;
+  font-weight: bold;
+  font-size: 1em;
+}
+.PlateCalculator_legend___25 {
+  color: #22ae49;
+  font-weight: bold;
+  font-size: 1em;
+}
+.PlateCalculator_legend___35 {
+  color: #BFAB11;
+  font-weight: bold;
+  font-size: 1em;
+}
+.PlateCalculator_legend___45 {
+  color: #2459be;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+
 /* ========================================
-            Plates
+            Barbell
 ======================================== */
 .Bar_container {
   position: relative;
   background: transparent;
   height: 100%;
   width: 100%;
-  border: solid;
-  border-width: 1px;
-  border-radius: 1.5em;
-  border-color: pink;
 }
 
 .Bar_body {
   position: absolute;
   top: 50%;
-  left: 14px;
-  height: 14px;
-  width: 60px;
+  left: 5px;
+  height: 10%;
+  width: 50%;
   transform: translate(0, -50%);
   background: #9CA3AF;
 }
@@ -35,9 +78,9 @@
 .Bar_divider {
   position: absolute;
   top: 50%;
-  left: 23px;
-  height: 30px;
-  width: 15px;
+  left: 1.4em;
+  height: 20%;
+  width: 6%;
   transform: translate(0, -50%);
   background: #9CA3AF;
 }
@@ -46,61 +89,53 @@
   position: absolute;
   display: flex;
   align-items: center;
-  /* border: solid;
-  border-width: 1px;
-  border-color: red;
-  border-radius: 1.5em; */
   top: 50%;
   height:75%;
   width: 40%;
   transform: translate(30%, -50%);
 }
 
-.Bar_caption {
-  position: absolute;
-  bottom: 5%;
-  left: 5%;
-  font-weight: bold;
-}
-
+/* ========================================
+            Plates
+======================================== */
 .Plate_half {
-  height: 35%;
-  width: 5%;
+  height: 55%;
+  width: 7%;
   margin: 1px;
-  background: cyan;
+  background: #008097;
 }
 
 .Plate_5 {
-  height: 40%;
-  width: 6%;
+  height: 60%;
+  width: 8%;
   margin: 1px;
-  background: plum;
+  background: #a1003c;
 }
 
 .Plate_10 {
-  height: 45%;
-  width: 7%;
+  height: 65%;
+  width: 9%;
   margin: 1px;
-  background: lightgrey;
+  background: #863fc2;
 }
 
 .Plate_25 {
-  height: 50%;
-  width: 8%;
+  height: 70%;
+  width: 10%;
   margin: 1px;
-  background: green;
+  background: #22ae49;
 }
 
 .Plate_35 {
-  height: 55%;
-  width: 9%;
+  height: 75%;
+  width: 11%;
   margin: 1px;
-  background: yellow;
+  background: #BFAB11;
 }
 
 .Plate_45 {
-  height: 60%;
-  width: 10%;
+  height: 80%;
+  width: 12%;
   margin: 1px;
-  background: blue;
+  background: #2459be;
 }
