@@ -115,30 +115,30 @@ export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
     return plateOrder.map((plate, index) => {
       switch (plate + '|' + units) {
         case '2.5|pounds':
-          return <div key={index + plate} className={styles.Plate_half} />;
+          return <div key={index + plate} className={`${styles.Plate} ${styles.Plate_half}`} />;
         case '5|pounds':
-          return <div key={index + plate} className={styles.Plate_5} />;
+          return <div key={index + plate} className={`${styles.Plate} ${styles.Plate_5}`} />;
         case '10|pounds':
-          return <div key={index + plate} className={styles.Plate_10} />;
+          return <div key={index + plate} className={`${styles.Plate} ${styles.Plate_10}`} />;
         case '25|pounds':
-          return <div key={index + plate} className={styles.Plate_25} />;
+          return <div key={index + plate} className={`${styles.Plate} ${styles.Plate_25}`} />;
         case '35|pounds':
-          return <div key={index + plate} className={styles.Plate_35} />;
+          return <div key={index + plate} className={`${styles.Plate} ${styles.Plate_35}`} />;
         case '45|pounds':
-          return <div key={index + plate} className={styles.Plate_45} />;
+          return <div key={index + plate} className={`${styles.Plate} ${styles.Plate_45}`} />;
 
         case '1.25|kilograms':
-          return <div key={index + plate} className={styles.Plate_half} />;
+          return <div key={index + plate} className={`${styles.Plate} ${styles.Plate_half}`} />;
         case '2.5|kilograms':
-          return <div key={index + plate} className={styles.Plate_5} />;
+          return <div key={index + plate} className={`${styles.Plate} ${styles.Plate_5}`} />;
         case '5|kilograms':
-          return <div key={index + plate} className={styles.Plate_10} />;
+          return <div key={index + plate} className={`${styles.Plate} ${styles.Plate_10}`} />;
         case '10|kilograms':
-          return <div key={index + plate} className={styles.Plate_25} />;
+          return <div key={index + plate} className={`${styles.Plate} ${styles.Plate_25}`} />;
         case '15|kilograms':
-          return <div key={index + plate} className={styles.Plate_35} />;
+          return <div key={index + plate} className={`${styles.Plate} ${styles.Plate_35}`} />;
         case '20|kilograms':
-          return <div key={index + plate} className={styles.Plate_45} />;
+          return <div key={index + plate} className={`${styles.Plate} ${styles.Plate_45}`} />;
       }
     })
   }

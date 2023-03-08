@@ -1,6 +1,13 @@
 .Div___row {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.Div___column {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  padding: 10px;
 }

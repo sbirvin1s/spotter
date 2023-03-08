@@ -16,7 +16,6 @@ export function CardButtonProvider({ children }) {
 /* --- STATE HOOKS --- */
 const [buttonActive, setButtonActive] = useState();
 
-/* --- LIFECYCLE METHODS --- */
 /* --- EVENT HANDLERS --- */
 const updateButton = name => {
   event.preventDefault();
@@ -32,7 +31,7 @@ const updateButton = name => {
         updateButton,
       }}
     >
-{children}
+      {children}
     </CardButtonContext.Provider>
   )
 }
