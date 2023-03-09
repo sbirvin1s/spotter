@@ -32,26 +32,22 @@ export default function Set({ setNumber, reps, weight }) {
           </p>
           <div className={styles.Div___row}>
             <PlateCalculator weight={weight} units={userInfo.poundsOrKilograms} />
-            <div className={styles.Div___column}>
-              <Button
-                variant='workout'
-                onClick={() => updateCurrentSet(coreLift + 'Set#' + (setNumber - 1))}
-              >
-                Prev Set
-              </Button>
-              <CardButton
-                variant='small'
-                onClick={() => updateCurrentSet(coreLift + 'Set#' + (setNumber + 1))}
-              >
-                {reps}
-              </CardButton>
-            </div>
+            <CardButton
+              variant='small'
+              onClick={() => updateCurrentSet(coreLift + 'Set#' + (setNumber + 1))}
+            >
+              {reps}
+            </CardButton>
           </div>
         </div>
       )
     } else {
       return (
-        <div key={setKey}>
+        <div
+          className={styles.Set_container}
+          key={setKey}
+          onClick={() => updateCurrentSet(setKey)}
+        >
           <p >
             Set {setNumber}: {reps} reps of {weight} {userInfo.poundsOrKilograms}
           </p>
