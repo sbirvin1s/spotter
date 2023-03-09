@@ -110,7 +110,12 @@ export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
       }
     }
 
-    plateOrder.sort((a, b) => b - a);
+    plateOrder.sort((a, b) => {
+      // a = Number.parseFloat(a);
+      // b = Number.parseFloat(b);
+
+      return b - a;
+    });
 
     return plateOrder.map((plate, index) => {
       switch (plate + '|' + units) {
@@ -173,6 +178,8 @@ export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
     for (let i = plateList.length - 1; i >= 0 ; i--) {
       filteredList.push(plateList[i]);
     }
+
+    filteredList.sort((a, b) => b.weight - a.weight);
 
     return filteredList.map((plate, index) => {
       let plateUnit = plate.count > 1 ? 'plates' : 'plate';

@@ -2,13 +2,15 @@
 import { useState } from 'react';
 
 /* ========== INTERNAL MODULES ========== */
+import styles from '../src/styles/Workout.module.css';
 import { useUserInfo } from 'contexts/UserContext';
 import { useExerciseContext } from 'contexts/ExerciseContext';
 import PlateCalculator from './PlateCalculator';
 import Button from './Button';
+import CardButton from './CardButton';
 
 /* ========== EXPORTS ========== */
-export default function Set({ setNumber, reps, weight, intensity }) {
+export default function Set({ setNumber, reps, weight }) {
 
   /* --- STATE HOOKS --- */
   const { userInfo } = useUserInfo();
@@ -28,9 +30,23 @@ export default function Set({ setNumber, reps, weight, intensity }) {
           <p >
             Set {setNumber}: {reps} reps of {weight} {userInfo.poundsOrKilograms}
           </p>
-          <PlateCalculator weight={weight} units={userInfo.poundsOrKilograms} />
-          <Button onClick={() => updateCurrentSet(coreLift + 'Set#' + (setNumber - 1))}>Prev Set</Button>
-          <Button onClick={() => updateCurrentSet(coreLift + 'Set#' + (setNumber + 1))}>Next Set</Button>
+          <div className={styles.Div___row}>
+            <PlateCalculator weight={weight} units={userInfo.poundsOrKilograms} />
+            <div className={styles.Div___column}>
+              <Button
+                variant='workout'
+                onClick={() => updateCurrentSet(coreLift + 'Set#' + (setNumber - 1))}
+              >
+                Prev Set
+              </Button>
+              <CardButton
+                variant='small'
+                onClick={() => updateCurrentSet(coreLift + 'Set#' + (setNumber + 1))}
+              >
+                {reps}
+              </CardButton>
+            </div>
+          </div>
         </div>
       )
     } else {

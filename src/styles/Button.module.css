@@ -1,3 +1,7 @@
+/* ========================================
+            Button Base
+======================================== */
+
 .Button {
   display: flex;
   justify-content: center;
@@ -13,9 +17,12 @@
   max-width: 350px;
   min-width: 100px;
   border: none;
-  outline: none;
+  outline-color: transparent;
 }
 
+/* ========================================
+            Button Link
+======================================== */
 .Button_link {
   text-decoration: underline;
   cursor: pointer;
@@ -23,6 +30,21 @@
   height: auto;
   width: auto;
   color: #7de3c5;
+}
+
+
+/* ========================================
+            Button Workout
+======================================== */
+
+.Button_workout {
+  /* font-weight: normal; */
+  padding: 0px;
+  min-width: 0px;
+  min-height: 0px;
+  height: 2rem;
+  width: 6rem;
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .Button_card {
@@ -33,7 +55,7 @@
   box-shadow: 6px 6px 12px rgba(156, 156, 156, 0.6);
   border-radius: 1.5rem;
   border: none;
-  outline: none;
+  outline-color: transparent;
   transition: all .2s ease-in-out;
 }
 

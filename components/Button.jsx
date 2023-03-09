@@ -44,10 +44,10 @@ export default function Button({
           {children}
         </button>
       )
-    case 'card':
+    case 'workout':
       return (
         <button
-          className={`${styles.Button} ${styles.Button_card}`}
+          className={`${styles.Button} ${styles.Button_workout}`}
           selected={selected}
           onClick={handleSelected}
           {...props}
