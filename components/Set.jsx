@@ -8,30 +8,38 @@ import PlateCalculator from './PlateCalculator';
 import Button from './Button';
 
 /* ========== EXPORTS ========== */
-export default function Set({ setNumber, weight }) {
+export default function Set({ setNumber, reps, weight, intensity }) {
 
   /* --- STATE HOOKS --- */
   const { userInfo } = useUserInfo();
-  const {  } = useExerciseContext();
-  const [ set, setSet ] = useState(0)
-
+  const { coreLift, currentSet, updateCurrentSet } = useExerciseContext();
 
   /* --- LIFECYCLE METHODS --- */
   /* --- EVENT HANDLERS --- */
 
   /* --- RENDER METHODS --- */
   const renderSet = () => {
-    while (currentSet < coreSets.length) {
-      const weight = Math.round((workingWeight[coreLift] * coreSets[currentSet].intensity) / 5) * 5;
+    const setKey = coreLift + 'Set#' + setNumber;
+    console.log('setKey: ', setKey);
 
+    if (currentSet === setKey) {
       return (
-        <div key={coreLift + 'Set#' + coreSets[currentSet].setNumber}>
+        <div key={setKey}>
           <p >
-            Set {coreSets[currentSet].setNumber}: {coreSets[currentSet].reps} reps of {weight} {userInfo.poundsOrKilograms}
+            Set {setNumber}: {reps} reps of {weight} {userInfo.poundsOrKilograms}
           </p>
           <PlateCalculator weight={weight} units={userInfo.poundsOrKilograms} />
-          <Button onClick={() => currentSet++}>Next Set</Button>
+          <Button onClick={() => updateCurrentSet(coreLift + 'Set#' + (setNumber - 1))}>Prev Set</Button>
+          <Button onClick={() => updateCurrentSet(coreLift + 'Set#' + (setNumber + 1))}>Next Set</Button>
         </div>
+      )
+    } else {
+      return (
+        <div key={setKey}>
+          <p >
+            Set {setNumber}: {reps} reps of {weight} {userInfo.poundsOrKilograms}
+          </p>
+      </div>
       )
     }
   }
@@ -39,7 +47,7 @@ export default function Set({ setNumber, weight }) {
   /* --- RENDERER --- */
   return (
     <>
-
+      {renderSet()}
     </>
   )
 }

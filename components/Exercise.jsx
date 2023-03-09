@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/Workout.module.css';
-import PlateCalculator from "./PlateCalculator";
-import Button from "./Button";
+import { useUserInfo } from 'contexts/UserContext';
+import { useExerciseContext } from 'contexts/ExerciseContext';
 import Set from './Set.jsx';
 
 /* ========== EXPORTS ========== */
@@ -14,7 +14,7 @@ import Set from './Set.jsx';
  * @param {string} units - 'pounds' or 'kilograms', default 'pounds'
  * @returns {Component}
  */
-export default function Exercise({ coreLift }) {
+export default function Exercise({ coreSets }) {
 
   /* NOTE: APRE6 Adjustments:
     - Reps 0 - 2: - 10 lbs
@@ -26,7 +26,8 @@ export default function Exercise({ coreLift }) {
   */
 
   /* --- STATE HOOKS --- */
-  const [  ] = useState();
+  const { userInfo } = useUserInfo();
+  const { coreLift, workingWeight } = useExerciseContext();
 
   /* --- LIFECYCLE METHODS --- */
   /* --- EVENT HANDLERS --- */
@@ -39,9 +40,20 @@ export default function Exercise({ coreLift }) {
     - [ ] Should supply an updated working max based on rep results of 1st max set
   */
 
-    // const renderSets = () => {
-    //   return map(set => <Set setNumber={setNumber} weight={setWeight}/>)
-    // }
+    const renderSets = () => {
+      return coreSets.map(({ setNumber, reps, intensity })=> {
+        const weight = Math.round((workingWeight[coreLift] * intensity) / 5) * 5;
+
+        return (
+          <Set
+            key={coreLift + 'Set#' + setNumber}
+            setNumber={setNumber}
+            reps={reps}
+            weight={weight}
+            intensity={intensity}
+          />
+        )})
+    }
 
 
   /* --- RENDERER --- */

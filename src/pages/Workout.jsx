@@ -1,5 +1,5 @@
 /* ========== EXTERNAL MODULES ========== */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Router, useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
@@ -25,8 +25,13 @@ export default function Workout() {
   /* --- STATE HOOKS --- */
   const router = useRouter();
   const { userInfo, updateSpecificInfo } = useUserInfo();
-  const { coreLift, selectCoreLift } = useExerciseContext();
-  const [ workingWeight, setWorkingWeight ] = useState(userInfo.working1RM);
+  const {
+    coreLift,
+    selectCoreLift,
+    workingWeight,
+    loadWorkingWeight,
+    updateCurrentSet,
+  } = useExerciseContext();
   const [ newWorkingWeight, setNewWorkingWeight ] = useState();
 
   const coreSets = [
@@ -53,11 +58,18 @@ export default function Workout() {
   ]
 
   /* --- LIFECYCLE METHODS --- */
+  useEffect(() => loadWorkingWeight(userInfo.working1RM), []);
+
   /* --- EVENT HANDLERS --- */
   // const handleSetCoreLift = value => {
   //   event.preventDefault();
   //   setCoreLift(value);
   // }
+
+  const handleSelectExercise = exercise => {
+    selectCoreLift(exercise);
+    updateCurrentSet(coreLift + 'Set#' + 1);
+  }
 
   /* --- RENDER METHODS --- */
   const renderSelectExercise = () => {
@@ -67,7 +79,7 @@ export default function Workout() {
           variant='small'
           name='benchPress'
           value='benchPress'
-          whenClicked={() => selectCoreLift('benchPress')}
+          whenClicked={() => handleSelectExercise('benchPress')}
         >
           Bench Press
         </CardButton>
@@ -75,7 +87,7 @@ export default function Workout() {
           variant='small'
           name='overHeadPress'
           value='overHeadPress'
-          whenClicked={() => selectCoreLift('overHeadPress')}
+          whenClicked={() => handleSelectExercise('overHeadPress')}
         >
           Overhead Press
           </CardButton>
@@ -83,7 +95,7 @@ export default function Workout() {
           variant='small'
           name='deadlift'
           value='deadlift'
-          whenClicked={() => selectCoreLift('deadlift')}
+          whenClicked={() => handleSelectExercise('deadlift')}
         >
           Deadlift
         </CardButton>
@@ -91,7 +103,7 @@ export default function Workout() {
           variant='small'
           name='squats'
           value='squats'
-          whenClicked={() => selectCoreLift('squats')}
+          whenClicked={() => handleSelectExercise('squats')}
         >
           Squats
         </CardButton>
@@ -128,49 +140,52 @@ export default function Workout() {
     switch (coreLift) {
       case 'benchPress':
         return (
-          <div className={styles.Div___column}>
-            <p><strong>BENCH PRESS:</strong></p>
-            {renderSet()}
-            <br/>
-            <p>Cardio: Waterfall Runs</p>
-          </div>
+          <Exercise coreSets={coreSets} />
+          // <div className={styles.Div___column}>
+          //   <p><strong>BENCH PRESS:</strong></p>
+          //   {renderSet()}
+          //   <br/>
+          //   <p>Cardio: Waterfall Runs</p>
+          // </div>
         );
       case 'overHeadPress':
         return (
-          <div className={styles.Div___column}>
-            <p><strong>OVERHEAD PRESS:</strong></p>
-            {renderSet()}
-            <br/>
-            <p>Lateral Shoulder Raise: 3 sets x 8 to 12 reps at {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-            <p>Halo Shoulder Rotation: 10 revolutions each direction at {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-            <br/>
-            <p>Cardio: Distance Run - Remainder of hour with Heart Rate at 150 - 160 Beats per Minute</p>
-          </div>
+          <Exercise coreSets={coreSets} />
+          // <div className={styles.Div___column}>
+          //   <p><strong>OVERHEAD PRESS:</strong></p>
+          //   {renderSet()}
+          //   <br/>
+          //   <p>Lateral Shoulder Raise: 3 sets x 8 to 12 reps at {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+          //   <p>Halo Shoulder Rotation: 10 revolutions each direction at {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+          //   <br/>
+          //   <p>Cardio: Distance Run - Remainder of hour with Heart Rate at 150 - 160 Beats per Minute</p>
+          // </div>
         );
       case 'deadlift':
         return (
-          <div className={styles.Div___column}>
-            <p><strong>DEADLIFT:</strong></p>
-            {renderSet()}
-            <br/>
-            <p>Lunges: 3 sets – 20 yards – {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-            <p>Calf Raises: 3 sets – 10 reps – {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-            <br/>
-            <p>Cardio: Remainder of hour spent on Stairs or Stair Master. Adjust level (resistance) so that Heart Rate is between 150-160 beats per minute</p>
-          </div>
+          <Exercise coreSets={coreSets} />
+          // <div className={styles.Div___column}>
+          //   <p><strong>DEADLIFT:</strong></p>
+          //   {renderSet()}
+          //   <br/>
+          //   <p>Lunges: 3 sets – 20 yards – {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+          //   <p>Calf Raises: 3 sets – 10 reps – {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+          //   <br/>
+          //   <p>Cardio: Remainder of hour spent on Stairs or Stair Master. Adjust level (resistance) so that Heart Rate is between 150-160 beats per minute</p>
+          // </div>
         );
       case 'squats':
         return (
-          <div className={styles.Div___column}>
-            <p><strong>SQUATS:</strong></p>
-            {renderSet()}
-            <br/>
-            <p>Lunges: 3 sets x 20 yards of {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-            <p>Calf Raises: 3 sets x 10 reps of {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-            <br/>
-            <p>Cardio: Remainder of hour spent on bicycle. Adjust level (resistance) so that Heart Rate is between 150-160 beats per minute</p>
-            {/* <Exercise coreLift={coreLift} /> */}
-          </div>
+          // <div className={styles.Div___column}>
+          //   <p><strong>SQUATS:</strong></p>
+          //   {renderSet()}
+          //   <br/>
+          //   <p>Lunges: 3 sets x 20 yards of {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+          //   <p>Calf Raises: 3 sets x 10 reps of {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+          //   <br/>
+          //   <p>Cardio: Remainder of hour spent on bicycle. Adjust level (resistance) so that Heart Rate is between 150-160 beats per minute</p>
+          // </div>
+          <Exercise coreSets={coreSets} />
         );
     }
   }
