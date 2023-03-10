@@ -87,7 +87,8 @@ export default function SignUp() {
         />
         <Footer>
           <Button onClick={handleSignUp} disabled={loading}>Sign Up</Button>
-          <h5>Already have an account? <Link href='/user/LogIn'>Log In</Link></h5>
+          <br />
+          <p><strong>Already have an account? <Link href='/user/LogIn'>Log In</Link></strong></p>
         </Footer>
       </form>
     </Page>

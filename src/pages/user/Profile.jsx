@@ -40,6 +40,29 @@ export default function Profile() {
   }
 
   /* --- RENDER METHODS --- */
+  const render1RM = () => {
+    return (
+      <div>
+        <p><strong>1 REP MAX (1RM)</strong></p>
+        <p>Squat: {userInfo.max.squats} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Bench Press: {userInfo.max.benchPress} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Deadlift: {userInfo.max.deadlift} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Overhead Press: {userInfo.max.overHeadPress} {userInfo && userInfo.poundsOrKilograms}</p>
+    </div>
+    )
+  }
+
+  const renderWorkingWeight = () => {
+    return (
+      <div>
+        <p><strong>WORKING WEIGHT</strong></p>
+        <p>Squat: {userInfo['workingMax'].squats} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Bench Press: {userInfo['workingMax'].benchPress} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Deadlift: {userInfo['workingMax'].deadlift} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Overhead Press: {userInfo['workingMax'].overHeadPress} {userInfo && userInfo.poundsOrKilograms}</p>
+      </div>
+    )
+  }
 
   /* NOTE: should have a 1RM amount from users entered 1RM and a "current 1RM" for the users working 1RM that is calculated for each week
 
@@ -65,44 +88,26 @@ export default function Profile() {
     <Page>
       <Header>
         <p>Welcome</p>
-        <h1>{userInfo && userInfo.first}</h1>
+        <h1>{userInfo && userInfo.first.toUpperCase()}</h1>
         {error && <Alert variant='fail'>{error}</Alert>}
       </Header>
-      <div>
-        <h5>Name</h5>
-        <p>{userInfo && userInfo.first + ' ' + userInfo.last}</p>
+      <div className={styles.Div_column}>
+        <div className={styles.Div_row___spread}>
+          <div>
+            <p><strong>NAME</strong></p>
+            <p>{userInfo && userInfo.first + ' ' + userInfo.last}</p>
+          </div>
+          <div>
+            <p><strong>EMAIL</strong></p>
+            <p>{currentUser && currentUser.email}</p>
+          </div>
+        </div>
+        {render1RM()}
+        {renderWorkingWeight()}
       </div>
-
-      <br/>
-
-      <div>
-        <h5>email</h5>
-        <p>{currentUser && currentUser.email}</p>
-      </div>
-
-      <br/>
-
-      <div>
-        <h5>1 Rep Max</h5>
-        <p>Squat: 200 {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Bench Press: 135 {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Deadlift: 270 {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Overhead Shoulder Press: 100 {userInfo && userInfo.poundsOrKilograms}</p>
-      </div>
-
-      <br/>
-
-      <div>
-        <h5>Current 1 Rep Max</h5>
-        <p>Squat: 200 {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Bench Press: 135 {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Deadlift: 270 {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Overhead Shoulder Press: 100 {userInfo && userInfo.poundsOrKilograms}</p>
-      </div>
-
       <Footer>
         <Button /*onClick={handleNext}*/ >Update</Button>
-        <div className={styles.Div___row}>
+        <div className={styles.Div_row}>
           <Button variant='link' onClick={() => router.push('/')} >Home</Button>
           <Button variant='link' onClick={handleLogOut} >Log Out</Button>
         </div>

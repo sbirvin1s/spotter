@@ -21,12 +21,19 @@ const db = getFirestore(app);
 
 
 /* --- USER DB FUNCTIONS --- */
-export async function createUser(uid, { firstName, lastName, poundsOrKilograms }) {
+export async function createUser(uid, {
+  firstName,
+  lastName,
+  poundsOrKilograms,
+  max,
+}) {
   const data = {
     first: firstName,
     last: lastName,
     poundsOrKilograms: poundsOrKilograms,
-  };
+    max: max,
+    workingMax: max,
+    }
 
   try {
     await setDoc(doc( db, 'users', uid), data);

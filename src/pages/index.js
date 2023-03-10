@@ -12,6 +12,7 @@ import { useUserInfo } from 'contexts/UserContext';
 import { getUser } from 'controllers';
 import CurrentDate from 'components/CurrentDate';
 import Page from 'components/Page';
+import ProfilePic from 'components/ProfilePic';
 import Button from 'components/Button';
 import Header from 'components/Header';
 
@@ -162,22 +163,22 @@ export default function Home() {
           <div className={styles.UpcomingWorkout}>
             <h5>Bench Press</h5>
             <br/>
-            <p>{userInfo && userInfo.working1RM.benchPress + weight}</p>
+            <p>{userInfo && userInfo.workingMax.benchPress + weight}</p>
           </div>
           <div className={styles.UpcomingWorkout}>
             <h5>Overhead Shoulder Press</h5>
             <br/>
-            <p>{userInfo && userInfo.working1RM.overHeadPress + weight}</p>
+            <p>{userInfo && userInfo.workingMax.overHeadPress + weight}</p>
           </div>
           <div className={styles.UpcomingWorkout}>
             <h5>Squats</h5>
             <br/>
-            <p>{userInfo && userInfo.working1RM.squats + weight}</p>
+            <p>{userInfo && userInfo.workingMax.squats + weight}</p>
           </div>
           <div className={styles.UpcomingWorkout}>
             <h5>Deadlift</h5>
             <br/>
-            <p>{userInfo && userInfo.working1RM.deadlift + weight}</p>
+            <p>{userInfo && userInfo.workingMax.deadlift + weight}</p>
           </div>
         </div>
       </section>
@@ -199,7 +200,7 @@ export default function Home() {
             <p>Today is</p>
             <CurrentDate/>
           </div>
-          <Button variant='link' onClick={() => router.push('/user/Profile')} >P</Button>
+          <ProfilePic/>
         </Header>
         {/* {renderCurrentWorkout()} */}
         {/* {renderUpcomingWorkouts()} */}

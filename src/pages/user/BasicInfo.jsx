@@ -6,7 +6,6 @@ import { Router, useRouter } from 'next/router';
 import styles from '@/styles/BasicInfo.module.css';
 import { useAuth } from 'contexts/AuthContext';
 import { useUserInfo } from 'contexts/UserContext';
-import { createUser } from 'controllers';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import Page from 'components/Page';
@@ -27,8 +26,7 @@ export default function BasicInfo() {
   /* --- EVENT HANDLERS --- */
   const handleNext = event => {
     event.preventDefault();
-    createUser(currentUser.uid, userInfo);
-    router.push('/user/Profile');
+    router.push('/user/WeightEntry');
   }
 
   const handleBack = event => {
