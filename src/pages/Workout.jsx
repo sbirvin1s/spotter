@@ -7,13 +7,10 @@ import { useAuth } from 'contexts/AuthContext';
 import { useUserInfo } from 'contexts/UserContext';
 import { useExerciseContext } from 'contexts/ExerciseContext';
 import styles from '@/styles/Workout.module.css';
-import Alert from 'components/Alert';
-import Input from 'components/Input';
 import Button from 'components/Button';
 import Page from 'components/Page';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import PlateCalculator from 'components/PlateCalculator';
 import CurrentDate from 'components/CurrentDate';
 import CardButton from 'components/CardButton';
 import Exercise from 'components/Exercise';
@@ -31,8 +28,8 @@ export default function Workout() {
     workingWeight,
     loadWorkingWeight,
     updateCurrentSet,
+    newWorkingWeight,
   } = useExerciseContext();
-  const [ newWorkingWeight, setNewWorkingWeight ] = useState();
 
   const coreSets = [
     {
@@ -53,7 +50,7 @@ export default function Workout() {
     {
       'setNumber': 4,
       'reps': 'AMRAP',
-      'intensity': newWorkingWeight
+      'intensity': 0
     },
   ]
 
@@ -61,11 +58,6 @@ export default function Workout() {
   useEffect(() => loadWorkingWeight(userInfo.working1RM), []);
 
   /* --- EVENT HANDLERS --- */
-  // const handleSetCoreLift = value => {
-  //   event.preventDefault();
-  //   setCoreLift(value);
-  // }
-
   const handleSelectExercise = exercise => {
     selectCoreLift(exercise);
     updateCurrentSet(coreLift + 'Set#' + 1);
@@ -111,81 +103,49 @@ export default function Workout() {
     )
   }
 
-  const renderSet = () => {
-    return coreSets.map(set => {
-      const weight = Math.round((workingWeight[coreLift] * set.intensity) / 5) * 5;
-
-      return (
-        <div key={coreLift + 'Set#' + set.setNumber}>
-          <p >
-            Set {set.setNumber}: {set.reps} reps of {weight} {userInfo.poundsOrKilograms}
-          </p>
-          {/* <PlateCalculator weight={weight} units={userInfo.poundsOrKilograms} /> */}
-        </div>
-      )
-    })
-  }
-
   const renderCurrentWorkout = () => {
-
-   /* NOTE: APRE6 Adjustments:
-      - Reps 0 - 2: - 10 lbs
-      - Reps 3 - 4: - 5 lbs
-      - Reps 5 - 7: No Change
-      - Reps 8 - 9: + 5 lbs
-      - Reps 10 - 11: + 10 lbs
-      - Reps 12 - 13: + 15 lbs
-   */
-
     switch (coreLift) {
       case 'benchPress':
         return (
-          <Exercise coreSets={coreSets} />
-          // <div className={styles.Div___column}>
-          //   <p><strong>BENCH PRESS:</strong></p>
-          //   {renderSet()}
-          //   <br/>
-          //   <p>Cardio: Waterfall Runs</p>
-          // </div>
+          <>
+            <Exercise coreSets={coreSets} />
+            <br />
+            <p>Cardio: Waterfall Runs</p>
+          </>
         );
       case 'overHeadPress':
         return (
-          <Exercise coreSets={coreSets} />
-          // <div className={styles.Div___column}>
-          //   <p><strong>OVERHEAD PRESS:</strong></p>
-          //   {renderSet()}
-          //   <br/>
-          //   <p>Lateral Shoulder Raise: 3 sets x 8 to 12 reps at {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-          //   <p>Halo Shoulder Rotation: 10 revolutions each direction at {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-          //   <br/>
-          //   <p>Cardio: Distance Run - Remainder of hour with Heart Rate at 150 - 160 Beats per Minute</p>
-          // </div>
+          <>
+            <Exercise coreSets={coreSets} />
+            <br />
+            <p>Lateral Shoulder Raise: 3 sets x 8 to 12 reps at {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+            <p>Halo Shoulder Rotation: 10 revolutions each direction at {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+            <br/>
+            <p>Cardio: Distance Run - Remainder of hour with Heart Rate at 150 - 160 Beats per Minute</p>
+          </>
         );
       case 'deadlift':
         return (
-          <Exercise coreSets={coreSets} />
-          // <div className={styles.Div___column}>
-          //   <p><strong>DEADLIFT:</strong></p>
-          //   {renderSet()}
-          //   <br/>
-          //   <p>Lunges: 3 sets – 20 yards – {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-          //   <p>Calf Raises: 3 sets – 10 reps – {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-          //   <br/>
-          //   <p>Cardio: Remainder of hour spent on Stairs or Stair Master. Adjust level (resistance) so that Heart Rate is between 150-160 beats per minute</p>
-          // </div>
+          <>
+            <Exercise coreSets={coreSets} />
+            <br />
+            <p>Lunges: 3 sets – 20 yards – {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+            <p>Calf Raises: 3 sets – 10 reps – {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+            <br/>
+            <p>Cardio: Remainder of hour spent on Stairs or Stair Master. Adjust level (resistance) so that Heart Rate is between 150-160 beats per minute</p>
+          </>
         );
       case 'squats':
         return (
-          // <div className={styles.Div___column}>
-          //   <p><strong>SQUATS:</strong></p>
-          //   {renderSet()}
-          //   <br/>
-          //   <p>Lunges: 3 sets x 20 yards of {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-          //   <p>Calf Raises: 3 sets x 10 reps of {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-          //   <br/>
-          //   <p>Cardio: Remainder of hour spent on bicycle. Adjust level (resistance) so that Heart Rate is between 150-160 beats per minute</p>
-          // </div>
-          <Exercise coreSets={coreSets} />
+          <>
+            <Exercise coreSets={coreSets} />
+            <br/>
+            <p>Lunges: 3 sets x 20 yards of {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+            <p>Calf Raises: 3 sets x 10 reps of {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+            <br/>
+            <p>Cardio: Remainder of hour spent on bicycle. Adjust level (resistance) so that Heart Rate is between 150-160 beats per minute</p>
+          </>
+
         );
     }
   }

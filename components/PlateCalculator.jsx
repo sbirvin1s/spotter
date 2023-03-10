@@ -110,12 +110,7 @@ export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
       }
     }
 
-    plateOrder.sort((a, b) => {
-      // a = Number.parseFloat(a);
-      // b = Number.parseFloat(b);
-
-      return b - a;
-    });
+    plateOrder.sort((a, b) => b - a);
 
     return plateOrder.map((plate, index) => {
       switch (plate + '|' + units) {
@@ -299,24 +294,12 @@ export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
   }
 
   /* --- RENDERER --- */
-  switch (units) {
-    case 'pounds':
-      return (
-        <div className={styles.PlateCalculator_body}>
-          {renderBar()}
-          <div className={styles.PlateCalculator_legend}>
-            {renderPlateLegend()}
-          </div>
-        </div>
-      )
-    case 'kilograms':
-      return (
-        <div className={styles.PlateCalculator_body}>
-          {renderBar()}
-          <div className={styles.PlateCalculator_legend}>
-            {renderPlateLegend()}
-          </div>
-        </div>
-      )
-  }
+  return (
+    <div className={styles.PlateCalculator_body}>
+      {renderBar()}
+      <div className={styles.PlateCalculator_legend}>
+        {renderPlateLegend()}
+      </div>
+    </div>
+  )
 }
