@@ -1,6 +1,22 @@
-.Div___row {
+.Div_row {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
 }
+
+.Div_row___spread {
+  display: flex;
+  width: 80vw;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.Div_column {
+  display: flex;
+  width: 100%;
+  height: 33%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+

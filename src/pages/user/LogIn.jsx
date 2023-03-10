@@ -74,7 +74,8 @@ export default function Login() {
         </div>
         <Footer>
           <Button onClick={handleLogIn}>Log In</Button>
-          <h5>Don&apos;t have and account? <Link href='/user/SignUp'>Sign Up</Link></h5>
+          <br />
+          <p><strong>Don&apos;t have and account? <Link href='/user/SignUp'>Sign Up</Link></strong></p>
         </Footer>
       </form>
     </Page>
