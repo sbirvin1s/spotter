@@ -11,26 +11,36 @@
   border: none;
   outline: none;
   border-radius: 1.5rem;
-  padding: 40px;
   font-weight: bold;
   font-size: larger;
+}
+
+.Button:active {
+  transform: scale(0.95);
 }
 
 /* ========================================
             Button Sizes
 ======================================== */
 
+.Button_tiny {
+  height: 3.5em;
+  width: 5em;
+}
+
 .Button_small {
-  height: 5rem;
-  width: 5rem;
+  height: 5.5em;
+  width: 5.5em;
 }
+
 .Button_medium {
-  height: 6.25rem;
-  width: 6.25rem;
+  height: 6.25em;
+  width: 6.25em;
 }
+
 .Button_large {
-  height: 7.5rem;
-  width: 7.5rem;
+  height: 7.5em;
+  width: 7.5em;
 }
 
 /* ========================================

@@ -25,12 +25,24 @@ export default function Set({ setNumber, reps, weight }) {
   /* --- EVENT HANDLERS --- */
   const handleIncreaseReps = event => {
     event.preventDefault();
-    setCompletedReps(prev => completedReps + 1);
+    setCompletedReps(prev => {
+      if (completedReps + 1 >= 14) {
+        return 14;
+      } else {
+        return completedReps + 1
+      }
+    });
   }
 
   const handleDecreaseReps = event => {
     event.preventDefault();
-    setCompletedReps(prev => completedReps - 1);
+    setCompletedReps(prev => {
+      if (completedReps - 1 < 0) {
+        return 0
+      } else {
+        return completedReps - 1;
+      }
+    });
   }
 
   const handleCompleteAMRAP = nextSet => {
@@ -65,15 +77,25 @@ export default function Set({ setNumber, reps, weight }) {
             </p>
             <div className={styles.Div___row}>
               <PlateCalculator weight={weight} units={userInfo.poundsOrKilograms} />
-              <div className={styles.Div___column}>
-                <Button variant='workout' onClick={handleIncreaseReps}>+</Button>
+              <div className={styles.Div_column___center}>
+                <Button
+                  variant='workout+'
+                  onClick={handleIncreaseReps}
+                >
+                  +
+                </Button>
                 <CardButton
-                  variant='small'
+                  variant='tiny'
                   onClick={() => handleCompleteAMRAP(coreLift + 'Set#' + (setNumber + 1))}
                 >
-                  {completedReps}
+                  {completedReps > 13 ? 'MAX' : completedReps}
                 </CardButton>
-                <Button variant='workout' onClick={handleDecreaseReps}>-</Button>
+                <Button
+                  variant='workout-'
+                  onClick={handleDecreaseReps}
+                  >
+                    -
+                  </Button>
               </div>
             </div>
           </div>
@@ -87,7 +109,7 @@ export default function Set({ setNumber, reps, weight }) {
             <div className={styles.Div___row}>
               <PlateCalculator weight={weight} units={userInfo.poundsOrKilograms} />
               <CardButton
-                variant='small'
+                variant='tiny'
                 onClick={() => updateCurrentSet(coreLift + 'Set#' + (setNumber + 1))}
               >
                 {reps}

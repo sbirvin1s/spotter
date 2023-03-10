@@ -4,10 +4,17 @@
   justify-content: center;
 }
 
-.Div___column {
+.Div_column {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  justify-content: center;
+  padding: 10px;
+}
+
+.Div_column___center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   padding: 10px;
 }

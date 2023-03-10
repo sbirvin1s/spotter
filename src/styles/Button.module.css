@@ -20,6 +20,10 @@
   outline-color: transparent;
 }
 
+.Button:active {
+  transform: scale(0.95);
+}
+
 /* ========================================
             Button Link
 ======================================== */
@@ -38,13 +42,20 @@
 ======================================== */
 
 .Button_workout {
-  /* font-weight: normal; */
   padding: 0px;
   min-width: 0px;
   min-height: 0px;
   height: 2rem;
   width: 6rem;
   background: rgba(255, 255, 255, 0.5);
+}
+
+.Button_workout___increment {
+  background: #22C55E;
+}
+
+.Button_workout___decrement {
+  background: #ff4d4d;
 }
 
 .Button_card {

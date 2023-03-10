@@ -44,7 +44,7 @@ export default function Exercise({ coreSets }) {
 
   /* --- RENDERER --- */
   return (
-    <div className={styles.Div___column}>
+    <div className={styles.Div_column}>
       <p><strong>SQUATS:</strong></p>
       {renderSets()}
     </div>

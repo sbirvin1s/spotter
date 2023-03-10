@@ -48,6 +48,34 @@ export default function CardButton({
 
   /* --- RENDERER --- */
   switch (variant) {
+    case 'tiny':
+      if (selected) {
+        return (
+          <button
+            id={name}
+            name={name}
+            value={value}
+            className={`${styles.Button} ${styles.Button_tiny} ${styles.Button___selected}`}
+            onClick={handleClicked}
+            {...props}
+          >
+            {children}
+          </button>
+        )
+      } else {
+        return (
+          <button
+            id={name}
+            name={name}
+            value={value}
+            className={`${styles.Button} ${styles.Button_tiny} ${styles.Button___default}`}
+            onClick={handleClicked}
+            {...props}
+          >
+            {children}
+          </button>
+        )
+      }
     case 'small':
       if (selected) {
         return (

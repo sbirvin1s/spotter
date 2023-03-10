@@ -55,6 +55,28 @@ export default function Button({
           {children}
         </button>
       )
+    case 'workout+':
+      return (
+        <button
+          className={`${styles.Button} ${styles.Button_workout} ${styles.Button_workout___increment}`}
+          selected={selected}
+          onClick={handleSelected}
+          {...props}
+        >
+          {children}
+        </button>
+      )
+    case 'workout-':
+      return (
+        <button
+          className={`${styles.Button} ${styles.Button_workout} ${styles.Button_workout___decrement}`}
+          selected={selected}
+          onClick={handleSelected}
+          {...props}
+        >
+          {children}
+        </button>
+      )
     default:
       return (
         <button
