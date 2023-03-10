@@ -44,10 +44,10 @@ export default function Profile() {
     return (
       <div>
         <p><strong>1 REP MAX (1RM)</strong></p>
-        <p>Squat: {userInfo.max.squats} {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Bench Press: {userInfo.max.benchPress} {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Deadlift: {userInfo.max.deadlift} {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Overhead Press: {userInfo.max.overHeadPress} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Squat: {userInfo && userInfo.max.squats} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Bench Press: {userInfo && userInfo.max.benchPress} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Deadlift: {userInfo && userInfo.max.deadlift} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Overhead Press: {userInfo && userInfo.max.overHeadPress} {userInfo && userInfo.poundsOrKilograms}</p>
     </div>
     )
   }
@@ -56,10 +56,10 @@ export default function Profile() {
     return (
       <div>
         <p><strong>WORKING WEIGHT</strong></p>
-        <p>Squat: {userInfo['workingMax'].squats} {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Bench Press: {userInfo['workingMax'].benchPress} {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Deadlift: {userInfo['workingMax'].deadlift} {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Overhead Press: {userInfo['workingMax'].overHeadPress} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Squat: {userInfo && userInfo.workingMax.squats} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Bench Press: {userInfo && userInfo.workingMax.benchPress} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Deadlift: {userInfo && userInfo.workingMax.deadlift} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Overhead Press: {userInfo && userInfo.workingMax.overHeadPress} {userInfo && userInfo.poundsOrKilograms}</p>
       </div>
     )
   }
