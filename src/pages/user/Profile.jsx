@@ -84,20 +84,20 @@ export default function Profile() {
 
       <div>
         <h5>1 Rep Max</h5>
-        <p>Squat: 200 {userInfo.poundsOrKilograms}</p>
-        <p>Bench Press: 135 {userInfo.poundsOrKilograms}</p>
-        <p>Deadlift: 270 {userInfo.poundsOrKilograms}</p>
-        <p>Overhead Shoulder Press: 100 {userInfo.poundsOrKilograms}</p>
+        <p>Squat: 200 {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Bench Press: 135 {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Deadlift: 270 {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Overhead Shoulder Press: 100 {userInfo && userInfo.poundsOrKilograms}</p>
       </div>
 
       <br/>
 
       <div>
         <h5>Current 1 Rep Max</h5>
-        <p>Squat: 200 {userInfo.poundsOrKilograms}</p>
-        <p>Bench Press: 135 {userInfo.poundsOrKilograms}</p>
-        <p>Deadlift: 270 {userInfo.poundsOrKilograms}</p>
-        <p>Overhead Shoulder Press: 100 {userInfo.poundsOrKilograms}</p>
+        <p>Squat: 200 {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Bench Press: 135 {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Deadlift: 270 {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Overhead Shoulder Press: 100 {userInfo && userInfo.poundsOrKilograms}</p>
       </div>
 
       <Footer>
