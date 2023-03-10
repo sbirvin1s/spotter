@@ -12,19 +12,20 @@ import styles from '../src/styles/PlateCalculator.module.css';
  * @param {string} units - 'pounds' or 'kilograms', default 'pounds'
  * @returns {Component}
  */
-export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
+export default function PlateCalculator({ weight = 0, units = 'pounds', barWeight = 45 }) {
 
   /* --- STATE HOOKS --- */
-  const [plates, setPlates] = useState({});
+  const [ plates, setPlates ] = useState({});
+  const [ weightUnit, setWeightUnit ] = useState(units === 'pounds' ? 'lbs' : 'kgs')
 
   /* --- LIFECYCLE METHODS --- */
   useEffect(() => {
     let updatedPlates = {};
 
     if (units === 'pounds') {
-      if (weight <= 45 ) return;
+      if (weight <= barWeight ) return;
 
-      let weightMinusBar = (weight - 45) / 2;
+      let weightMinusBar = (weight - barWeight) / 2;
 
       updatedPlates = {
         '2.5': 0,
@@ -158,7 +159,6 @@ export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
   const renderPlateLegend = () => {
     let plateList = [];
     let filteredList = [];
-    let weightUnit = units === 'pounds' ? 'lbs' : 'kgs';
 
     for (let weights in plates) {
       if (plates[weights] > 0) {
@@ -299,6 +299,9 @@ export default function PlateCalculator({ weight = 0, units = 'pounds' }) {
       {renderBar()}
       <div className={styles.PlateCalculator_legend}>
         {renderPlateLegend()}
+      </div>
+      <div className={styles.PlateCalculator_barWeight}>
+        <p>Bar Weight: {barWeight} {weightUnit}</p>
       </div>
     </div>
   )

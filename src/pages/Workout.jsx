@@ -160,7 +160,7 @@ export default function Workout() {
         </div>
         <Button variant='link' onClick={() => router.push('/user/Profile')} >P</Button>
       </Header>
-      <div>
+      <div className={styles.Div_column___attached}>
         <h3>Choose your Core Lift</h3>
         {renderSelectExercise()}
       </div>

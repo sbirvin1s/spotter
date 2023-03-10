@@ -23,6 +23,13 @@
   right: 5%;
 }
 
+.PlateCalculator_barWeight {
+  color: #9CA3AF;
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+}
+
 .PlateCalculator_legend___half {
   color: #008097;
   font-weight: bold;

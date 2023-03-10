@@ -76,7 +76,11 @@ export default function Set({ setNumber, reps, weight }) {
               Set {setNumber}: {reps} reps of {weight} {userInfo.poundsOrKilograms}
             </p>
             <div className={styles.Div___row}>
-              <PlateCalculator weight={weight} units={userInfo.poundsOrKilograms} />
+              <PlateCalculator
+                weight={weight}
+                units={userInfo.poundsOrKilograms}
+                barWeight={userInfo.barWeight}
+              />
               <div className={styles.Div_column___center}>
                 <Button
                   variant='workout+'
@@ -107,7 +111,11 @@ export default function Set({ setNumber, reps, weight }) {
               Set {setNumber}: {reps} reps of {weight} {userInfo.poundsOrKilograms}
             </p>
             <div className={styles.Div___row}>
-              <PlateCalculator weight={weight} units={userInfo.poundsOrKilograms} />
+              <PlateCalculator
+                weight={weight}
+                units={userInfo.poundsOrKilograms}
+                barWeight={userInfo.barWeight}
+              />
               <CardButton
                 variant='tiny'
                 onClick={() => updateCurrentSet(coreLift + 'Set#' + (setNumber + 1))}
