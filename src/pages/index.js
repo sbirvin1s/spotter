@@ -12,6 +12,7 @@ import { useUserInfo } from 'contexts/UserContext';
 import { getUser } from 'controllers';
 import CurrentDate from 'components/CurrentDate';
 import Page from 'components/Page';
+import ProfilePic from 'components/ProfilePic';
 import Button from 'components/Button';
 import Header from 'components/Header';
 
@@ -199,7 +200,7 @@ export default function Home() {
             <p>Today is</p>
             <CurrentDate/>
           </div>
-          <Button variant='link' onClick={() => router.push('/user/Profile')} >P</Button>
+          <ProfilePic/>
         </Header>
         {/* {renderCurrentWorkout()} */}
         {/* {renderUpcomingWorkouts()} */}

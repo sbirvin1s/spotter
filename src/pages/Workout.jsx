@@ -10,6 +10,7 @@ import Button from 'components/Button';
 import Page from 'components/Page';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import ProfilePic from 'components/ProfilePic';
 import CurrentDate from 'components/CurrentDate';
 import CardButton from 'components/CardButton';
 import Exercise from 'components/Exercise';
@@ -157,7 +158,7 @@ export default function Workout() {
           <p>Today is</p>
           <CurrentDate/>
         </div>
-        <Button variant='link' onClick={() => router.push('/user/Profile')} >P</Button>
+        <ProfilePic/>
       </Header>
       <div className={styles.Div_column___attached}>
         <h3>Choose your Core Lift</h3>
