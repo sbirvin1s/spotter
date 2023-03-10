@@ -1,3 +1,7 @@
+/* ========================================
+            Button
+======================================== */
+
 .Button {
   display: flex;
   justify-content: center;
@@ -6,13 +10,42 @@
   box-sizing: border-box;
   border: none;
   outline: none;
-  height: 100px;
-  width: 100px;
-  border-radius: 7px;
-  padding: 40px;
+  border-radius: 1.5rem;
   font-weight: bold;
   font-size: larger;
 }
+
+.Button:active {
+  transform: scale(0.95);
+}
+
+/* ========================================
+            Button Sizes
+======================================== */
+
+.Button_tiny {
+  height: 3.5em;
+  width: 5em;
+}
+
+.Button_small {
+  height: 5.5em;
+  width: 5.5em;
+}
+
+.Button_medium {
+  height: 6.25em;
+  width: 6.25em;
+}
+
+.Button_large {
+  height: 7.5em;
+  width: 7.5em;
+}
+
+/* ========================================
+            Button Selections
+======================================== */
 
 .Button___selected {
   background: #7de3c5;

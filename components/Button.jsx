@@ -8,7 +8,7 @@ import styles from '@/styles/Button.module.css';
 
 /** Button constructor that takes:
  *
- * @param {string} variant - ['', ...] if none given, will return default
+ * @param {string} variant - ['link', 'card'] if none given, will return default
  * @param {*} children - anything that should be placed inside the component
  * @prop {*} props - any property or tag that needs to be passed to the component
  * @returns {Component}
@@ -44,10 +44,32 @@ export default function Button({
           {children}
         </button>
       )
-    case 'card':
+    case 'workout':
       return (
         <button
-          className={`${styles.Button} ${styles.Button_card}`}
+          className={`${styles.Button} ${styles.Button_workout}`}
+          selected={selected}
+          onClick={handleSelected}
+          {...props}
+        >
+          {children}
+        </button>
+      )
+    case 'workout+':
+      return (
+        <button
+          className={`${styles.Button} ${styles.Button_workout} ${styles.Button_workout___increment}`}
+          selected={selected}
+          onClick={handleSelected}
+          {...props}
+        >
+          {children}
+        </button>
+      )
+    case 'workout-':
+      return (
+        <button
+          className={`${styles.Button} ${styles.Button_workout} ${styles.Button_workout___decrement}`}
           selected={selected}
           onClick={handleSelected}
           {...props}

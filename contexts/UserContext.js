@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react';
 
 
 /* ========== CONTEXTS ========== */
-
 const UserContext = React.createContext();
 
 /* ========== EXPORTS ========== */
@@ -28,7 +27,6 @@ export function UserProvider({ children }) {
   }
 
   const updateInfo = info => {
-    // event.preventDefault();
     setUserInfo(info);
   }
 

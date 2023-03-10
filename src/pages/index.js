@@ -68,7 +68,7 @@ export default function Home() {
   /* --- STATE HOOKS --- */
   const router = useRouter();
   const { currentUser } = useAuth();
-  const { userInfo, updateInfo } = useUserInfo();;
+  const { userInfo, updateInfo } = useUserInfo();
 
   /* --- LIFECYCLE METHODS --- */
   useEffect(() => {
@@ -152,12 +152,12 @@ export default function Home() {
     )
   }
 
-  const renderWorkingMax = () => {
+  const renderWorkingWeight = () => {
     const weight = (userInfo && userInfo.poundsOrKilograms === 'pounds' ? 'lbs' : 'kg');
 
     return (
       <section>
-        <h4>Current Max</h4>
+        <h4>Current Weight</h4>
         <div className={styles.UpcomingWorkout_feed}>
           <div className={styles.UpcomingWorkout}>
             <h5>Bench Press</h5>
@@ -204,7 +204,7 @@ export default function Home() {
         {/* {renderCurrentWorkout()} */}
         {/* {renderUpcomingWorkouts()} */}
         {renderStartWorkout()}
-        {renderWorkingMax()}
+        {renderWorkingWeight()}
       </Page>
     </>
   )
