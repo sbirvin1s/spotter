@@ -1,0 +1,33 @@
+.Div_100___column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.Div_33___row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 33vh;
+  width: 100%;
+}
+
+.Div_33___column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 33vh;
+  width: 100%;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

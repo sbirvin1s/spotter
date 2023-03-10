@@ -1,0 +1,39 @@
+.Div___row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Div_column___attached {
+  position: absolute;
+  top: 9%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Div_column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+
+.Div_column___center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+
+/* ========================================
+            Set
+======================================== */
+
+.Set_container {
+  padding: 5px;
+  /* border: 1px solid red;
+  border-radius: 1.5em; */
+}

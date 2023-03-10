@@ -1,21 +1,21 @@
 /* ========== EXTERNAL MODULES ========== */
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 
 /* ========== INTERNAL MODULES ========== */
 
 const firebaseConfig = {
-  apiKey:"AIzaSyCNzX85xIaph3O0JNtZxEC3onFHv_ylZLI",
-  authDomain:"recip-ease-23b62.firebaseapp.com",
-  projectId:"recip-ease-23b62",
-  storageBucket:"recip-ease-23b62.appspot.com",
-  messagingSenderId:"449255269437",
-  appId:"1:449255269437:web:af61da28dcaf02a85eb654",
+  apiKey: "AIzaSyBN8U9FAhu6tO1_aaj_XpWUXcDGWq25Wjs",
+  authDomain: "spotter-dev-5248a.firebaseapp.com",
+  projectId: "spotter-dev-5248a",
+  storageBucket: "spotter-dev-5248a.appspot.com",
+  messagingSenderId: "196463476055",
+  appId: "1:196463476055:web:7df10b2357fa8cb9151212"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 /* ========== EXPORTS ========== */
-export const auth = getAuth(app);
 export default app;
