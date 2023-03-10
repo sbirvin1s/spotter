@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { Router, useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
-import { useAuth } from 'contexts/AuthContext';
 import { useUserInfo } from 'contexts/UserContext';
 import { useExerciseContext } from 'contexts/ExerciseContext';
 import styles from '@/styles/Workout.module.css';
@@ -55,7 +54,7 @@ export default function Workout() {
   ]
 
   /* --- LIFECYCLE METHODS --- */
-  useEffect(() => loadWorkingWeight(userInfo.working1RM), []);
+  useEffect(() => loadWorkingWeight(userInfo.workingMax), []);
 
   /* --- EVENT HANDLERS --- */
   const handleSelectExercise = exercise => {
