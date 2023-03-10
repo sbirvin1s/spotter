@@ -1,5 +1,5 @@
 /* ========== EXTERNAL MODULES ========== */
-
+import { useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '../src/styles/ProfilePic.module.css'
@@ -9,6 +9,7 @@ import { useUserInfo } from 'contexts/UserContext';
 export default function ProfilePic() {
 
   /* --- STATE HOOKS --- */
+  const router = useRouter();
   const { userInfo } = useUserInfo();
 
   /* --- LIFECYCLE METHODS --- */
