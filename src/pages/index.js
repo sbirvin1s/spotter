@@ -163,22 +163,22 @@ export default function Home() {
           <div className={styles.UpcomingWorkout}>
             <h5>Bench Press</h5>
             <br/>
-            <p>{userInfo && userInfo.workingMax.benchPress + weight}</p>
+            <p>{userInfo && userInfo.workingWeight.benchPress + weight}</p>
           </div>
           <div className={styles.UpcomingWorkout}>
             <h5>Overhead Shoulder Press</h5>
             <br/>
-            <p>{userInfo && userInfo.workingMax.overHeadPress + weight}</p>
+            <p>{userInfo && userInfo.workingWeight.overHeadPress + weight}</p>
           </div>
           <div className={styles.UpcomingWorkout}>
             <h5>Squats</h5>
             <br/>
-            <p>{userInfo && userInfo.workingMax.squats + weight}</p>
+            <p>{userInfo && userInfo.workingWeight.squats + weight}</p>
           </div>
           <div className={styles.UpcomingWorkout}>
             <h5>Deadlift</h5>
             <br/>
-            <p>{userInfo && userInfo.workingMax.deadlift + weight}</p>
+            <p>{userInfo && userInfo.workingWeight.deadlift + weight}</p>
           </div>
         </div>
       </section>
