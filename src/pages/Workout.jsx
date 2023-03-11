@@ -52,7 +52,7 @@ export default function Workout() {
   }, [])
 
   useEffect(() => {
-    loadWorkingWeight(userInfo.workingMax)
+    loadWorkingWeight(userInfo.workingWeight);
     if (newWorkingWeight) updateWorkingWeight(0);
   }, []);
 
