@@ -83,10 +83,10 @@ export default function Profile() {
     return (
       <div>
         <p><strong>WORKING WEIGHT</strong></p>
-        <p>Squat: {userInfo && userInfo.workingMax.squats} {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Bench Press: {userInfo && userInfo.workingMax.benchPress} {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Deadlift: {userInfo && userInfo.workingMax.deadlift} {userInfo && userInfo.poundsOrKilograms}</p>
-        <p>Overhead Press: {userInfo && userInfo.workingMax.overHeadPress} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Squat: {userInfo && userInfo.workingWeight.squats} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Bench Press: {userInfo && userInfo.workingWeight.benchPress} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Deadlift: {userInfo && userInfo.workingWeight.deadlift} {userInfo && userInfo.poundsOrKilograms}</p>
+        <p>Overhead Press: {userInfo && userInfo.workingWeight.overHeadPress} {userInfo && userInfo.poundsOrKilograms}</p>
       </div>
     )
   }

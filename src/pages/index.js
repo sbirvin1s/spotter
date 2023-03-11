@@ -166,7 +166,7 @@ export default function Home() {
             <p>{userInfo && userInfo.workingWeight.benchPress + weight}</p>
           </div>
           <div className={styles.UpcomingWorkout}>
-            <h5>Overhead Shoulder Press</h5>
+            <h5>Overhead Press</h5>
             <br/>
             <p>{userInfo && userInfo.workingWeight.overHeadPress + weight}</p>
           </div>
