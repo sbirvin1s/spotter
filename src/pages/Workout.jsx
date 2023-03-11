@@ -83,6 +83,12 @@ export default function Workout() {
     updateCurrentSet(coreLift + 'Set#' + 1);
   }
 
+  const handleCompleteWorkout = event => {
+    event.preventDefault();
+    updateCurrentMax(currentUser.uid, coreLift, newWorkingWeight);
+    router.push('/');
+  }
+
   /* --- RENDER METHODS --- */
   const renderSelectExercise = () => {
     return (
@@ -189,6 +195,7 @@ export default function Workout() {
       </div>
       <Footer>
         <Button variant='link' onClick={() => router.push('/')}>Home</Button>
+        <Button onClick={handleCompleteWorkout}>Complete Workout</Button>
       </Footer>
     </Page>
   )

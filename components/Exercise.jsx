@@ -33,12 +33,6 @@ export default function Exercise({ coreSets }) {
     if (coreLift === 'deadlift') setExercise('DEADLIFT');
   }, [coreLift]);
 
-  /*--- EVENT HANDLERS --- */
-  const handleCompleteExercise = event => {
-    event.preventDefault();
-    updateCurrentMax(currentUser.uid, coreLift, newWorkingWeight);
-  }
-
   /* --- RENDER METHODS --- */
     const renderSets = () => {
       return coreSets.map(({ setNumber, reps, intensity })=> {
@@ -68,7 +62,6 @@ export default function Exercise({ coreSets }) {
         <h6>{exercise}</h6>
       </div>
       {renderSets()}
-      <Button onClick={handleCompleteExercise}>Complete Exercise</Button>
     </div>
   )
 }
