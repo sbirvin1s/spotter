@@ -32,7 +32,7 @@ export async function createUser(uid, {
     last: last,
     poundsOrKilograms: poundsOrKilograms,
     max: max,
-    workingMax: max,
+    workingWeight: max,
     }
 
   try {
@@ -75,12 +75,11 @@ export async function update1RM(uid, exercise, weight) {
   }
 }
 
-export async function updateCurrentMax(uid) {
+export async function updateCurrentMax(uid, exercise, weight) {
   const userRef = doc(db, 'users', uid);
   const userSnap = await getDoc(userRef);
 
   if (userSnap.exists()) {
-    console.log('User data: ', userSnap.data());
     await updateDoc(userRef, {[`workingMax.${exercise}`]: weight }, {merge: true})
   } else {
     console.error('User not found');

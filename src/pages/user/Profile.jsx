@@ -79,7 +79,7 @@ export default function Profile() {
     )
   }
 
-  const renderWorkingMax = () => {
+  const renderWorkingWeight = () => {
     return (
       <div>
         <p><strong>WORKING WEIGHT</strong></p>
@@ -172,7 +172,7 @@ export default function Profile() {
 
         {renderMax()}
         <br/>
-        {renderWorkingMax()}
+        {renderWorkingWeight()}
       </div>
       <Footer>
         <Button onClick={() => router.push('/user/WeightEntry')} >Update Max</Button>
