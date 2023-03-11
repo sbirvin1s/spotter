@@ -32,6 +32,7 @@ export default function Workout() {
     loadWorkingWeight,
     updateCurrentSet,
     newWorkingWeight,
+    updateWorkingWeight,
   } = useExerciseContext();
 
   const coreSets = [
@@ -58,7 +59,10 @@ export default function Workout() {
   ]
 
   /* --- LIFECYCLE METHODS --- */
-  useEffect(() => loadWorkingWeight(userInfo.workingMax), []);
+  useEffect(() => {
+    loadWorkingWeight(userInfo.workingMax)
+    if (newWorkingWeight) updateWorkingWeight(0);
+  }, []);
 
   useEffect(() => {
     if (!currentUser) {
@@ -134,8 +138,8 @@ export default function Workout() {
           <>
             <Exercise coreSets={coreSets} />
             <br />
-            <p>Lateral Shoulder Raise: 3 sets x 8 to 12 reps at {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-            <p>Halo Shoulder Rotation: 10 revolutions each direction at {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+            <p>Lateral Shoulder Raise: 3 sets x 8 to 12 reps at {Math.round((workingWeight[coreLift] * 0.5) / 5) * 5} {userInfo.poundsOrKilograms}</p>
+            <p>Halo Shoulder Rotation: 10 revolutions each direction at {Math.round((workingWeight[coreLift] * 0.5) / 5) * 5} {userInfo.poundsOrKilograms}</p>
             <br/>
             <p>Cardio: Distance Run - Remainder of hour with Heart Rate at 150 - 160 Beats per Minute</p>
           </>
@@ -145,8 +149,8 @@ export default function Workout() {
           <>
             <Exercise coreSets={coreSets} />
             <br />
-            <p>Lunges: 3 sets – 20 yards – {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-            <p>Calf Raises: 3 sets – 10 reps – {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+            <p>Lunges: 3 sets – 20 yards – {Math.round((workingWeight[coreLift] * 0.5) / 5) * 5} {userInfo.poundsOrKilograms}</p>
+            <p>Calf Raises: 3 sets – 10 reps – {Math.round((workingWeight[coreLift] * 0.5) / 5) * 5} {userInfo.poundsOrKilograms}</p>
             <br/>
             <p>Cardio: Remainder of hour spent on Stairs or Stair Master. Adjust level (resistance) so that Heart Rate is between 150-160 beats per minute</p>
           </>
@@ -156,8 +160,8 @@ export default function Workout() {
           <>
             <Exercise coreSets={coreSets} />
             <br/>
-            <p>Lunges: 3 sets x 20 yards of {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
-            <p>Calf Raises: 3 sets x 10 reps of {workingWeight[coreLift] * 0.5} {userInfo.poundsOrKilograms}</p>
+            <p>Lunges: 3 sets x 20 yards of {Math.round((workingWeight[coreLift] * 0.5) / 5) * 5} {userInfo.poundsOrKilograms}</p>
+            <p>Calf Raises: 3 sets x 10 reps of {Math.round((workingWeight[coreLift] * 0.5) / 5) * 5} {userInfo.poundsOrKilograms}</p>
             <br/>
             <p>Cardio: Remainder of hour spent on bicycle. Adjust level (resistance) so that Heart Rate is between 150-160 beats per minute</p>
           </>

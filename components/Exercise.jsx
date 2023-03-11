@@ -3,9 +3,12 @@ import { useState, useEffect } from 'react';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/Workout.module.css';
+import { useAuth } from 'contexts/AuthContext.js';
 import { useUserInfo } from 'contexts/UserContext';
 import { useExerciseContext } from 'contexts/ExerciseContext';
+import { updateCurrentMax } from 'controllers/index.js';
 import Set from './Set.jsx';
+import Button from './Button.jsx';
 
 /* ========== EXPORTS ========== */
 /** Set component that takes:
@@ -17,8 +20,15 @@ import Set from './Set.jsx';
 export default function Exercise({ coreSets }) {
 
   /* --- STATE HOOKS --- */
+  const { currentUser } = useAuth();
   const { userInfo } = useUserInfo();
   const { coreLift, workingWeight, newWorkingWeight } = useExerciseContext();
+
+  /*--- EVENT HANDLERS --- */
+  const handleCompleteExercise = event => {
+    event.preventDefault();
+    updateCurrentMax(currentUser.uid, coreLift, newWorkingWeight);
+  }
 
   /* --- RENDER METHODS --- */
     const renderSets = () => {
@@ -46,6 +56,7 @@ export default function Exercise({ coreSets }) {
   return (
     <div className={styles.Div_column}>
       {renderSets()}
+      <Button onClick={handleCompleteExercise}>Complete Exercise</Button>
     </div>
   )
 }
