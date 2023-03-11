@@ -45,23 +45,27 @@ export default function Set({ setNumber, reps, weight }) {
     });
   }
 
-  const handleCompleteAMRAP = nextSet => {
-   if (completedReps <= 2) {
-    weight = weight - 10;
-   } else if (completedReps <= 4) {
-    weight = weight - 5;
-   } else if (completedReps >= 5 && completedReps <= 7) {
-    weight = weight;
-   } else if (completedReps <= 9) {
-    weight = weight + 5;
-   } else if (completedReps <= 11) {
-    weight = weight + 10;
-   } else {
-    weight = weight + 15
-   }
+  const handleCompleteSet = nextSet => {
+    if (reps === 'AMRAP') {
+      if (completedReps <= 2) {
+       weight = weight - 10;
+      } else if (completedReps <= 4) {
+       weight = weight - 5;
+      } else if (completedReps >= 5 && completedReps <= 7) {
+       weight = weight;
+      } else if (completedReps <= 9) {
+       weight = weight + 5;
+      } else if (completedReps <= 11) {
+       weight = weight + 10;
+      } else {
+       weight = weight + 15
+      }
 
-    updateWorkingWeight(weight);
-    updateCurrentSet(nextSet);
+       updateWorkingWeight(weight);
+       updateCurrentSet(nextSet);
+    } else {
+      updateCurrentSet(nextSet);
+    }
   }
 
   /* --- RENDER METHODS --- */
@@ -86,14 +90,14 @@ export default function Set({ setNumber, reps, weight }) {
       <div
         key={setKey}
         className={styles.Set_container}
-        onClick={() => updateCurrentSet(setKey)}
+        onClick={() => currentSet === setKey ? '' : updateCurrentSet(setKey)}
       >
         <div className={styles.Set_title}>
           <p >{reps} reps at {intensity}</p>
           <p>{weight} {userInfo.poundsOrKilograms}</p>
           <CardButton
               variant='workout'
-              onClick={() => handleCompleteAMRAP(coreLift + 'Set#' + (setNumber + 1))}
+              onClick={() => handleCompleteSet(coreLift + 'Set#' + (setNumber + 1))}
             >
               {targetReps}
           </CardButton>
@@ -118,7 +122,7 @@ export default function Set({ setNumber, reps, weight }) {
             </Button>
             {/* <CardButton
               variant='workout'
-              onClick={() => handleCompleteAMRAP(coreLift + 'Set#' + (setNumber + 1))}
+              onClick={() => handleCompleteSet(coreLift + 'Set#' + (setNumber + 1))}
             >
               {completedReps > 13 ? 'MAX' : completedReps}
             </CardButton> */}

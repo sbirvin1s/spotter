@@ -60,11 +60,6 @@ export default function Workout() {
 
   /* --- LIFECYCLE METHODS --- */
   useEffect(() => {
-    loadWorkingWeight(userInfo.workingMax)
-    if (newWorkingWeight) updateWorkingWeight(0);
-  }, []);
-
-  useEffect(() => {
     if (!currentUser) {
       router.push('/user/LogIn')
     } else {
@@ -76,6 +71,12 @@ export default function Workout() {
       updateUser();
     }
   }, [])
+
+  useEffect(() => {
+    loadWorkingWeight(userInfo.workingMax)
+    if (newWorkingWeight) updateWorkingWeight(0);
+  }, []);
+
 
   /* --- EVENT HANDLERS --- */
   const handleSelectExercise = exercise => {
