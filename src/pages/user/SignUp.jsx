@@ -32,7 +32,7 @@ export default function SignUp() {
   const handlePasswordConfirmationEntry = ({ target: { value } }) => setPasswordConfirmation(value);
 
 
-  const handleSignUp = async () => {
+  const handleSignUp = async event => {
     event.preventDefault();
 
     if (password !== passwordConfirmation) {
@@ -43,10 +43,9 @@ export default function SignUp() {
       setError('');
       setLoading(true);
       await signUp(email, password);
-      // createUser(email);
       router.push('/user/BasicInfo');
     } catch (err){
-      console.error('Sign Up Error: ', err);
+      // console.error('Sign Up Error: ', err);
       setError('Failed to Sign Up');
     }
 

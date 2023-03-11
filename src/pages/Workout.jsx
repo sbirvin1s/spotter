@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react';
 import { Router, useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
+import styles from '@/styles/Workout.module.css';
+import { useAuth } from 'contexts/AuthContext';
 import { useUserInfo } from 'contexts/UserContext';
 import { useExerciseContext } from 'contexts/ExerciseContext';
-import styles from '@/styles/Workout.module.css';
+import { getUser } from 'controllers';
 import Button from 'components/Button';
 import Page from 'components/Page';
 import Header from 'components/Header';
@@ -21,7 +23,8 @@ export default function Workout() {
 
   /* --- STATE HOOKS --- */
   const router = useRouter();
-  const { userInfo, updateSpecificInfo } = useUserInfo();
+  const { currentUser } = useAuth();
+  const { userInfo, updateInfo, updateSpecificInfo } = useUserInfo();
   const {
     coreLift,
     selectCoreLift,
@@ -56,6 +59,19 @@ export default function Workout() {
 
   /* --- LIFECYCLE METHODS --- */
   useEffect(() => loadWorkingWeight(userInfo.workingMax), []);
+
+  useEffect(() => {
+    if (!currentUser) {
+      router.push('/user/LogIn')
+    } else {
+      const updateUser = async () => {
+        const loggedInUser = await getUser(currentUser.uid);
+        updateInfo(loggedInUser);
+      };
+
+      updateUser();
+    }
+  }, [])
 
   /* --- EVENT HANDLERS --- */
   const handleSelectExercise = exercise => {

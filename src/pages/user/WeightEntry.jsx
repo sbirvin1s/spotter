@@ -1,13 +1,12 @@
 /* ========== EXTERNAL MODULES ========== */
-import { useState } from 'react';
-import { Router, useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '../../styles/Profile.module.css';
 import { useAuth } from 'contexts/AuthContext';
 import { useUserInfo } from 'contexts/UserContext';
-import { createUser } from 'controllers';
-import Alert from 'components/Alert';
+import { createUser, getUser } from 'controllers';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import Page from 'components/Page';
@@ -20,14 +19,26 @@ export default function WeightEntry() {
   /* --- STATE HOOKS --- */
   const router = useRouter();
   const { currentUser, } = useAuth();
-  const { userInfo, updateUserInfo, updateSpecificInfo } = useUserInfo();
-  const [ error, setError ] = useState('');
-
+  const { userInfo, updateInfo, updateSpecificInfo } = useUserInfo();
 
   /* --- LIFECYCLE METHODS --- */
+  useEffect(() => {
+    if (!currentUser) {
+      router.push('/user/LogIn')
+    } else {
+      const updateUser = async () => {
+        const loggedInUser = await getUser(currentUser.uid);
+        updateInfo(loggedInUser);
+      };
+
+      updateUser();
+    }
+  }, [])
+
   /* --- EVENT HANDLERS --- */
   const handleNext = event => {
     event.preventDefault();
+
     createUser(currentUser.uid, userInfo);
     router.push('/user/Profile');
   }
@@ -47,7 +58,6 @@ export default function WeightEntry() {
 
     updateSpecificInfo('max', updatedInfo);
   }
-  /* --- RENDER METHODS --- */
 
   /* --- RENDERER --- */
   return (
@@ -62,7 +72,7 @@ export default function WeightEntry() {
           labelName='Bench Press'
           type='number'
           onChange={handleUpdate}
-          // value={userInfo['workingMax'].benchPress || 0}
+          defaultValue={(userInfo && userInfo.workingMax.benchPress) || 0}
           required
         />
         <Input
@@ -70,7 +80,7 @@ export default function WeightEntry() {
           labelName='Overhead Press'
           type='number'
           onChange={handleUpdate}
-          // value={userInfo['workingMax'].overHeadPress || 0}
+          defaultValue={(userInfo && userInfo.workingMax.overHeadPress) || 0}
           required
         />
         <Input
@@ -78,7 +88,7 @@ export default function WeightEntry() {
           labelName='Squats'
           type='number'
           onChange={handleUpdate}
-          // value={userInfo['workingMax'].squats || 0}
+          defaultValue={(userInfo && userInfo.workingMax.squats) || 0}
           required
         />
         <Input
@@ -86,7 +96,7 @@ export default function WeightEntry() {
           labelName='Deadlift'
           type='number'
           onChange={handleUpdate}
-          // value={userInfo['workingMax'].deadlift || 0}
+          defaultValue={(userInfo && userInfo.workingMax.deadlift) || 0}
           required
         />
       </div>

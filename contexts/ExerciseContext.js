@@ -22,22 +22,18 @@ const [ newWorkingWeight, setNewWorkingWeight ] = useState();
 /* --- LIFECYCLE METHODS --- */
 /* --- EVENT HANDLERS --- */
 const selectCoreLift = value => {
-  event.preventDefault();
   setCoreLift(value);
 }
 
 const updateCurrentSet = nextSet => {
-  event.preventDefault();
   setCurrentSet(nextSet);
 }
 
 const loadWorkingWeight = weights => {
-  event.preventDefault();
   setWorkingWeight(weights);
 }
 
 const updateWorkingWeight = newWeight => {
-  event.preventDefault();
   setNewWorkingWeight(newWeight);
 }
 

@@ -1,6 +1,13 @@
 /* ========== EXTERNAL MODULES ========== */
 import { createContext, useContext, useState, useEffect } from 'react';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithRedirect,
+  signOut,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 
 /* ========== INTERNAL MODULES ========== */
 import { default as app } from '../firebase/index';
@@ -37,8 +44,20 @@ export function AuthProvider ({ children }) {
     return createUserWithEmailAndPassword(auth, email, password)
   }
 
+  const signInWithGoogle = (email, password) => {
+    return signInWithRedirect(auth, email, password)
+  }
+
   const logIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
+  }
+
+  const resetPassword = email => {
+    return sendPasswordResetEmail(auth, email);
+  }
+
+  const updatePassword = password => {
+    return currentUser.updatePassword(password);
   }
 
   const logOut = () => {
@@ -53,6 +72,8 @@ export function AuthProvider ({ children }) {
         signUp,
         logIn,
         logOut,
+        resetPassword,
+        updatePassword,
       }}
     >
       {!loading && children}
