@@ -14,7 +14,7 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 
 /* ========== EXPORTS ========== */
-export default function WeightEntry() {
+export default function WeightUpdate() {
 
   /* --- STATE HOOKS --- */
   const router = useRouter();
@@ -45,7 +45,7 @@ export default function WeightEntry() {
 
   const handleBack = event => {
     event.preventDefault();
-    router.push('/user/BasicInfo');
+    router.push('/user/Profile');
   }
 
   const handleUpdate = ({ target: { name, value } }) => {
@@ -64,7 +64,7 @@ export default function WeightEntry() {
     <Page>
       <Header>
         <p>Enter your</p>
-        <h1>CURRENT MAX</h1>
+        <h1>NEW MAX</h1>
       </Header>
       <div className={styles.Div_column}>
         <Input
@@ -101,8 +101,8 @@ export default function WeightEntry() {
         />
       </div>
       <Footer>
-        <Button onClick={handleNext} >Next</Button>
-        <Button variant='link' onClick={handleBack} >Back</Button>
+        <Button onClick={handleNext} >Submit</Button>
+        <Button variant='link' onClick={handleBack} >Cancel</Button>
       </Footer>
     </Page>
   )

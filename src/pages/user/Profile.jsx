@@ -179,7 +179,7 @@ export default function Profile() {
         </form>
       </div>
       <Footer>
-        <Button onClick={() => router.push('/user/WeightEntry')} >Update Max</Button>
+        <Button onClick={() => router.push('/user/WeightUpdate')} >Update Max</Button>
         <div className={styles.Div_row}>
           <Button variant='link' onClick={() => router.push('/')} >Home</Button>
           <Button variant='link' onClick={handleLogOut} >Log Out</Button>
