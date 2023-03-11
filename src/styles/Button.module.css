@@ -45,8 +45,10 @@
   padding: 0px;
   min-width: 0px;
   min-height: 0px;
-  height: 2rem;
-  width: 6rem;
+  height: 2.25em;
+  width: 2.25em;
+  border-radius:  0.65em;
+  font-size: x-large;
   background: rgba(255, 255, 255, 0.5);
 }
 

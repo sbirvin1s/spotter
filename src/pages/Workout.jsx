@@ -1,6 +1,6 @@
 /* ========== EXTERNAL MODULES ========== */
 import { useEffect, useState } from 'react';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/Workout.module.css';
@@ -86,7 +86,7 @@ export default function Workout() {
   /* --- RENDER METHODS --- */
   const renderSelectExercise = () => {
     return (
-      <div className={styles.Div___row}>
+      <div className={styles.Div_row}>
         <CardButton
           variant='small'
           name='benchPress'
@@ -184,7 +184,9 @@ export default function Workout() {
         <h3>Choose your Core Lift</h3>
         {renderSelectExercise()}
       </div>
-      {renderCurrentWorkout()}
+      <div className={styles.Workout_container}>
+        {renderCurrentWorkout()}
+      </div>
       <Footer>
         <Button variant='link' onClick={() => router.push('/')}>Home</Button>
       </Footer>
