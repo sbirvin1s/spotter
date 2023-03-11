@@ -193,7 +193,7 @@ export default function Workout() {
       <div className={styles.Workout_container}>
         {renderCurrentWorkout()}
       </div>
-      <Footer>
+      <Footer variant='compressed'>
         <Button variant='link' onClick={() => router.push('/')}>Home</Button>
         <Button onClick={handleCompleteWorkout}>Complete Workout</Button>
       </Footer>
