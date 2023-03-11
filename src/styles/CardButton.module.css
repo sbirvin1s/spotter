@@ -9,10 +9,26 @@
   margin: 5px;
   box-sizing: border-box;
   border: none;
-  outline: none;
+  outline-color: transparent;
   border-radius: 1.5rem;
   font-weight: bold;
   font-size: larger;
+}
+
+.Button_workout {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  border: none;
+  outline-color: transparent;
+  border-radius: 0.75em;
+  font-weight: bold;
+  font-size: larger;
+  height: 2.5em;
+  width: 5em;
+  background: rgba(0, 0, 0, 0.55);
 }
 
 .Button:active {
@@ -23,9 +39,10 @@
             Button Sizes
 ======================================== */
 
+
 .Button_tiny {
-  height: 3.5em;
-  width: 5em;
+  height: 4em;
+  width: 4em;
 }
 
 .Button_small {
@@ -48,9 +65,10 @@
 ======================================== */
 
 .Button___selected {
-  background: #7de3c5;
+  background: #14B8A6;
+  /* background: #7de3c5; */
 }
 
 .Button___default {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.55);
 }

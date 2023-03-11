@@ -5,7 +5,7 @@
 import styles from '@/styles/Footer.module.css';
 
 /* ========== EXPORTS ========== */
-export default function Footer({ children }) {
+export default function Footer({ variant, children }) {
 
   /* --- STATE HOOKS --- */
   /* --- LIFECYCLE METHODS --- */
@@ -13,11 +13,18 @@ export default function Footer({ children }) {
   /* --- RENDER METHODS --- */
 
   /* --- RENDERER --- */
-  return (
-    <div className={styles.Footer___column}>
-      {children}
-    </div>
-  )
+  switch (variant) {
+    case 'compressed':
+      return (
+        <div className={styles.Footer_row___10}>
+          {children}
+        </div>
+      )
+      default:
+        return (
+          <div className={styles.Footer_column}>
+            {children}
+          </div>
+        )
+  }
 }
-
-/* ========== STYLES ========== */

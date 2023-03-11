@@ -39,124 +39,84 @@
   transform: translateZ(0);
 }
 
-@media (prefers-reduced-motion) {
-  .thirteen::before {
-    animation: none;
-  }
 
-  .card:hover span {
-    transform: none;
-  }
+.content {
+  padding: 4rem;
 }
 
-/* ====================
-        Mobile
-==================== */
-@media (max-width: 700px) {
-  .content {
-    padding: 4rem;
-  }
-
-  .MainWorkout {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-    padding: 10px;
-    background: #14B8A6;
-    border-radius: 1.5rem;
-    height: 20vh;
-    width: 90vw;
-  }
-
-  .MainWorkout_button {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    outline: transparent;
-    margin: 10px;
-    padding: 10px;
-    background: #14B8A6;
-    border: none;
-    border-radius: 1.5rem;
-    height: 20vh;
-    width: 90vw;
-    font-size: 3rem;
-    font-weight: 900;
-  }
-
-  .MainWorkout_title {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-
-  .MainWorkout_workoutNumber {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 5px;
-  }
-
-  .MainWorkout_bodyPart {
-    position: absolute;
-    top: 0;
-    margin: 5px;
-  }
-
-  .UpcomingWorkout_section {
-    display: flex;
-  }
-
-  .UpcomingWorkout_feed {
-    display: flex;
-    flex-wrap: wrap;
-    width: 90vw;
-  }
-  .UpcomingWorkout {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-    padding: 10px;
-    background: #14B8A6;
-    border-radius: 1.5rem;
-    height: 18vh;
-    width: 40vw;
-  }
-
+.MainWorkout {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  background: #14B8A6;
+  border-radius: 1.5rem;
+  height: 20vh;
+  width: 90vw;
 }
 
-/* ====================
-Tablet and Smaller Desktop
-==================== */
-@media (min-width: 701px) and (max-width: 1120px) {
-  .grid {
-    grid-template-columns: repeat(2, 50%);
-  }
+.MainWorkout_button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  outline: transparent;
+  margin: 10px;
+  padding: 10px;
+  background: #14B8A6;
+  border: none;
+  border-radius: 1.5rem;
+  height: 20vh;
+  width: 90vw;
+  max-width: 630px;
+  font-size: 3rem;
+  font-weight: 900;
 }
 
-@media (prefers-color-scheme: dark) {
-  .vercelLogo {
-    filter: invert(1);
-  }
-
-  .logo,
-  .thirteen img {
-    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
-  }
+.MainWorkout_title {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
+.MainWorkout_workoutNumber {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 5px;
 }
+
+.MainWorkout_bodyPart {
+  position: absolute;
+  top: 0;
+  margin: 5px;
+}
+
+.UpcomingWorkout_section {
+  display: flex;
+}
+
+.UpcomingWorkout_feed {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90vw;
+  max-width: 630px;
+}
+.UpcomingWorkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  background: #14B8A6;
+  border-radius: 1.5rem;
+  height: 18vh;
+  width: 40vw;
+  max-width: 280px;
+}
+
