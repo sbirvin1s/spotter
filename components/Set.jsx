@@ -45,100 +45,92 @@ export default function Set({ setNumber, reps, weight }) {
     });
   }
 
-  const handleCompleteAMRAP = nextSet => {
-   if (completedReps <= 2) {
-    weight = weight - 10;
-   } else if (completedReps <= 4) {
-    weight = weight - 5;
-   } else if (completedReps >= 5 && completedReps <= 7) {
-    weight = weight;
-   } else if (completedReps <= 9) {
-    weight = weight + 5;
-   } else if (completedReps <= 11) {
-    weight = weight + 10;
-   } else {
-    weight = weight + 15
-   }
+  const handleCompleteSet = nextSet => {
+    if (reps === 'AMRAP') {
+      if (completedReps <= 2) {
+       weight = weight - 10;
+      } else if (completedReps <= 4) {
+       weight = weight - 5;
+      } else if (completedReps >= 5 && completedReps <= 7) {
+       weight = weight;
+      } else if (completedReps <= 9) {
+       weight = weight + 5;
+      } else if (completedReps <= 11) {
+       weight = weight + 10;
+      } else {
+       weight = weight + 15
+      }
 
-    updateWorkingWeight(weight);
-    updateCurrentSet(nextSet);
+       updateWorkingWeight(weight);
+       updateCurrentSet(nextSet);
+    } else {
+      updateCurrentSet(nextSet);
+    }
   }
 
   /* --- RENDER METHODS --- */
   const renderSet = () => {
     const setKey = coreLift + 'Set#' + setNumber;
+    const showRepModifiers = reps === 'AMRAP' ? 'visibible' : 'hidden';
+    const showPlateCalculator = currentSet === setKey ? 'flex' : 'none';
+    const targetReps = reps === 'AMRAP' ? (
+      completedReps > 13 ? 'MAX' : completedReps
+      ) : reps;
 
-    if (currentSet === setKey) {
-      if (reps === 'AMRAP') {
-        return (
-          <div key={setKey}>
-            <p >
-              Set {setNumber}: {reps} reps of {weight} {userInfo.poundsOrKilograms}
-            </p>
-            <div className={styles.Div___row}>
-              <PlateCalculator
-                weight={weight}
-                units={userInfo.poundsOrKilograms}
-                barWeight={userInfo.barWeight}
-              />
-              <div className={styles.Div_column___center}>
-                <Button
-                  variant='workout+'
-                  onClick={handleIncreaseReps}
-                >
-                  +
-                </Button>
-                <CardButton
-                  variant='tiny'
-                  onClick={() => handleCompleteAMRAP(coreLift + 'Set#' + (setNumber + 1))}
-                >
-                  {completedReps > 13 ? 'MAX' : completedReps}
-                </CardButton>
-                <Button
-                  variant='workout-'
-                  onClick={handleDecreaseReps}
-                  >
-                    -
-                  </Button>
-              </div>
-            </div>
-          </div>
-        )
-      } else {
-        return (
-          <div key={setKey}>
-            <p >
-              Set {setNumber}: {reps} reps of {weight} {userInfo.poundsOrKilograms}
-            </p>
-            <div className={styles.Div___row}>
-              <PlateCalculator
-                weight={weight}
-                units={userInfo.poundsOrKilograms}
-                barWeight={userInfo.barWeight}
-              />
-              <CardButton
-                variant='tiny'
-                onClick={() => updateCurrentSet(coreLift + 'Set#' + (setNumber + 1))}
-              >
-                {reps}
-              </CardButton>
-            </div>
-          </div>
-        )
-      }
-    } else {
-      return (
+    let intensity = 0;
+
+    if (setNumber === 1) intensity = '50% 1RM';
+    if (setNumber === 2) intensity = '75% 1RM';
+    if (setNumber === 3) intensity = '83% 1RM';
+    if (setNumber === 4) intensity = 'MAX';
+
+
+
+    return (
+      <div
+        key={setKey}
+        className={styles.Set_container}
+        onClick={() => currentSet === setKey ? '' : updateCurrentSet(setKey)}
+      >
+        <div className={styles.Set_title}>
+          <p >{reps} reps at {intensity}</p>
+          <p>{weight} {userInfo.poundsOrKilograms}</p>
+          <CardButton
+              variant='workout'
+              onClick={() => handleCompleteSet(coreLift + 'Set#' + (setNumber + 1))}
+            >
+              {targetReps}
+          </CardButton>
+        </div>
         <div
-          className={styles.Set_container}
-          key={setKey}
-          onClick={() => updateCurrentSet(setKey)}
+          className={styles.Set_calculator}
+          style={{ display: showPlateCalculator }}
         >
-          <p >
-            Set {setNumber}: {reps} reps of {weight} {userInfo.poundsOrKilograms}
-          </p>
+          <PlateCalculator
+            weight={weight}
+            units={userInfo.poundsOrKilograms}
+            barWeight={userInfo.barWeight}
+          />
+          <div
+            className={styles.Set_buttonContainer}>
+            <Button
+              onClick={handleIncreaseReps}
+              variant='workout+'
+              style={{ visibility: showRepModifiers }}
+            >
+              +
+            </Button>
+            <Button
+              onClick={handleDecreaseReps}
+              variant='workout-'
+              style={{ visibility: showRepModifiers }}
+              >
+                -
+            </Button>
+          </div>
+        </div>
       </div>
-      )
-    }
+    )
   }
 
   /* --- RENDERER --- */

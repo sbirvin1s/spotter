@@ -23,12 +23,15 @@ export default function Exercise({ coreSets }) {
   const { currentUser } = useAuth();
   const { userInfo } = useUserInfo();
   const { coreLift, workingWeight, newWorkingWeight } = useExerciseContext();
+  const [ exercise, setExercise ] = useState();
 
-  /*--- EVENT HANDLERS --- */
-  const handleCompleteExercise = event => {
-    event.preventDefault();
-    updateCurrentMax(currentUser.uid, coreLift, newWorkingWeight);
-  }
+  /* --- LIFECYCLE METHODS --- */
+  useEffect(() => {
+    if (coreLift === 'benchPress') setExercise('BENCH PRESS');
+    if (coreLift === 'overHeadPress') setExercise('OVERHEAD PRESS');
+    if (coreLift === 'squats') setExercise('SQUATS');
+    if (coreLift === 'deadlift') setExercise('DEADLIFT');
+  }, [coreLift]);
 
   /* --- RENDER METHODS --- */
     const renderSets = () => {
@@ -54,9 +57,11 @@ export default function Exercise({ coreSets }) {
 
   /* --- RENDERER --- */
   return (
-    <div className={styles.Div_column}>
+    <div className={styles.Exercise_container}>
+      <div className={styles.Div_row___left}>
+        <h6>{exercise}</h6>
+      </div>
       {renderSets()}
-      <Button onClick={handleCompleteExercise}>Complete Exercise</Button>
     </div>
   )
 }

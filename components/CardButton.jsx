@@ -48,6 +48,19 @@ export default function CardButton({
 
   /* --- RENDERER --- */
   switch (variant) {
+    case 'workout':
+      return (
+        <button
+          id={name}
+          name={name}
+          value={value}
+          className={styles.Button_workout}
+          onClick={handleClicked}
+          {...props}
+        >
+          {children}
+        </button>
+      )
     case 'tiny':
       if (selected) {
         return (
