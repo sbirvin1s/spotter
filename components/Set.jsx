@@ -81,7 +81,7 @@ export default function Set({ setNumber, reps, weight }) {
 
     if (setNumber === 1) intensity = '50% 1RM';
     if (setNumber === 2) intensity = '75% 1RM';
-    if (setNumber === 3) intensity = '100% 6RM';
+    if (setNumber === 3) intensity = '83% 1RM';
     if (setNumber === 4) intensity = 'MAX';
 
 
@@ -120,12 +120,6 @@ export default function Set({ setNumber, reps, weight }) {
             >
               +
             </Button>
-            {/* <CardButton
-              variant='workout'
-              onClick={() => handleCompleteSet(coreLift + 'Set#' + (setNumber + 1))}
-            >
-              {completedReps > 13 ? 'MAX' : completedReps}
-            </CardButton> */}
             <Button
               onClick={handleDecreaseReps}
               variant='workout-'
@@ -135,7 +129,6 @@ export default function Set({ setNumber, reps, weight }) {
             </Button>
           </div>
         </div>
-        {/* <p>--- NEXT SET ---</p> */}
       </div>
     )
   }
