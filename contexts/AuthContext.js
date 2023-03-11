@@ -56,6 +56,10 @@ export function AuthProvider ({ children }) {
     return sendPasswordResetEmail(auth, email);
   }
 
+  const updatePassword = password => {
+    return currentUser.updatePassword(password);
+  }
+
   const logOut = () => {
     return signOut(auth);
   }
@@ -69,6 +73,7 @@ export function AuthProvider ({ children }) {
         logIn,
         logOut,
         resetPassword,
+        updatePassword,
       }}
     >
       {!loading && children}

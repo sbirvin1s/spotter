@@ -22,7 +22,6 @@ export default function Login() {
   const [ password, setPassword ] = useState();
   const { logIn } = useAuth();
   const [ error, setError ] = useState('');
-  const [ loading, setLoading ] = useState(false);
 
   /* --- LIFECYCLE METHODS --- */
   /* --- EVENT HANDLERS --- */
@@ -34,15 +33,12 @@ export default function Login() {
 
     try {
       setError('');
-      setLoading(true);
       const user = await logIn(email, password);
       router.push('/');
     } catch (err) {
       console.error('Log In Error: ', err);
       setError('Failed to Log In');
     }
-
-    setLoading(false);
   }
 
   /* --- RENDER METHODS --- */
