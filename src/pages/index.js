@@ -158,7 +158,7 @@ export default function Home() {
 
     return (
       <section>
-        <h4>Current Weight</h4>
+        <h4>Current Weights</h4>
         <div className={styles.UpcomingWorkout_feed}>
           <div className={styles.UpcomingWorkout}>
             <h5>Bench Press</h5>
@@ -205,6 +205,7 @@ export default function Home() {
         {/* {renderCurrentWorkout()} */}
         {/* {renderUpcomingWorkouts()} */}
         {renderStartWorkout()}
+        <br/>
         {renderWorkingWeight()}
       </Page>
     </>

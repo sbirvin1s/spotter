@@ -18,12 +18,19 @@ export default function Profile() {
 
   /* --- STATE HOOKS --- */
   const router = useRouter();
-  const { currentUser, logOut } = useAuth();
-  const { userInfo, updateUserInfo, updateSpecificInfo } = useUserInfo();
+  const { currentUser, logOut, updatePassword } = useAuth();
+  const { userInfo } = useUserInfo();
+  const [ password, setPassword ] = useState();
+  const [ passwordConfirmation, setPasswordConfirmation ] = useState();
   const [ error, setError ] = useState('');
+  const [ message, setMessage ] = useState('');
+  const [ loading, setLoading ] = useState(false);
 
   /* --- LIFECYCLE METHODS --- */
   /* --- EVENT HANDLERS --- */
+  const handlePasswordEntry = ({ target: { value } }) => setPassword(value);
+  const handlePasswordConfirmationEntry = ({ target: { value } }) => setPasswordConfirmation(value);
+
   const handleLogOut = async () => {
     setError('');
 
@@ -35,12 +42,32 @@ export default function Profile() {
     }
   }
 
+  const handleUpdatePasswsord = async event => {
+    event.preventDefault();
+
+    if (password !== passwordConfirmation) {
+      return setError('Passwords do not match')
+    }
+
+    try{
+      setError('');
+      setMessage('')
+      setLoading(true);
+      await updatePassword(password);
+      setMessage('Password Updated')
+    } catch (err){
+      setError('Failed to update password');
+    }
+
+    setLoading(false);
+  }
+
   const handle1RM = () => {
 
   }
 
   /* --- RENDER METHODS --- */
-  const render1RM = () => {
+  const renderMax = () => {
     return (
       <div>
         <p><strong>1 REP MAX (1RM)</strong></p>
@@ -62,6 +89,22 @@ export default function Profile() {
         <p>Overhead Press: {userInfo && userInfo.workingMax.overHeadPress} {userInfo && userInfo.poundsOrKilograms}</p>
       </div>
     )
+  }
+
+  const renderAlert = () => {
+    if (error) {
+      setTimeout(() => {
+        setError('');
+      }, 2000);
+      return <Alert variant='fail'>{error}</Alert>;
+    }
+
+    if (message) {
+      setTimeout(() => {
+        setMessage('');
+      }, 2000);
+      return <Alert variant='success'>{message}</Alert>;
+    }
   }
 
   /* NOTE: should have a 1RM amount from users entered 1RM and a "current 1RM" for the users working 1RM that is calculated for each week
@@ -89,7 +132,7 @@ export default function Profile() {
       <Header>
         <p>Welcome</p>
         <h1>{userInfo && userInfo.first.toUpperCase()}</h1>
-        {error && <Alert variant='fail'>{error}</Alert>}
+        {renderAlert()}
       </Header>
       <div className={styles.Div_column}>
         <div className={styles.Div_row___spread}>
@@ -102,11 +145,37 @@ export default function Profile() {
             <p>{currentUser && currentUser.email}</p>
           </div>
         </div>
-        {render1RM()}
+
+        <br/>
+
+        <div className={styles.Div_column}>
+          <div className={styles.Div_row___spread}>
+            <Input
+            name={'password'}
+            labelName={'Password'}
+            onChange={handlePasswordEntry}
+            type='password'
+            placeholder='************'
+            />
+            <Input
+              name={'confirmPassword'}
+              labelName={'Confirm Password'}
+              onChange={handlePasswordConfirmationEntry}
+              type='password'
+              placeholder='************'
+            />
+          </div>
+          <Button onClick={handleUpdatePasswsord} disabled={loading} >Update Password</Button>
+        </div>
+
+        <br/>
+
+        {renderMax()}
+        <br/>
         {renderWorkingWeight()}
       </div>
       <Footer>
-        <Button /*onClick={handleNext}*/ >Update</Button>
+        <Button onClick={() => router.push('/user/WeightEntry')} >Update Max</Button>
         <div className={styles.Div_row}>
           <Button variant='link' onClick={() => router.push('/')} >Home</Button>
           <Button variant='link' onClick={handleLogOut} >Log Out</Button>

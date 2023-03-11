@@ -1,11 +1,12 @@
 /* ========== EXTERNAL MODULES ========== */
-import React from 'react';
-import { Router, useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/BasicInfo.module.css';
 import { useAuth } from 'contexts/AuthContext';
 import { useUserInfo } from 'contexts/UserContext';
+import { getUser } from 'controllers';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import Page from 'components/Page';
@@ -20,9 +21,22 @@ export default function BasicInfo() {
   /* --- STATE HOOKS --- */
   const router = useRouter();
   const { currentUser } = useAuth();
-  const { userInfo, updateUserInfo, updateSpecificInfo } = useUserInfo();
+  const { userInfo, updateInfo, updateUserInfo, updateSpecificInfo } = useUserInfo();
 
   /* --- LIFECYCLE METHODS --- */
+  useEffect(() => {
+    if (!currentUser) {
+      router.push('/user/LogIn')
+    } else {
+      const updateUser = async () => {
+        const loggedInUser = await getUser(currentUser.uid);
+        updateInfo(loggedInUser);
+      };
+
+      updateUser();
+    }
+  }, [])
+
   /* --- EVENT HANDLERS --- */
   const handleNext = event => {
     event.preventDefault();
@@ -44,19 +58,19 @@ export default function BasicInfo() {
       </Header>
       <form className={styles.Form} >
           <Input
-            name={'firstName'}
+            name={'firs'}
             labelName={'First Name'}
             onChange={updateUserInfo}
             placeholder='Iman'
-            value={(userInfo && userInfo.firstName) || ''}
+            defaultValue={(userInfo && userInfo.first) || ''}
             required
           />
           <Input
-            name={'lastName'}
+            name={'last'}
             labelName={'Last Name'}
             onChange={updateUserInfo}
             placeholder='Example'
-            value={(userInfo && userInfo.lastName) || ''}
+            defaultValue={(userInfo && userInfo.last) || ''}
             required
           />
           <div className={styles.Div___column}>

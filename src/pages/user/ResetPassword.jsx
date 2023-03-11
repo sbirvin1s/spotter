@@ -1,7 +1,6 @@
 /* ========== EXTERNAL MODULES ========== */
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
 import { useAuth } from 'contexts/AuthContext';
@@ -14,30 +13,29 @@ import Header from 'components/Header';
 import Footer from 'components/Footer';
 
 /* ========== EXPORTS ========== */
-export default function Login() {
+export default function ResetPassword() {
 
   /* --- STATE HOOKS --- */
-  const router = useRouter();
   const [ email, setEmail ]  = useState();
-  const [ password, setPassword ] = useState();
-  const { logIn } = useAuth();
+  const { resetPassword } = useAuth();
   const [ error, setError ] = useState('');
+  const [ message, setMessage ] = useState('');
 
   /* --- LIFECYCLE METHODS --- */
   /* --- EVENT HANDLERS --- */
   const handleEmailEntry = ({ target: { value } }) => setEmail(value);
-  const handlePasswordEntry = ({ target: { value } }) => setPassword(value);
 
   const handleLogIn = async event => {
     event.preventDefault();
 
     try {
       setError('');
-      const user = await logIn(email, password);
-      router.push('/');
+      setMessage('');
+      await resetPassword(email);
+      setMessage('Check the inbox of the provided email for further instructions')
     } catch (err) {
       console.error('Log In Error: ', err);
-      setError('Failed to Log In');
+      setError('Failed to reset password');
     }
   }
 
@@ -47,9 +45,10 @@ export default function Login() {
   return (
     <Page>
       <Header>
-        <p>Welcome to</p>
-        <h1>SPOTTER</h1>
+        <p>Reset</p>
+        <h1>PASSWORD</h1>
         {error && <Alert variant='fail'>{error}</Alert>}
+        {message && <Alert variant='success'>{message}</Alert>}
       </Header>
       <form className={styles.Form}>
         <div className={styles.Div_33___column}>
@@ -60,19 +59,11 @@ export default function Login() {
             type='email'
             placeholder='iman@example.com'
           />
-          <Input
-            name={'password'}
-            labelName={'Password'}
-            onChange={handlePasswordEntry}
-            type='password'
-            placeholder='************'
-          />
         </div>
         <Footer>
-          <Button onClick={handleLogIn}>Log In</Button>
-          <Link href='/user/ResetPassword'>Reset Password</Link>
+          <Button onClick={handleLogIn}>Reset Password</Button>
           <br />
-          <p><strong>Don&apos;t have and account? <Link href='/user/SignUp'>Sign Up</Link></strong></p>
+           <Link href='/user/LogIn'>Login</Link>
         </Footer>
       </form>
     </Page>

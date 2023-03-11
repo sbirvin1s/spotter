@@ -22,17 +22,17 @@ const db = getFirestore(app);
 
 /* --- USER DB FUNCTIONS --- */
 export async function createUser(uid, {
-  firstName,
-  lastName,
+  first,
+  last,
   poundsOrKilograms,
   max,
 }) {
   const data = {
-    first: firstName,
-    last: lastName,
+    first: first,
+    last: last,
     poundsOrKilograms: poundsOrKilograms,
     max: max,
-    workingMax: max,
+    workingWeight: max,
     }
 
   try {
@@ -69,18 +69,18 @@ export async function update1RM(uid, exercise, weight) {
   const userSnap = await getDoc(userRef);
 
   if (userSnap.exists()) {
-    await updateDoc(userRef, {[`1RM.${exercise}`]: weight }, {merge: true})
+    await updateDoc(userRef, {[`max.${exercise}`]: weight }, {merge: true})
   } else {
-    console.error('Unable to update your 1RM');
+    console.error(`Unable to update your max for ${exercise}`);
   }
 }
 
-export async function updateCurrentMax(uid) {
+export async function updateCurrentMax(uid, exercise, weight) {
   const userRef = doc(db, 'users', uid);
   const userSnap = await getDoc(userRef);
 
   if (userSnap.exists()) {
-    console.log('User data: ', userSnap.data());
+    await updateDoc(userRef, {[`workingMax.${exercise}`]: weight }, {merge: true})
   } else {
     console.error('User not found');
   }
