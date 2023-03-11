@@ -173,6 +173,10 @@ export default function Profile() {
         {renderMax()}
         <br/>
         {renderWorkingWeight()}
+        <br />
+        <form action='https://github.com/sbirvin1s/spotter/issues/new/choose' method='get' target='blank'>
+          <Button variant='link' type='submit' >Report Issue</Button>
+        </form>
       </div>
       <Footer>
         <Button onClick={() => router.push('/user/WeightEntry')} >Update Max</Button>
