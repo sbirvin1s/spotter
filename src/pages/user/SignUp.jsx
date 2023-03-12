@@ -1,7 +1,7 @@
 /* ========== EXTERNAL MODULES ========== */
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
 import { useAuth } from 'contexts/AuthContext';
@@ -18,10 +18,10 @@ export default function SignUp() {
 
   /* --- STATE HOOKS --- */
   const router = useRouter();
+  const { signUp } = useAuth();
   const [ email, setEmail ]  = useState();
   const [ password, setPassword ] = useState();
   const [ passwordConfirmation, setPasswordConfirmation ] = useState();
-  const { signUp, currentUser, logIn } = useAuth();
   const [ error, setError ] = useState('');
   const [ loading, setLoading ] = useState(false);
 

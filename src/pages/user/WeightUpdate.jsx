@@ -1,5 +1,5 @@
 /* ========== EXTERNAL MODULES ========== */
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */

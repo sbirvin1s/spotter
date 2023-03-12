@@ -20,23 +20,9 @@ export default function BasicInfo() {
 
   /* --- STATE HOOKS --- */
   const router = useRouter();
-  const { currentUser } = useAuth();
-  const { userInfo, updateInfo, updateUserInfo, updateSpecificInfo } = useUserInfo();
+  const { userInfo, updateUserInfo, updateSpecificInfo } = useUserInfo();
 
   /* --- LIFECYCLE METHODS --- */
-  useEffect(() => {
-    if (!currentUser) {
-      router.push('/user/LogIn')
-    } else {
-      const updateUser = async () => {
-        const loggedInUser = await getUser(currentUser.uid);
-        updateInfo(loggedInUser);
-      };
-
-      updateUser();
-    }
-  }, [])
-
   /* --- EVENT HANDLERS --- */
   const handleNext = event => {
     event.preventDefault();
@@ -58,10 +44,10 @@ export default function BasicInfo() {
       </Header>
       <form className={styles.Form} >
           <Input
-            name={'firs'}
+            name={'first'}
             labelName={'First Name'}
             onChange={updateUserInfo}
-            placeholder='Iman'
+            placeholder='First Name'
             defaultValue={(userInfo && userInfo.first) || ''}
             required
           />
@@ -69,7 +55,7 @@ export default function BasicInfo() {
             name={'last'}
             labelName={'Last Name'}
             onChange={updateUserInfo}
-            placeholder='Example'
+            placeholder='Last Name'
             defaultValue={(userInfo && userInfo.last) || ''}
             required
           />
