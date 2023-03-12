@@ -19,7 +19,7 @@ export default function Profile() {
   /* --- STATE HOOKS --- */
   const router = useRouter();
   const { currentUser, logOut, changePassword } = useAuth();
-  const { userInfo } = useUserInfo();
+  const { userInfo, updateInfo } = useUserInfo();
   const [ password, setPassword ] = useState();
   const [ passwordConfirmation, setPasswordConfirmation ] = useState();
   const [ error, setError ] = useState('');
@@ -36,6 +36,7 @@ export default function Profile() {
 
     try {
       await logOut();
+      updateInfo(null);
       router.push('/');
     } catch {
       setError('Failed to Log Out')
