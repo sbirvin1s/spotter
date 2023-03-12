@@ -1,6 +1,6 @@
 /* ========== EXTERNAL MODULES ========== */
 import { useState } from 'react';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/Profile.module.css';
@@ -18,7 +18,7 @@ export default function Profile() {
 
   /* --- STATE HOOKS --- */
   const router = useRouter();
-  const { currentUser, logOut, updatePassword } = useAuth();
+  const { currentUser, logOut, changePassword } = useAuth();
   const { userInfo } = useUserInfo();
   const [ password, setPassword ] = useState();
   const [ passwordConfirmation, setPasswordConfirmation ] = useState();
@@ -42,7 +42,7 @@ export default function Profile() {
     }
   }
 
-  const handleUpdatePasswsord = async event => {
+  const handleUpdatePassword = async event => {
     event.preventDefault();
 
     if (password !== passwordConfirmation) {
@@ -53,9 +53,10 @@ export default function Profile() {
       setError('');
       setMessage('')
       setLoading(true);
-      await updatePassword(password);
+      await changePassword(password);
       setMessage('Password Updated')
     } catch (err){
+      console.log(`Failed to update password due to error: ${err}`);
       setError('Failed to update password');
     }
 
@@ -165,7 +166,7 @@ export default function Profile() {
               placeholder='************'
             />
           </div>
-          <Button onClick={handleUpdatePasswsord} disabled={loading} >Update Password</Button>
+          <Button onClick={handleUpdatePassword} disabled={loading} >Update Password</Button>
         </div>
 
         <br/>

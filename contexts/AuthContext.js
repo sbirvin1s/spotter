@@ -7,6 +7,7 @@ import {
   signInWithRedirect,
   signOut,
   sendPasswordResetEmail,
+  updatePassword,
 } from "firebase/auth";
 
 /* ========== INTERNAL MODULES ========== */
@@ -56,8 +57,8 @@ export function AuthProvider ({ children }) {
     return sendPasswordResetEmail(auth, email);
   }
 
-  const updatePassword = password => {
-    return currentUser.updatePassword(password);
+  const changePassword = password => {
+    return updatePassword(auth.currentUser, password);
   }
 
   const logOut = () => {
@@ -73,7 +74,7 @@ export function AuthProvider ({ children }) {
         logIn,
         logOut,
         resetPassword,
-        updatePassword,
+        changePassword,
       }}
     >
       {!loading && children}
