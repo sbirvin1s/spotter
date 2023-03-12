@@ -33,7 +33,7 @@ export default function WeightEntry() {
       setError('');
       setLoading(true);
       await createUser(currentUser.uid, userInfo);
-      router.push('/user/Profile');
+      router.push('/');
     } catch {
       setError('Failed to update profile');
     }
