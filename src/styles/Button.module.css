@@ -60,6 +60,13 @@
   background: #ff4d4d;
 }
 
+.Button:focus {
+  outline: #7dcfe3;
+  border: solid;
+  border-width: thin;
+  border-color: #7dcfe3;
+}
+
 .Button_card {
   margin: 0.5rem;
   width: 100px;

@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/Input.module.css'
+import { NodeNextRequest } from 'next/dist/server/base-http/node';
 
 /* ========== EXPORTS ========== */
 
@@ -24,7 +25,18 @@ export default function Input({
   /* --- STATE HOOKS --- */
   const [ value, setValue ] = useState(null);
 
-  let isVisible = value ? 'none' : 'block';
+  let isVisible = value ? {
+    dislay: 'none',
+    position: 'absolute',
+    fontSize: '0.8rem',
+    paddingLeft: '4px',
+    paddingRight: '4px',
+    top: '0',
+    left: '0.5rem',
+    backgroundColor: '#000',
+    color: '#fff',
+    transition: 'none',
+  } : {};
 
   /* --- LIFECYCLE METHODS --- */
   // /* --- EVENT HANDLERS --- */
@@ -49,12 +61,14 @@ export default function Input({
       >
         {children}
       </input>
-      <div className={styles.Input_title}>
+      <div className={styles.Input_title}
+        style={isVisible}
+      >
         {labelName}
       </div>
       <div
         className={styles.Input_title___noFocus}
-        style={{display: isVisible}}
+        style={isVisible}
       >
         {labelName}
       </div>

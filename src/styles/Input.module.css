@@ -9,7 +9,7 @@
   visibility: hidden;
   position: absolute;
   top: 50%;
-  left: 0.5;
+  left: 0.5rem;
   font-weight: light;
   padding-left: 4px;
   padding-right: 4px;
@@ -17,6 +17,8 @@
   text-align: center;
   border-radius: 0.5em;
   font-size: 0.8rem;
+  transform: translate(0, -50%);
+  transition: visibility 80ms ease-in-out, top 100ms ease-out, font-size 100ms ease-out, background-color 100ms ease-out;
   z-index: 1;
 }
 
@@ -48,11 +50,11 @@
   visibility: visible;
   position: absolute;
   font-size: 0.8rem;
-  top: -0.6rem;
+  top: 0;
   left: 0.5rem;
   background-color: #000;
   color: #7dcfe3;
-  transition: top 100ms ease-out, font-size 100ms ease-out, background-color 100ms ease-out;
+  transition: visibility 100ms ease-out, top 100ms ease-out, font-size 100ms ease-out, background-color 100ms ease-out;
   z-index: 1;
 }
 
