@@ -44,6 +44,9 @@ export async function createUser(uid, {
 
 export async function getUser(uid) {
   const userRef = doc(db, 'users', uid);
+
+  console.log('uid: ', uid);
+  console.log('userRef: ', userRef);
   const userSnap = await getDoc(userRef);
 
   if (userSnap.exists()) {

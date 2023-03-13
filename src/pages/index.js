@@ -1,8 +1,7 @@
 /* ========== EXTERNAL MODULES ========== */
 import { useEffect } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 
 /* ========== INTERNAL MODULES ========== */
@@ -76,6 +75,7 @@ export default function Home() {
     if (!currentUser) {
       router.push('/user/LogIn')
     } else {
+      console.log('currentUser: ', currentUser);
       const updateUser = async () => {
         const loggedInUser = await getUser(currentUser.uid);
         updateInfo(loggedInUser);
@@ -162,22 +162,18 @@ export default function Home() {
         <div className={styles.UpcomingWorkout_feed}>
           <div className={styles.UpcomingWorkout}>
             <h5>Bench Press</h5>
-            <br/>
             <p>{userInfo && userInfo.workingWeight.benchPress + weight}</p>
           </div>
           <div className={styles.UpcomingWorkout}>
             <h5>Overhead Press</h5>
-            <br/>
             <p>{userInfo && userInfo.workingWeight.overHeadPress + weight}</p>
           </div>
           <div className={styles.UpcomingWorkout}>
             <h5>Squats</h5>
-            <br/>
             <p>{userInfo && userInfo.workingWeight.squats + weight}</p>
           </div>
           <div className={styles.UpcomingWorkout}>
             <h5>Deadlift</h5>
-            <br/>
             <p>{userInfo && userInfo.workingWeight.deadlift + weight}</p>
           </div>
         </div>

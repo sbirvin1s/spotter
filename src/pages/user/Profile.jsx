@@ -35,8 +35,8 @@ export default function Profile() {
     setError('');
 
     try {
-      await logOut();
       updateInfo(null);
+      await logOut();
       router.push('/');
     } catch {
       setError('Failed to Log Out')
