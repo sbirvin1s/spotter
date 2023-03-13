@@ -22,8 +22,16 @@ export default function Input({
 }) {
 
   /* --- STATE HOOKS --- */
+  const [ value, setValue ] = useState(null);
+
+  let isVisible = value ? 'none' : 'block';
+
   /* --- LIFECYCLE METHODS --- */
-  /* --- EVENT HANDLERS --- */
+  // /* --- EVENT HANDLERS --- */
+  const handleInput = ({target: { value }}) => {
+    setValue(value);
+  }
+
   /* --- RENDER METHODS --- */
 
   /* --- RENDERER --- */
@@ -36,6 +44,7 @@ export default function Input({
         className={styles.Input}
         id={name}
         name={name}
+        onInput={handleInput}
         {...props}
       >
         {children}
@@ -43,7 +52,10 @@ export default function Input({
       <div className={styles.Input_title}>
         {labelName}
       </div>
-      <div className={styles.Input_title___noFocus}>
+      <div
+        className={styles.Input_title___noFocus}
+        style={{display: isVisible}}
+      >
         {labelName}
       </div>
     </label>

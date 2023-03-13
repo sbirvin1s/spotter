@@ -157,14 +157,14 @@ export default function Profile() {
             labelName={'Password'}
             onChange={handlePasswordEntry}
             type='password'
-            placeholder='Enter your new Password'
+            placeholder='Enter new Password'
             />
             <Input
               name={'confirmPassword'}
               labelName={'Confirm Password'}
               onChange={handlePasswordConfirmationEntry}
               type='password'
-              placeholder='Confirm your new Password'
+              placeholder='Confirm Password'
             />
           </div>
           <Button onClick={handleUpdatePassword} disabled={loading} >Update Password</Button>

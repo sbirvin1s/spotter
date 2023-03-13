@@ -68,20 +68,6 @@ export default function Login() {
             type='password'
             placeholder='Enter your Password'
           />
-          <TextField
-            type='email'
-            label='email'
-            placeholder='Enter your Email Address'
-            onChange={handleEmailEntry}
-            name='email'
-          />
-          <TextField
-            name='password'
-            type='password'
-            label='password'
-            placeholder='Enter your Password'
-            onChange={handlePasswordEntry}
-          />
         </div>
         <Footer>
           <Button onClick={handleLogIn}>Log In</Button>
