@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { TextField } from '@mui/material';
 
 /* ========== INTERNAL MODULES ========== */
 import { useAuth } from 'contexts/AuthContext';
@@ -58,14 +59,28 @@ export default function Login() {
             labelName={'Email'}
             onChange={handleEmailEntry}
             type='email'
-            placeholder='iman@example.com'
+            placeholder='Enter your Email Address'
           />
           <Input
             name={'password'}
             labelName={'Password'}
             onChange={handlePasswordEntry}
             type='password'
-            placeholder='************'
+            placeholder='Enter your Password'
+          />
+          <TextField
+            type='email'
+            label='email'
+            placeholder='Enter your Email Address'
+            onChange={handleEmailEntry}
+            name='email'
+          />
+          <TextField
+            name='password'
+            type='password'
+            label='password'
+            placeholder='Enter your Password'
+            onChange={handlePasswordEntry}
           />
         </div>
         <Footer>
@@ -73,6 +88,8 @@ export default function Login() {
           <Link href='/user/ResetPassword'>Reset Password</Link>
           <br />
           <p><strong>Don&apos;t have and account? <Link href='/user/SignUp'>Sign Up</Link></strong></p>
+          <br />
+          <Link href='https://github.com/sbirvin1s/spotter/issues/new/choose' target='blank' >Report Issue</Link>
         </Footer>
       </form>
     </Page>

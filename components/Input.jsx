@@ -1,5 +1,5 @@
 /* ========== EXTERNAL MODULES ========== */
-
+import { useState } from 'react';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/Input.module.css'
@@ -29,20 +29,23 @@ export default function Input({
   /* --- RENDERER --- */
   return (
     <label
-      className={styles.Input_label}
+      className={styles.Input_container}
       htmlFor={name}
     >
-      <div className={styles.Input_title}>
-        {labelName}
-      </div>
       <input
-        className={styles.Input_style}
+        className={styles.Input}
         id={name}
         name={name}
         {...props}
       >
         {children}
       </input>
+      <div className={styles.Input_title}>
+        {labelName}
+      </div>
+      <div className={styles.Input_title___noFocus}>
+        {labelName}
+      </div>
     </label>
   )
 }

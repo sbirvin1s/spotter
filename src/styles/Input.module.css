@@ -1,34 +1,75 @@
-.Input_label {
+.Input_container {
   position: relative;
-  border: solid;
-  border-width: thin;
   outline-color: transparent;
   background-color: transparent;
-  border-radius: 5px;
-  padding: 8px 0 2px 2px;
-  margin: 12px;
-  width: 70%;
+  margin: 8px;
 }
 
 .Input_title {
+  visibility: hidden;
   position: absolute;
-  top: -0.6rem;
-  left: 0.5rem;
+  top: 50%;
+  left: 0.5;
   font-weight: light;
   padding-left: 4px;
   padding-right: 4px;
-  background-color: #000;
+  background-color: transparent;
   text-align: center;
-  border-radius: 5px;
-  font-size: 0.9rem;
+  border-radius: 0.5em;
+  font-size: 0.8rem;
+  z-index: 1;
 }
 
-.Input_style {
-  border: none;
+.Input_title___noFocus {
+  position: absolute;
+  visibility: visible;
+  top: 50%;
+  left: 5%;
+  font-weight: light;
+  background: transparent;
+  text-align: center;
+  font-size: 1rem;
+  transform: translate(0, -50%);
+  z-index: 1;
+}
+
+.Input {
+  border: solid;
+  border-width: thin;
+  border-radius: 0.5em;
   outline: none;
   font-weight:400;
-  background-color: transparent;
+  background: transparent;
   width: 100%;
-  padding: 4px;
-  text-align: center;
+  padding: 12px;
+}
+
+.Input:focus + .Input_title {
+  visibility: visible;
+  position: absolute;
+  font-size: 0.8rem;
+  top: -0.6rem;
+  left: 0.5rem;
+  background-color: #000;
+  color: #7dcfe3;
+  transition: top 100ms ease-out, font-size 100ms ease-out, background-color 100ms ease-out;
+  z-index: 1;
+}
+
+.Input:focus {
+  border-color: #7dcfe3;
+  outline: #7dcfe3;
+}
+
+.Input:focus ~ .Input_title___noFocus {
+  visibility: hidden;
+}
+
+.Input::placeholder{
+  color: transparent;
+}
+
+.Input:focus::placeholder {
+  color: grey;
+  transition: color 500ms ease-out;
 }
