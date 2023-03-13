@@ -72,8 +72,8 @@ export default function WeightEntry() {
   return (
     <Page>
       <Header>
-        <p>Enter your</p>
-        <h1>CURRENT MAX</h1>
+        <p className='Header_title'>ENTER YOUR</p>
+        <p className='Header_title___emphasis'>CURRENT MAX</p>
         {renderAlert()}
       </Header>
       <div className={styles.Div_column}>

@@ -1,5 +1,15 @@
+$primary: #7de3c5;
+$secondary: #7dcfe3;
+$warn: #f8e0e7;
+$error: #c40041;
+
+
+
+$bg_dark: #000;
+$bg_light: #fff;
+
 :root {
-  max-width: 700px;
+  --max-width: 700px;
   --max-width: 700px;
   --border-radius: 12px;
   --font: 'Cascadia Mono', 'Segoe UI Mono',
@@ -92,4 +102,14 @@ select {
 
 button {
   font-size: 1rem;
+}
+
+.Header_title {
+  font-weight: lighter;
+  font-size: 1.5em;
+}
+
+.Header_title___emphasis {
+  font-weight: bolder;
+  font-size: 6em;
 }

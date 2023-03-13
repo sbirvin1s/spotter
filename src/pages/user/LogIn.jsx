@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { TextField } from '@mui/material';
 
 /* ========== INTERNAL MODULES ========== */
 import { useAuth } from 'contexts/AuthContext';
@@ -48,12 +47,15 @@ export default function Login() {
   return (
     <Page>
       <Header>
-        <p>Welcome to</p>
-        <h1>SPOTTER</h1>
+        <p className='Header_title'>WELCOME TO</p>
+        <p className='Header_title___emphasis'>SPOTTER</p>
         {error && <Alert variant='fail'>{error}</Alert>}
       </Header>
       <form className={styles.Form}>
         <div className={styles.Div_33___column}>
+          <h2>LOG IN</h2>
+          <br/>
+          <br/>
           <Input
             name={'email'}
             labelName={'Email'}

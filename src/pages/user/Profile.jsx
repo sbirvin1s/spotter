@@ -132,8 +132,8 @@ export default function Profile() {
   return (
     <Page>
       <Header>
-        <p>Welcome</p>
-        <h1>{userInfo && userInfo.first.toUpperCase()}</h1>
+        <p className='Header_title'>WELCOME</p>
+        <p className='Header_title___emphasis'>{userInfo && userInfo.first.toUpperCase()}</p>
         {renderAlert()}
       </Header>
       <div className={styles.Div_column}>

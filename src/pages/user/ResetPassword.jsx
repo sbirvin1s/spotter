@@ -45,8 +45,8 @@ export default function ResetPassword() {
   return (
     <Page>
       <Header>
-        <p>Reset</p>
-        <h1>PASSWORD</h1>
+        <p className='Header_title'>RESET</p>
+        <p className='Header_title___emphasis'>PASSWORD</p>
         {error && <Alert variant='fail'>{error}</Alert>}
         {message && <Alert variant='success'>{message}</Alert>}
       </Header>

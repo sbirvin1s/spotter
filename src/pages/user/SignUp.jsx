@@ -58,8 +58,8 @@ export default function SignUp() {
   return (
     <Page>
       <Header>
-        <p>Create your</p>
-        <h1>ACCOUNT</h1>
+        <p className='Header_title'>CREATE YOUR</p>
+        <p className='Header_title___emphasis'>ACCOUNT</p>
         {error && <Alert variant='fail'>{error}</Alert>}
       </Header>
       <form className={styles.Form}>
