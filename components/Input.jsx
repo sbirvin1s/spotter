@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/Input.module.css'
-import { NodeNextRequest } from 'next/dist/server/base-http/node';
 
 /* ========== EXPORTS ========== */
 
@@ -39,7 +38,7 @@ export default function Input({
   } : {};
 
   /* --- LIFECYCLE METHODS --- */
-  // /* --- EVENT HANDLERS --- */
+  /* --- EVENT HANDLERS --- */
   const handleInput = ({target: { value }}) => {
     setValue(value);
   }
