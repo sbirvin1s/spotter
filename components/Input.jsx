@@ -1,8 +1,9 @@
 /* ========== EXTERNAL MODULES ========== */
-
+import { useState } from 'react';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/Input.module.css'
+import { NodeNextRequest } from 'next/dist/server/base-http/node';
 
 /* ========== EXPORTS ========== */
 
@@ -22,27 +23,55 @@ export default function Input({
 }) {
 
   /* --- STATE HOOKS --- */
+  const [ value, setValue ] = useState(null);
+
+  let isVisible = value ? {
+    dislay: 'none',
+    position: 'absolute',
+    fontSize: '0.8rem',
+    paddingLeft: '4px',
+    paddingRight: '4px',
+    top: '0',
+    left: '0.5rem',
+    backgroundColor: '#000',
+    color: '#fff',
+    transition: 'none',
+  } : {};
+
   /* --- LIFECYCLE METHODS --- */
-  /* --- EVENT HANDLERS --- */
+  // /* --- EVENT HANDLERS --- */
+  const handleInput = ({target: { value }}) => {
+    setValue(value);
+  }
+
   /* --- RENDER METHODS --- */
 
   /* --- RENDERER --- */
   return (
     <label
-      className={styles.Input_label}
+      className={styles.Input_container}
       htmlFor={name}
     >
-      <div className={styles.Input_title}>
-        {labelName}
-      </div>
       <input
-        className={styles.Input_style}
+        className={styles.Input}
         id={name}
         name={name}
+        onInput={handleInput}
         {...props}
       >
         {children}
       </input>
+      <div className={styles.Input_title}
+        style={isVisible}
+      >
+        {labelName}
+      </div>
+      <div
+        className={styles.Input_title___noFocus}
+        style={isVisible}
+      >
+        {labelName}
+      </div>
     </label>
   )
 }

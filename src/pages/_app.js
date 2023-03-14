@@ -1,7 +1,7 @@
 /* ========== EXTERNAL MODULES ========== */
 
 /* ========== INTERNAL MODULES ========== */
-import '@/styles/globals.css';
+import '@/styles/globals.scss';
 import { AuthProvider } from 'contexts/AuthContext';
 import { UserProvider } from 'contexts/UserContext';
 import { CardButtonProvider } from 'contexts/CardButtonContext';

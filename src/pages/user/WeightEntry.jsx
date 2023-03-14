@@ -1,17 +1,18 @@
 /* ========== EXTERNAL MODULES ========== */
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '../../styles/Profile.module.css';
 import { useAuth } from 'contexts/AuthContext';
 import { useUserInfo } from 'contexts/UserContext';
-import { createUser, getUser } from 'controllers';
+import { createUser } from 'controllers';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import Page from 'components/Page';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import Alert from 'components/Alert';
 
 /* ========== EXPORTS ========== */
 export default function WeightEntry() {
@@ -19,28 +20,25 @@ export default function WeightEntry() {
   /* --- STATE HOOKS --- */
   const router = useRouter();
   const { currentUser, } = useAuth();
-  const { userInfo, updateInfo, updateSpecificInfo } = useUserInfo();
+  const { userInfo, updateSpecificInfo } = useUserInfo();
+  const [ error, setError ] = useState('');
+  const [ loading, setLoading ] = useState(false);
 
-  /* --- LIFECYCLE METHODS --- */
-  useEffect(() => {
-    if (!currentUser) {
-      router.push('/user/LogIn')
-    } else {
-      const updateUser = async () => {
-        const loggedInUser = await getUser(currentUser.uid);
-        updateInfo(loggedInUser);
-      };
-
-      updateUser();
-    }
-  }, [])
 
   /* --- EVENT HANDLERS --- */
-  const handleNext = event => {
+  const handleNext = async event => {
     event.preventDefault();
 
-    createUser(currentUser.uid, userInfo);
-    router.push('/user/Profile');
+    try {
+      setError('');
+      setLoading(true);
+      await createUser(currentUser.uid, userInfo);
+      router.push('/');
+    } catch {
+      setError('Failed to update profile');
+    }
+
+    setLoading(false);
   }
 
   const handleBack = event => {
@@ -57,14 +55,26 @@ export default function WeightEntry() {
     }
 
     updateSpecificInfo('max', updatedInfo);
+    updateSpecificInfo('workingWeight', updatedInfo);
+  }
+
+  /*--- RENDER METHODS --- */
+  const renderAlert = () => {
+    if (error) {
+      setTimeout(() => {
+        setError('');
+      }, 2000);
+      return <Alert variant='fail'>{error}</Alert>;
+    }
   }
 
   /* --- RENDERER --- */
   return (
     <Page>
       <Header>
-        <p>Enter your</p>
-        <h1>CURRENT MAX</h1>
+        <p className='Header_title'>ENTER YOUR</p>
+        <p className='Header_title___emphasis'>CURRENT MAX</p>
+        {renderAlert()}
       </Header>
       <div className={styles.Div_column}>
         <Input
@@ -72,7 +82,7 @@ export default function WeightEntry() {
           labelName='Bench Press'
           type='number'
           onChange={handleUpdate}
-          defaultValue={(userInfo && userInfo.workingWeight.benchPress) || 0}
+          placeholder='0'
           required
         />
         <Input
@@ -80,7 +90,7 @@ export default function WeightEntry() {
           labelName='Overhead Press'
           type='number'
           onChange={handleUpdate}
-          defaultValue={(userInfo && userInfo.workingWeight.overHeadPress) || 0}
+          placeholder='0'
           required
         />
         <Input
@@ -88,7 +98,7 @@ export default function WeightEntry() {
           labelName='Squats'
           type='number'
           onChange={handleUpdate}
-          defaultValue={(userInfo && userInfo.workingWeight.squats) || 0}
+          placeholder='0'
           required
         />
         <Input
@@ -96,12 +106,12 @@ export default function WeightEntry() {
           labelName='Deadlift'
           type='number'
           onChange={handleUpdate}
-          defaultValue={(userInfo && userInfo.workingWeight.deadlift) || 0}
+          placeholder='0'
           required
         />
       </div>
       <Footer>
-        <Button onClick={handleNext} >Next</Button>
+        <Button onClick={handleNext} disabled={loading} >Next</Button>
         <Button variant='link' onClick={handleBack} >Back</Button>
       </Footer>
     </Page>

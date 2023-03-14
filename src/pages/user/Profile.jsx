@@ -1,6 +1,6 @@
 /* ========== EXTERNAL MODULES ========== */
 import { useState } from 'react';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/Profile.module.css';
@@ -18,8 +18,8 @@ export default function Profile() {
 
   /* --- STATE HOOKS --- */
   const router = useRouter();
-  const { currentUser, logOut, updatePassword } = useAuth();
-  const { userInfo } = useUserInfo();
+  const { currentUser, logOut, changePassword } = useAuth();
+  const { userInfo, updateInfo } = useUserInfo();
   const [ password, setPassword ] = useState();
   const [ passwordConfirmation, setPasswordConfirmation ] = useState();
   const [ error, setError ] = useState('');
@@ -35,6 +35,7 @@ export default function Profile() {
     setError('');
 
     try {
+      updateInfo(null);
       await logOut();
       router.push('/');
     } catch {
@@ -42,7 +43,7 @@ export default function Profile() {
     }
   }
 
-  const handleUpdatePasswsord = async event => {
+  const handleUpdatePassword = async event => {
     event.preventDefault();
 
     if (password !== passwordConfirmation) {
@@ -53,9 +54,10 @@ export default function Profile() {
       setError('');
       setMessage('')
       setLoading(true);
-      await updatePassword(password);
+      await changePassword(password);
       setMessage('Password Updated')
     } catch (err){
+      console.log(`Failed to update password due to error: ${err}`);
       setError('Failed to update password');
     }
 
@@ -130,8 +132,8 @@ export default function Profile() {
   return (
     <Page>
       <Header>
-        <p>Welcome</p>
-        <h1>{userInfo && userInfo.first.toUpperCase()}</h1>
+        <p className='Header_title'>WELCOME</p>
+        <p className='Header_title___emphasis'>{userInfo && userInfo.first.toUpperCase()}</p>
         {renderAlert()}
       </Header>
       <div className={styles.Div_column}>
@@ -155,17 +157,17 @@ export default function Profile() {
             labelName={'Password'}
             onChange={handlePasswordEntry}
             type='password'
-            placeholder='************'
+            placeholder='Enter new Password'
             />
             <Input
               name={'confirmPassword'}
               labelName={'Confirm Password'}
               onChange={handlePasswordConfirmationEntry}
               type='password'
-              placeholder='************'
+              placeholder='Confirm Password'
             />
           </div>
-          <Button onClick={handleUpdatePasswsord} disabled={loading} >Update Password</Button>
+          <Button onClick={handleUpdatePassword} disabled={loading} >Update Password</Button>
         </div>
 
         <br/>
