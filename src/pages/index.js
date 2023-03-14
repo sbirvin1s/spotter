@@ -75,7 +75,6 @@ export default function Home() {
     if (!currentUser) {
       router.push('/user/LogIn')
     } else {
-      console.log('currentUser: ', currentUser);
       const updateUser = async () => {
         const loggedInUser = await getUser(currentUser.uid);
         updateInfo(loggedInUser);
