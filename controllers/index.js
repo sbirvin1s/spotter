@@ -80,7 +80,7 @@ export async function updateCurrentMax(uid, exercise, weight) {
   const userSnap = await getDoc(userRef);
 
   if (userSnap.exists()) {
-    await updateDoc(userRef, {[`workingMax.${exercise}`]: weight }, {merge: true})
+    await updateDoc(userRef, {[`workingWeight.${exercise}`]: weight }, {merge: true})
   } else {
     console.error('User not found');
   }
