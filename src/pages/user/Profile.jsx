@@ -19,7 +19,7 @@ export default function Profile() {
   /* --- STATE HOOKS --- */
   const router = useRouter();
   const { currentUser, logOut, changePassword } = useAuth();
-  const { userInfo } = useUserInfo();
+  const { userInfo, updateInfo } = useUserInfo();
   const [ password, setPassword ] = useState();
   const [ passwordConfirmation, setPasswordConfirmation ] = useState();
   const [ error, setError ] = useState('');
@@ -35,6 +35,7 @@ export default function Profile() {
     setError('');
 
     try {
+      updateInfo(null);
       await logOut();
       router.push('/');
     } catch {
@@ -131,8 +132,8 @@ export default function Profile() {
   return (
     <Page>
       <Header>
-        <p>Welcome</p>
-        <h1>{userInfo && userInfo.first.toUpperCase()}</h1>
+        <p className='Header_title'>WELCOME</p>
+        <p className='Header_title___emphasis'>{userInfo && userInfo.first.toUpperCase()}</p>
         {renderAlert()}
       </Header>
       <div className={styles.Div_column}>
@@ -156,14 +157,14 @@ export default function Profile() {
             labelName={'Password'}
             onChange={handlePasswordEntry}
             type='password'
-            placeholder='************'
+            placeholder='Enter new Password'
             />
             <Input
               name={'confirmPassword'}
               labelName={'Confirm Password'}
               onChange={handlePasswordConfirmationEntry}
               type='password'
-              placeholder='************'
+              placeholder='Confirm Password'
             />
           </div>
           <Button onClick={handleUpdatePassword} disabled={loading} >Update Password</Button>

@@ -7,7 +7,7 @@ import styles from '@/styles/Workout.module.css';
 import { useAuth } from 'contexts/AuthContext';
 import { useUserInfo } from 'contexts/UserContext';
 import { useExerciseContext } from 'contexts/ExerciseContext';
-import { getUser } from 'controllers';
+import { getUser, updateCurrentMax } from 'controllers';
 import Button from 'components/Button';
 import Page from 'components/Page';
 import Header from 'components/Header';

@@ -16,8 +16,8 @@
 }
 
 .Alert___success {
-  color: #53ff1a;
-  background-color: #c6ffb3;
+  color: #007c2b;
+  background-color: #a6ebb2;
 }
 
 .Alert___warn {
@@ -26,6 +26,6 @@
 }
 
 .Alert___fail {
-  color: #ff4d4d;
-  background-color: #ffb3b3;
+  color: #c40041;
+  background-color: #efb0c3;
 }

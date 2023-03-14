@@ -115,8 +115,10 @@
   padding: 10px;
   background: #14B8A6;
   border-radius: 1.5rem;
-  height: 18vh;
-  width: 40vw;
+  /* height: 18vh; */
+  height: 12.5em;
+  /* width: 40vw; */
+  width: 12.5em;
   max-width: 280px;
   text-align: center;
 }

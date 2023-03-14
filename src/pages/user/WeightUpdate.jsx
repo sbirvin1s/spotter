@@ -63,8 +63,8 @@ export default function WeightUpdate() {
   return (
     <Page>
       <Header>
-        <p>Enter your</p>
-        <h1>NEW MAX</h1>
+        <p className='Header_title'>ENTER YOUR</p>
+        <p className='Header_title___emphasis'>NEW MAX</p>
       </Header>
       <div className={styles.Div_column}>
         <Input

@@ -47,25 +47,28 @@ export default function Login() {
   return (
     <Page>
       <Header>
-        <p>Welcome to</p>
-        <h1>SPOTTER</h1>
+        <p className='Header_title'>WELCOME TO</p>
+        <p className='Header_title___emphasis'>SPOTTER</p>
         {error && <Alert variant='fail'>{error}</Alert>}
       </Header>
       <form className={styles.Form}>
         <div className={styles.Div_33___column}>
+          <h2>LOG IN</h2>
+          <br/>
+          <br/>
           <Input
             name={'email'}
             labelName={'Email'}
             onChange={handleEmailEntry}
             type='email'
-            placeholder='iman@example.com'
+            placeholder='Enter your Email Address'
           />
           <Input
             name={'password'}
             labelName={'Password'}
             onChange={handlePasswordEntry}
             type='password'
-            placeholder='************'
+            placeholder='Enter your Password'
           />
         </div>
         <Footer>
@@ -73,6 +76,8 @@ export default function Login() {
           <Link href='/user/ResetPassword'>Reset Password</Link>
           <br />
           <p><strong>Don&apos;t have and account? <Link href='/user/SignUp'>Sign Up</Link></strong></p>
+          <br />
+          <Link href='https://github.com/sbirvin1s/spotter/issues/new/choose' target='blank' >Report Issue</Link>
         </Footer>
       </form>
     </Page>

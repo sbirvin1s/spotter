@@ -58,8 +58,8 @@ export default function SignUp() {
   return (
     <Page>
       <Header>
-        <p>Create your</p>
-        <h1>ACCOUNT</h1>
+        <p className='Header_title'>CREATE YOUR</p>
+        <p className='Header_title___emphasis'>ACCOUNT</p>
         {error && <Alert variant='fail'>{error}</Alert>}
       </Header>
       <form className={styles.Form}>
@@ -68,21 +68,21 @@ export default function SignUp() {
           labelName={'Email'}
           onChange={handleEmailEntry}
           type='email'
-          placeholder='iman@example.com'
+          placeholder='Enter your Email Address'
         />
         <Input
           name={'password'}
           labelName={'Password'}
           onChange={handlePasswordEntry}
           type='password'
-          placeholder='************'
+          placeholder='Enter your Password'
         />
         <Input
           name={'confirmPassword'}
           labelName={'Confirm Password'}
           onChange={handlePasswordConfirmationEntry}
           type='password'
-          placeholder='************'
+          placeholder='Confirm your Password'
         />
         <Footer>
           <Button onClick={handleSignUp} disabled={loading}>Sign Up</Button>

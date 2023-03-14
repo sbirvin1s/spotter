@@ -39,8 +39,8 @@ export default function BasicInfo() {
   return (
     <Page>
       <Header>
-        <p>Lets get some</p>
-        <h1>Baseline Information</h1>
+        <p className='Header_title'>LETS GET SOME </p>
+        <p className='Header_title___emphasis'>BASIC INFORMATION</p>
       </Header>
       <form className={styles.Form} >
           <Input
