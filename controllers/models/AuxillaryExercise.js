@@ -1242,30 +1242,30 @@ export const auxLowerBackExercises = {
 
 export const auxCoreExercises = {
   bodyPart: 'Core',
-  postShoulderRaise: {
-    name: 'Dumbbell Reverse Fly',
-    description: '',
-    movePattern: 'pull',
-    demoURL: '',
-    steps: [
+  // postShoulderRaise: {
+  //   name: 'Dumbbell Reverse Fly',
+  //   description: '',
+  //   movePattern: 'pull',
+  //   demoURL: '',
+  //   steps: [
 
-    ],
-    sets: [
-      {
-        minReps: 8,
-        maxReps: 12,
-        weightMod: 0.19,
-      },
-      {
-        minReps: 8,
-        maxReps: 12,
-        weightMod: 0.19,
-      },
-      {
-        minReps: 8,
-        maxReps: 12,
-        weightMod: 0.19,
-      },
-    ]
-  },
+  //   ],
+  //   sets: [
+  //     {
+  //       minReps: 8,
+  //       maxReps: 12,
+  //       weightMod: 0.19,
+  //     },
+  //     {
+  //       minReps: 8,
+  //       maxReps: 12,
+  //       weightMod: 0.19,
+  //     },
+  //     {
+  //       minReps: 8,
+  //       maxReps: 12,
+  //       weightMod: 0.19,
+  //     },
+  //   ]
+  // },
 };

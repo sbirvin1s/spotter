@@ -14,7 +14,6 @@ import {
 
 /* ========== INTERNAL MODULES ========== */
 import { default as app } from '../firebase/index';
-import {  } from '.CoreLiftExercise';
 import {
   auxChestExercises,
   auxShoulderExercises,
@@ -25,7 +24,7 @@ import {
   auxCoreExercises,
   auxUpperLegsExercises,
   auxLowerLegsExercises
- } from '.AuxillaryExercise';
+ } from './models/AuxillaryExercise';
 
 
 /* ========== EXPORTS ========== */
@@ -282,22 +281,20 @@ const accessoryExercises = {
 }
 
 export async function loadAuxLifts() {
-  const auxillaryLifts = [
-    auxChestExercises,
-    auxShoulderExercises,
-    auxUpperArmsExercises,
-    auxLowerArmsExercises,
-    auxUpperBackExercises,
-    auxLowerBackExercises,
-    auxCoreExercises,
-    auxUpperLegsExercises,
-    auxLowerLegsExercises
-  ];
+  const data = {
+    'chest': auxChestExercises,
+    'shoulders': auxShoulderExercises,
+    'upperArms': auxUpperArmsExercises,
+    'lowerArms': auxLowerArmsExercises,
+    'upperBack': auxUpperBackExercises,
+    'lowerBack': auxLowerBackExercises,
+    'core': auxCoreExercises,
+    'upperLegs': auxUpperLegsExercises,
+    'lowerLegs': auxLowerLegsExercises
+  }
 
   try {
-    await auxillaryLifts.forEach(exerciseGroup => {
-      setDoc(doc( db, 'exercises', 'auxillaryLifts'), exerciseGroup);
-    })
+    await setDoc(doc( db, 'exercises', 'auxillaryLifts'), data);
   } catch (error) {
     console.error(`Unable to upload Exercises to database due to error: ${error}`);
   }
