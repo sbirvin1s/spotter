@@ -14,6 +14,18 @@ import {
 
 /* ========== INTERNAL MODULES ========== */
 import { default as app } from '../firebase/index';
+import {  } from '.CoreLiftExercise';
+import {
+  auxChestExercises,
+  auxShoulderExercises,
+  auxUpperArmsExercises,
+  auxLowerArmsExercises,
+  auxUpperBackExercises,
+  auxLowerBackExercises,
+  auxCoreExercises,
+  auxUpperLegsExercises,
+  auxLowerLegsExercises
+ } from '.AuxillaryExercise';
 
 
 /* ========== EXPORTS ========== */
@@ -28,10 +40,10 @@ export async function createUser(uid, {
   max,
 }) {
   const data = {
-    first: first,
-    last: last,
-    poundsOrKilograms: poundsOrKilograms,
-    max: max,
+    first,
+    last,
+    poundsOrKilograms,
+    max,
     workingWeight: max,
     }
 
@@ -269,6 +281,28 @@ const accessoryExercises = {
   },
 }
 
+export async function loadAuxLifts() {
+  const auxillaryLifts = [
+    auxChestExercises,
+    auxShoulderExercises,
+    auxUpperArmsExercises,
+    auxLowerArmsExercises,
+    auxUpperBackExercises,
+    auxLowerBackExercises,
+    auxCoreExercises,
+    auxUpperLegsExercises,
+    auxLowerLegsExercises
+  ];
+
+  try {
+    await auxillaryLifts.forEach(exerciseGroup => {
+      setDoc(doc( db, 'exercises', 'auxillaryLifts'), exerciseGroup);
+    })
+  } catch (error) {
+    console.error(`Unable to upload Exercises to database due to error: ${error}`);
+  }
+}
+
 /*
 export async function addExercise(exerciseType, exerciseName, exerciseDescription) {
   const exerciseData = {
@@ -284,4 +318,16 @@ export async function addExercise(exerciseType, exerciseName, exerciseDescriptio
     console.error(`Unable to create user due to error: ${error}`)
   }
 }
+*/
+
+/* NOTE: Muscle Balance comparison & reference guide
+  Muscle Groups                           Muscle Balance        Ratio Weight(example)
+    Ankle Inverters & Everters                  1:1                 25::25  -
+    Ankle Plantar Flexors & Dorsiflexors	      3:1                 75::25  - Calves : Anterior Tibialis
+    Elbow Flexors & Extensors	                  1:1                 25::25  - Bicep : Tricep
+    Hip Flexors & Extensors	                    1:1                 25::25  - Lunge? : Hip Trusts?
+    Knee Flexors & Extensors                    2:3                 50::75  - Quads/Squats : Hamstrings/Deadlift
+    Shoulder Internal & External Rotators	      3:2                 75::50  - Bench Press : Seated Row
+    Shoulder Flexors & Extensors                2:3                 50::75  -
+    Trunk Flexors & Extensors	                  1:1                 25::25  - Core : Back Extension
 */

@@ -9,7 +9,7 @@
     "react/jsx-boolean-value": 1,
     "react/no-array-index-key": 1,
     "react/jsx-closing-bracket-location": 1,
-    "react/self-closing-comp": "on",
+    "react/self-closing-comp": 1,
     "jsx-quotes": ["error", "prefer-double"],
     "jsx-a11y/alt-text": [ 2, {
       "elements": [ "img", "object", "area", "input[type=\"image\"]" ],
