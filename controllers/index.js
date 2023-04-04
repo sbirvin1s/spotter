@@ -98,61 +98,74 @@ export async function updateCurrentMax(uid, exercise, weight) {
 }
 
 /* --- WORKOUT DB FUNCTIONS --- */
-/*
   export async function createWorkout(uid, workoutData) {
     // id potentially be date + uid to ensure uniqueness
-    const {
-      name
-      date
-      exercises: {
-        squats: {
-          set1: weight,
-          set2: weight,
-          set3: weight,
-          set4: weight,
-          set5: weight
-        },
-        lunges: {
-          set1: weight,
-          set2: weight,
-          set3: weight,
-        },
-        etc...
-      }
-    } = workoutData
-    addDoc(collection(db, 'workouts'), workoutData)
+    // const {
+    //   name,
+    //   date,
+    //   exercises: {
+    //     squats: {
+    //       set1: weight,
+    //       set2: weight,
+    //       set3: weight,
+    //       set4: weight,
+    //       set5: weight
+    //     },
+    //     lunges: {
+    //       set1: weight,
+    //       set2: weight,
+    //       set3: weight,
+    //     },
+    //     etc...
+    //   }
+    // } = workoutData
 
+    const userRef = (doc(db, 'workoutHistory', uid));
+    const userSnap = await getDoc(userRef);
+
+    const data = {
+      [workoutData.date]: workoutData
+    }
+
+    try {
+      if (userSnap.exists()) {
+        await updateDoc(userRef, data, {merge: true});
+      } else {
+        setDoc(doc(db, 'workoutHistory', uid), data);
+      }
+    } catch (error) {
+      console.error(`Unable to record workout due to error: ${error}`);
+    }
   }
 
   export async function getWorkouts(uid) {
 
   }
-*/
 
 /* --- EXERCISES DB FUNCTIONS --- */
 
-const coreSets = [
-  {
-    'setNumber': 1,
-    'reps': 10,
-    'intensity': 0.5
-  },
-  {
-    'setNumber': 2,
-    'reps': 6,
-    'intensity': 0.75
-  },
-  {
-    'setNumber': 3,
-    'reps': 'AMRAP',
-    'intensity': 0.83
-  },
-  {
-    'setNumber': 4,
-    'reps': 'AMRAP',
-    'intensity': 0
-  },
-]
+// const coreSets = [
+//   {
+//     'setNumber': 1,
+//     'reps': 10,
+//     'intensity': 0.5
+//   },
+//   {
+//     'setNumber': 2,
+//     'reps': 6,
+//     'intensity': 0.75
+//   },
+//   {
+//     'setNumber': 3,
+//     'reps': 'AMRAP',
+//     'intensity': 0.83
+//   },
+//   {
+//     'setNumber': 4,
+//     'reps': 'AMRAP',
+//     'intensity': 0
+//   },
+// ]
 
 const accessoryExercises = {
   benchPress: {

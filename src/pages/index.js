@@ -78,7 +78,7 @@ export default function Home() {
       const updateUser = async () => {
         const loggedInUser = await getUser(currentUser.uid);
         updateInfo(loggedInUser);
-        loadAuxLifts();
+        // loadAuxLifts();
       };
 
       updateUser();
