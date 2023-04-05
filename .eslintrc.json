@@ -1,6 +1,30 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "react-hooks/exhaustive-deps": "off"
+    "object-shorthand":"error",
+    "no-const-assign":"error",
+    "prefer-const": "error",
+    "react-hooks/exhaustive-deps": "off",
+    "react/jsx-curly-spacing": 1,
+    "react/jsx-boolean-value": 1,
+    "react/no-array-index-key": 1,
+    "react/jsx-closing-bracket-location": 1,
+    "react/self-closing-comp": 1,
+    "jsx-quotes": ["error", "prefer-double"],
+    "jsx-a11y/alt-text": [ 2, {
+      "elements": [ "img", "object", "area", "input[type=\"image\"]" ],
+      "img": ["Image"],
+      "object": ["Object"],
+      "area": ["Area"],
+      "input[type=\"image\"]": ["InputImage"]
+    }],
+    "jsx-a11y/img-redundant-alt": [ 2, {
+      "components": [ "Image" ],
+      "words": [ "Bild", "Foto" ]
+    }],
+    "jsx-a11y/aria-role": [ 2, {
+      "allowedInvalidRoles": ["text"],
+      "ignoreNonDOM": true
+  }]
   }
 }

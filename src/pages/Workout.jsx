@@ -7,7 +7,7 @@ import styles from '@/styles/Workout.module.css';
 import { useAuth } from 'contexts/AuthContext';
 import { useUserInfo } from 'contexts/UserContext';
 import { useExerciseContext } from 'contexts/ExerciseContext';
-import { getUser, updateCurrentMax } from 'controllers';
+import { getUser, updateCurrentMax, createWorkout } from 'controllers';
 import Button from 'components/Button';
 import Page from 'components/Page';
 import Header from 'components/Header';
@@ -31,6 +31,7 @@ export default function Workout() {
     accessoryExercises,
     selectCoreLift,
     workingWeight,
+    workout,
     loadWorkingWeight,
     updateCurrentSet,
     newWorkingWeight,
@@ -69,38 +70,49 @@ export default function Workout() {
     router.push('/');
   }
 
+  const handleLogWorkout = event => {
+    event.preventDefault();
+
+    const completedWorkout = Object.assign({}, workout);
+
+    completedWorkout.date = new Date();
+
+    createWorkout(currentUser.uid, completedWorkout);
+    router.push('/');
+  }
+
   /* --- RENDER METHODS --- */
   const renderSelectExercise = () => {
     return (
       <div className={styles.Div_row}>
         <CardButton
-          variant='small'
-          name='benchPress'
-          value='benchPress'
+          variant="small"
+          name="benchPress"
+          value="benchPress"
           whenClicked={() => handleSelectExercise('benchPress')}
         >
           Bench Press
         </CardButton>
         <CardButton
-          variant='small'
-          name='overHeadPress'
-          value='overHeadPress'
+          variant="small"
+          name="overHeadPress"
+          value="overHeadPress"
           whenClicked={() => handleSelectExercise('overHeadPress')}
         >
           Overhead Press
           </CardButton>
         <CardButton
-          variant='small'
-          name='deadlift'
-          value='deadlift'
+          variant="small"
+          name="deadlift"
+          value="deadlift"
           whenClicked={() => handleSelectExercise('deadlift')}
         >
           Deadlift
         </CardButton>
         <CardButton
-          variant='small'
-          name='squats'
-          value='squats'
+          variant="small"
+          name="squats"
+          value="squats"
           whenClicked={() => handleSelectExercise('squats')}
         >
           Squats
@@ -165,7 +177,7 @@ export default function Workout() {
   /* --- RENDERER --- */
   return (
     <Page>
-      <Header variant='compressed' >
+      <Header variant="compressed" >
         <div>
           <p>Today is</p>
           <CurrentDate/>
@@ -179,8 +191,9 @@ export default function Workout() {
       <div className={styles.Workout_container}>
         {renderCurrentWorkout()}
       </div>
-      <Footer variant='compressed'>
-        <Button variant='link' onClick={() => router.push('/')}>Home</Button>
+      <Footer variant="compressed">
+        <Button variant="link" onClick={() => router.push('/')}>Home</Button>
+        <Button onClick={handleLogWorkout}>Log Workout</Button>
         <Button onClick={handleCompleteWorkout}>Complete Workout</Button>
       </Footer>
     </Page>

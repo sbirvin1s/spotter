@@ -10,7 +10,7 @@ import Button from './Button';
 import CardButton from './CardButton';
 
 /* ========== EXPORTS ========== */
-export default function Set({ setNumber, reps, weight }) {
+export default function Set({ setNumber, reps, weight, setCompletedSets }) {
 
   /* --- STATE HOOKS --- */
   const { userInfo } = useUserInfo();
@@ -19,6 +19,7 @@ export default function Set({ setNumber, reps, weight }) {
     currentSet,
     updateCurrentSet,
     updateWorkingWeight,
+    updateCompletedSets
    } = useExerciseContext();
   const [ completedReps, setCompletedReps ] = useState(6)
 
@@ -46,6 +47,12 @@ export default function Set({ setNumber, reps, weight }) {
   }
 
   const handleCompleteSet = nextSet => {
+    const completedSet = {
+      reps,
+      weight,
+      units: userInfo.poundsOrKilograms
+    }
+
     if (reps === 'AMRAP') {
       if (completedReps <= 2) {
        weight = weight - 10;
@@ -61,11 +68,14 @@ export default function Set({ setNumber, reps, weight }) {
        weight = weight + 15
       }
 
-       updateWorkingWeight(weight);
-       updateCurrentSet(nextSet);
-    } else {
-      updateCurrentSet(nextSet);
+      updateWorkingWeight(weight);
     }
+
+      setCompletedSets(prev => ([
+        ...prev,
+        completedSet
+      ]));
+      updateCurrentSet(nextSet);
   }
 
   /* --- RENDER METHODS --- */
@@ -96,9 +106,9 @@ export default function Set({ setNumber, reps, weight }) {
           <p >{reps} reps at {intensity}</p>
           <p>{weight} {userInfo.poundsOrKilograms}</p>
           <CardButton
-              variant='workout'
+              variant="workout"
               onClick={() => handleCompleteSet(coreLift + 'Set#' + (setNumber + 1))}
-            >
+          >
               {targetReps}
           </CardButton>
         </div>
@@ -112,20 +122,21 @@ export default function Set({ setNumber, reps, weight }) {
             barWeight={userInfo.barWeight}
           />
           <div
-            className={styles.Set_buttonContainer}>
+            className={styles.Set_buttonContainer}
+          >
             <Button
               onClick={handleIncreaseReps}
-              variant='workout+'
+              variant="workout+"
               style={{ visibility: showRepModifiers }}
             >
               +
             </Button>
             <Button
               onClick={handleDecreaseReps}
-              variant='workout-'
+              variant="workout-"
               style={{ visibility: showRepModifiers }}
-              >
-                -
+            >
+              -
             </Button>
           </div>
         </div>

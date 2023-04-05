@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import styles from '@/styles/Home.module.css';
 import { useAuth } from 'contexts/AuthContext';
 import { useUserInfo } from 'contexts/UserContext';
-import { getUser } from 'controllers';
+import { getUser, loadAuxLifts } from 'controllers';
 import CurrentDate from 'components/CurrentDate';
 import Page from 'components/Page';
 import ProfilePic from 'components/ProfilePic';
@@ -78,11 +78,13 @@ export default function Home() {
       const updateUser = async () => {
         const loggedInUser = await getUser(currentUser.uid);
         updateInfo(loggedInUser);
+        // loadAuxLifts();
       };
 
       updateUser();
     }
   }, [])
+
 
   /* --- EVENT HANDLERS --- */
   const handleWorkoutSelect = e => {
@@ -190,7 +192,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Page>
-        <Header variant='compressed' >
+        <Header variant="compressed" >
           <div>
             <p>Today is</p>
             <CurrentDate/>
