@@ -18,6 +18,7 @@ const [ currentSet, setCurrentSet ] = useState();
 const [ coreLift, setCoreLift ] = useState();
 const [ workingWeight, setWorkingWeight ] = useState();
 const [ newWorkingWeight, setNewWorkingWeight ] = useState();
+const [ workout, setWorkout ] = useState();
 
 const coreSets = [
   {
@@ -186,6 +187,13 @@ const updateWorkingWeight = newWeight => {
   setNewWorkingWeight(newWeight);
 }
 
+const updateCompletedSets = (exercise, finishedSet) => {
+  setWorkout(prev => ({
+    ...prev,
+    [exercise]: finishedSet
+  }));
+}
+
 /* --- RENDERER --- */
   return (
     <ExerciseContext.Provider
@@ -196,10 +204,12 @@ const updateWorkingWeight = newWeight => {
         workingWeight,
         newWorkingWeight,
         accessoryExercises,
+        workout,
         selectCoreLift,
         updateCurrentSet,
         loadWorkingWeight,
         updateWorkingWeight,
+        updateCompletedSets,
       }}
     >
       {children}

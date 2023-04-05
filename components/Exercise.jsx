@@ -22,8 +22,14 @@ export default function Exercise({ coreSets }) {
   /* --- STATE HOOKS --- */
   const { currentUser } = useAuth();
   const { userInfo } = useUserInfo();
-  const { coreLift, workingWeight, newWorkingWeight } = useExerciseContext();
+  const {
+    coreLift,
+    workingWeight,
+    newWorkingWeight,
+    updateCompletedSets
+  } = useExerciseContext();
   const [ exercise, setExercise ] = useState();
+  const [ completedSets, setCompletedSets ] = useState([]);
 
   /* --- LIFECYCLE METHODS --- */
   useEffect(() => {
@@ -50,6 +56,7 @@ export default function Exercise({ coreSets }) {
             setNumber={setNumber}
             reps={reps}
             weight={weight}
+            setCompletedSets={setCompletedSets}
           />
         )})
     }
@@ -62,6 +69,11 @@ export default function Exercise({ coreSets }) {
         <h6>{exercise}</h6>
       </div>
       {renderSets()}
+      <Button
+        onClick={() => updateCompletedSets(exercise, completedSets)}
+      >
+        Complete Sets
+      </Button>
     </div>
   )
 }
