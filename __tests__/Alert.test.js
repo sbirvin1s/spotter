@@ -10,26 +10,46 @@ import Alert from '@/components/Alert';
 /* ========== TESTS ========== */
 afterEach(cleanup);
 
-it('renders the default alert', () => {
-  const { getByTestId } = render(<Alert />);
+it('only renders the default alert', () => {
+  const { queryByTestId, getByRole } = render(<Alert />);
 
-  expect(getByTestId('default')).toBeInTheDocument()
+  expect(queryByTestId('default')).toBeInTheDocument();
+  expect(getByRole('alert')).toBeInTheDocument();
+
+  expect(queryByTestId('fail')).not.toBeInTheDocument();
+  expect(queryByTestId('warn')).not.toBeInTheDocument();
+  expect(queryByTestId('success')).not.toBeInTheDocument();
 })
 
-it('renders the fail alert', () => {
-  const { getByTestId } = render(<Alert variant={'fail'} />);
+it('only renders the fail alert', () => {
+  const { queryByTestId, getByRole } = render(<Alert variant={'fail'} />);
 
-  expect(getByTestId('fail')).toBeInTheDocument()
+  expect(queryByTestId('fail')).toBeInTheDocument();
+  expect(getByRole('alert')).toBeInTheDocument();
+
+  expect(queryByTestId('default')).not.toBeInTheDocument();
+  expect(queryByTestId('warn')).not.toBeInTheDocument();
+  expect(queryByTestId('success')).not.toBeInTheDocument();
 })
 
-it('renders the warn alert', () => {
-  const { getByTestId } = render(<Alert variant={'warn'} />);
+it('only renders the warn alert', () => {
+  const { queryByTestId, getByRole } = render(<Alert variant={'warn'} />);
 
-  expect(getByTestId('warn')).toBeInTheDocument()
+  expect(queryByTestId('warn')).toBeInTheDocument();
+  expect(getByRole('alert')).toBeInTheDocument();
+
+  expect(queryByTestId('default')).not.toBeInTheDocument();
+  expect(queryByTestId('fail')).not.toBeInTheDocument();
+  expect(queryByTestId('success')).not.toBeInTheDocument();
 })
 
-it('renders the success alert', () => {
-  const { getByTestId } = render(<Alert variant={'success'} />);
+it('only renders the success alert', () => {
+  const { queryByTestId, getByRole } = render(<Alert variant={'success'} />);
 
-  expect(getByTestId('success')).toBeInTheDocument()
+  expect(queryByTestId('success')).toBeInTheDocument();
+  expect(getByRole('alert')).toBeInTheDocument();
+
+  expect(queryByTestId('default')).not.toBeInTheDocument();
+  expect(queryByTestId('fail')).not.toBeInTheDocument();
+  expect(queryByTestId('warn')).not.toBeInTheDocument();
 })
