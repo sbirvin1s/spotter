@@ -5,7 +5,14 @@ import React from "react";
 import styles from '@/styles/Header.module.css';
 
 /* ========== EXPORTS ========== */
-export default function Header({ variant, children }) {
+/** Header constructor that takes:
+ *
+ * @param {string} variant - ['compressed'] if none given, will return default
+ * @param {number} level - define aria-level, default is 1
+ * @param {*} children - anything that should be placed inside the component
+ * @returns {Component}
+ */
+export default function Header({ variant, level = 1, children }) {
 
   /* --- STATE HOOKS --- */
   /* --- LIFECYCLE METHODS --- */
@@ -16,13 +23,21 @@ export default function Header({ variant, children }) {
   switch (variant) {
     case 'compressed':
       return (
-        <div className={styles.Header_10___row}>
+        <div
+          role="heading"
+          aria-level={level}
+          className={styles.Header_10___row}
+        >
           {children}
         </div>
         )
     default:
       return (
-        <div className={styles.Header_column}>
+        <div
+          role="heading"
+          aria-level={level}
+          className={styles.Header_column}
+        >
           {children}
         </div>
         )

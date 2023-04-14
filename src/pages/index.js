@@ -1,19 +1,19 @@
 /* ========== EXTERNAL MODULES ========== */
 import { useEffect } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
+import { useRouter} from 'next/navigation';
 
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/Home.module.css';
-import { useAuth } from 'contexts/AuthContext';
-import { useUserInfo } from 'contexts/UserContext';
-import { getUser, loadAuxLifts } from 'controllers';
-import CurrentDate from 'components/CurrentDate';
-import Page from 'components/Page';
-import ProfilePic from 'components/ProfilePic';
-import Button from 'components/Button';
-import Header from 'components/Header';
+import { useAuth } from '@/contexts/AuthContext';
+import { useUserInfo } from '@/contexts/UserContext';
+import { getUser, loadAuxLifts } from '@/controllers/index';
+import CurrentDate from '@/components/CurrentDate';
+import Page from '@/components/Page';
+import ProfilePic from '@/components/ProfilePic';
+import Button from '@/components/Button';
+import Header from '@/components/Header';
 
 
 /* ========== EXPORTS ========== */

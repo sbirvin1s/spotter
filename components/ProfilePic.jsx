@@ -2,8 +2,8 @@
 import { useRouter } from 'next/router';
 
 /* ========== INTERNAL MODULES ========== */
-import styles from '../src/styles/ProfilePic.module.css'
-import { useUserInfo } from 'contexts/UserContext';
+import styles from '@/styles/ProfilePic.module.css';
+import { useUserInfo } from '@/contexts/UserContext';
 
 /* ========== EXPORTS ========== */
 export default function ProfilePic() {

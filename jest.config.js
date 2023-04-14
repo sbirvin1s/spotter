@@ -10,8 +10,19 @@ const createJestConfig = nextJest({
 /** @type {import('jest').Config} */
 const customJestConfig = {
   // Add more setup options before each test is run
-  // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-
+  testPathIgnorePatterns: [
+    "<rootDir>/.next/",
+    "<rootDir>/.node_modules/",
+  ],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  moduleNameMapper: {
+    '^@/styles(.*)$': '<rootDir>/styles/$1',
+    '^@/components(.*)$': '<rootDir>/components/$1',
+    '^@/contexts(.*)$': '<rootDir>/contexts/$1',
+    '^@/controllers(.*)$': '<rootDir>/controllers/$1',
+    '^@/firebase(.*)$': '<rootDir>/firebase/$1',
+    '^@/pages(.*)$': '<rootDir>/src/pages/$1',
+  },
   testEnvironment: 'jest-environment-jsdom',
 }
 
