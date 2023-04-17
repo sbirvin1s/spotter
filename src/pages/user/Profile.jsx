@@ -98,14 +98,14 @@ export default function Profile() {
       setTimeout(() => {
         setError('');
       }, 2000);
-      return <Alert variant='fail'>{error}</Alert>;
+      return <Alert variant="fail">{error}</Alert>;
     }
 
     if (message) {
       setTimeout(() => {
         setMessage('');
       }, 2000);
-      return <Alert variant='success'>{message}</Alert>;
+      return <Alert variant="success">{message}</Alert>;
     }
   }
 
@@ -132,8 +132,8 @@ export default function Profile() {
   return (
     <Page>
       <Header>
-        <p className='Header_title'>WELCOME</p>
-        <p className='Header_title___emphasis'>{userInfo && userInfo.first.toUpperCase()}</p>
+        <p className="Header_title">WELCOME</p>
+        <p className="Header_title___emphasis">{userInfo && userInfo.first.toUpperCase()}</p>
         {renderAlert()}
       </Header>
       <div className={styles.Div_column}>
@@ -156,15 +156,15 @@ export default function Profile() {
             name={'password'}
             labelName={'Password'}
             onChange={handlePasswordEntry}
-            type='password'
-            placeholder='Enter new Password'
+            type="password"
+            placeholder="Enter new Password"
             />
             <Input
               name={'confirmPassword'}
               labelName={'Confirm Password'}
               onChange={handlePasswordConfirmationEntry}
-              type='password'
-              placeholder='Confirm Password'
+              type="password"
+              placeholder="Confirm Password"
             />
           </div>
           <Button onClick={handleUpdatePassword} disabled={loading} >Update Password</Button>
@@ -176,15 +176,19 @@ export default function Profile() {
         <br/>
         {renderWorkingWeight()}
         <br />
-        <form action='https://github.com/sbirvin1s/spotter/issues/new/choose' method='get' target='blank'>
-          <Button variant='link' type='submit' >Report Issue</Button>
+        <form
+          action="https://github.com/sbirvin1s/spotter/issues/new/choose"
+          method="get"
+          target="blank"
+        >
+          <Button variant="link" type="submit">Report Issue</Button>
         </form>
       </div>
       <Footer>
         <Button onClick={() => router.push('/user/WeightUpdate')} >Update Max</Button>
         <div className={styles.Div_row}>
-          <Button variant='link' onClick={() => router.push('/')} >Home</Button>
-          <Button variant='link' onClick={handleLogOut} >Log Out</Button>
+          <Button variant="link" onClick={() => router.push('/')} >Home</Button>
+          <Button variant="link" onClick={handleLogOut} >Log Out</Button>
         </div>
       </Footer>
     </Page>

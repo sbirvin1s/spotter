@@ -38,6 +38,8 @@ export default function Button({
     case 'link':
       return (
         <button
+          data-testid="link"
+          role="link"
           className={`${styles.Button} ${styles.Button_link}`}
           {...props}
         >
@@ -47,6 +49,7 @@ export default function Button({
     case 'workout':
       return (
         <button
+          data-testid="workout"
           className={`${styles.Button} ${styles.Button_workout}`}
           selected={selected}
           onClick={handleSelected}
@@ -58,6 +61,7 @@ export default function Button({
     case 'workout+':
       return (
         <button
+        data-testid="workout+"
           className={`${styles.Button} ${styles.Button_workout} ${styles.Button_workout___increment}`}
           selected={selected}
           onClick={handleSelected}
@@ -69,6 +73,7 @@ export default function Button({
     case 'workout-':
       return (
         <button
+          data-testid="workout-"
           className={`${styles.Button} ${styles.Button_workout} ${styles.Button_workout___decrement}`}
           selected={selected}
           onClick={handleSelected}
@@ -80,6 +85,7 @@ export default function Button({
     default:
       return (
         <button
+          data-testid="default"
           className={styles.Button}
           {...props}
         >
