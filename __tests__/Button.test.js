@@ -46,7 +46,6 @@ describe('Button Component', () => {
       expect(clicked).toEqual(1);
     })
   })
-
   describe('Link Button variant', () => {
     it('only renders the link button variant', () => {
       const { queryByTestId, getByRole } = render(<Button variant={'link'} />);
@@ -214,8 +213,3 @@ describe('Button Component', () => {
     })
   })
 })
-
-
-
-
-

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 /* ========== INTERNAL MODULES ========== */
 import styles from '@/styles/CardButton.module.css';
-import { useButtonContext } from 'contexts/CardButtonContext';
+import { useButtonContext } from '@/contexts/CardButtonContext';
 
 /* ========== EXPORTS ========== */
 
@@ -11,7 +11,7 @@ import { useButtonContext } from 'contexts/CardButtonContext';
  *
  * @param {string} name - the string value to be passed as the id and name of the component
  * @param {string} value - the string value to be passed as the id and name of the component
- * @param {string} variant - ['small', 'medium', 'large'] if none given, defaults to medium
+ * @param {string} variant - ['workout', 'tiny', 'small', 'medium', 'large'] if none given, defaults to medium
  * @param {function} whenClicked - anon function to be passed to the component and run when clicked
  * @param {*} children - anything that should be contained inside the button
  * @prop {*} props - any property that needs to be passed to the input tag
