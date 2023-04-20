@@ -23,23 +23,23 @@ export default function Header({ variant, level = 1, children }) {
   switch (variant) {
     case 'compressed':
       return (
-        <div
+        <header
           role="heading"
           aria-level={level}
           className={styles.Header_10___row}
         >
           {children}
-        </div>
+        </header>
         )
     default:
       return (
-        <div
+        <header
           role="heading"
           aria-level={level}
           className={styles.Header_column}
         >
           {children}
-        </div>
+        </header>
         )
   }
 }
