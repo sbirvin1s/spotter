@@ -1,5 +1,3 @@
-/* ========== EXTERNAL MODULES ========== */
-
 /* ========== INTERNAL MODULES ========== */
 import '@/styles/globals.scss';
 import { AuthProvider } from 'contexts/AuthContext';

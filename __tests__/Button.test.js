@@ -5,7 +5,6 @@ import {
   fireEvent
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import '@testing-library/jest-dom/extend-expect';
 
 
 /* ========== INTERNAL MODULES ========== */
@@ -27,13 +26,11 @@ describe('Button Component', () => {
       expect(queryByTestId('workout+')).not.toBeInTheDocument();
       expect(queryByTestId('workout-')).not.toBeInTheDocument();
     })
-
     it('correctly renders passed in children', () => {
       const { getByRole } = render(<Button>Default Button</Button>);
 
       expect(getByRole('button')).toHaveTextContent('Default Button');
     })
-
     it('fires onClick functions as expected', () => {
       let clicked = 0;
       const updateClicked = () => clicked++;
@@ -58,13 +55,11 @@ describe('Button Component', () => {
       expect(queryByTestId('workout+')).not.toBeInTheDocument();
       expect(queryByTestId('workout-')).not.toBeInTheDocument();
     })
-
     it('correctly renders passed in children', () => {
       const { getByRole } = render(<Button variant={'link'}>Link!</Button>);
 
       expect(getByRole('link')).toHaveTextContent('Link!');
     })
-
     it('fires onClick functions as expected', () => {
       let clicked = 0;
       const updateClicked = () => clicked++;
@@ -89,13 +84,11 @@ describe('Button Component', () => {
       expect(queryByTestId('workout+')).not.toBeInTheDocument();
       expect(queryByTestId('workout-')).not.toBeInTheDocument();
     })
-
     it('correctly renders passed in children', () => {
       const { getByRole } = render(<Button variant={'workout'}>Workout!</Button>);
 
       expect(getByRole('button')).toHaveTextContent('Workout!');
     })
-
     it('fires handleClick functions when clicked', () => {
       let clicked = 0;
       const updateClicked = () => clicked++;
@@ -108,7 +101,6 @@ describe('Button Component', () => {
 
       expect(clicked).toEqual(1);
     })
-
     it('correctly updates the button when selected', () => {
       let clicked = 0;
       const updateClicked = () => clicked++;
@@ -134,13 +126,11 @@ describe('Button Component', () => {
       expect(queryByTestId('workout')).not.toBeInTheDocument();
       expect(queryByTestId('workout-')).not.toBeInTheDocument();
     })
-
     it('correctly renders passed in children', () => {
       const { getByRole } = render(<Button variant={'workout+'}>Workout+!</Button>);
 
       expect(getByRole('button')).toHaveTextContent('Workout+!');
     })
-
     it('fires handleClick functions when clicked', () => {
       let clicked = 0;
       const updateClicked = () => clicked++;
@@ -153,7 +143,6 @@ describe('Button Component', () => {
 
       expect(clicked).toEqual(1);
     })
-
     it('correctly updates the button when selected', () => {
       let clicked = 0;
       const updateClicked = () => clicked++;
@@ -179,13 +168,11 @@ describe('Button Component', () => {
       expect(queryByTestId('workout+')).not.toBeInTheDocument();
       expect(queryByTestId('workout')).not.toBeInTheDocument();
     })
-
     it('correctly renders passed in children', () => {
       const { getByRole } = render(<Button variant={'workout-'}>Workout-!</Button>);
 
       expect(getByRole('button')).toHaveTextContent('Workout-!');
     })
-
     it('fires handleClick functions when clicked', () => {
       let clicked = 0;
       const updateClicked = () => clicked++;
@@ -198,7 +185,6 @@ describe('Button Component', () => {
 
       expect(clicked).toEqual(1);
     })
-
     it('correctly updates the button when selected', () => {
       let clicked = 0;
       const updateClicked = () => clicked++;

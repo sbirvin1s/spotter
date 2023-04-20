@@ -3,7 +3,7 @@ import React, {useContext, useState } from 'react';
 
 
 /* ========== CONTEXTS ========== */
-const ExerciseContext = React.createContext();
+export const ExerciseContext = React.createContext();
 
 
 /* ========== EXPORTS ========== */
