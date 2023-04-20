@@ -16,15 +16,15 @@ export default function Footer({ variant, children }) {
   switch (variant) {
     case 'compressed':
       return (
-        <div className={styles.Footer_row___10}>
+        <footer className={styles.Footer_row___10}>
           {children}
-        </div>
+        </footer>
       )
       default:
         return (
-          <div className={styles.Footer_column}>
+          <footer className={styles.Footer_column}>
             {children}
-          </div>
+          </footer>
         )
   }
 }
