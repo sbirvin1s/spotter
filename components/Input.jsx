@@ -54,6 +54,7 @@ export default function Input({
       <input
         className={styles.Input}
         id={name}
+        label={name}
         name={name}
         onInput={handleInput}
         {...props}
